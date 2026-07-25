@@ -1291,6 +1291,38 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .header-container {
+    padding: 0 0.75rem;
+  }
+  
+  .logo {
+    font-size: 1.2rem;
+    gap: 0.35rem;
+  }
+  
+  .logo svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .nav-actions {
+    gap: 0.5rem;
+  }
+  
+  .search-btn span,
+  .search-shortcut {
+    display: none;
+  }
+  
+  .search-btn {
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    justify-content: center;
+    gap: 0;
+  }
+
   .nav-menu {
     display: none;
     position: absolute;
@@ -1696,6 +1728,12 @@ footer {
 @media (max-width: 1024px) {
   .software-grid {
     grid-template-columns: 1fr;
+  }
+  .header-container {
+    padding: 0 1rem;
+  }
+  .nav-menu {
+    gap: 1rem;
   }
 }
 

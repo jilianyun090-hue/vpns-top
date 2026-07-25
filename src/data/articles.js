@@ -153,7 +153,7 @@ const articles = [
     slug: "magic-ladder-recommendations",
     title: "2026年最新魔法梯子推荐：好用稳定的科学上网翻墙梯子精选指南",
     description: "2026年最新稳定好用的科学上网魔法梯子精选指南。从底层网络工程与GFW技术对抗角度出发，深度剖析如何辨别高品质魔法梯子，分析主流混淆协议差异与自建防坑避堵常识，助您长效稳定出海。",
-    keywords: "魔法梯子,梯子推荐,稳定梯子,翻墙梯子,科学上网,瞬云机场,寰宇云,极连云",
+    keywords: "魔法梯子,梯子推荐,稳定梯子,翻墙梯子,科学上网,极连云,飞猫云,微风网络",
     category: "科学上网指南",
     tags: ["魔法梯子", "梯子推荐", "稳定机场", "科学上网"],
     date: "2026-06-03",
@@ -571,6 +571,26 @@ const articles = [
     category: "机场评测推荐",
     tags: ["影子vpn", "IEPL专线", "流媒体解锁", "ChatGPT解锁"],
     date: "2026-06-22",
+    content: "GENERATE_AIRPORT_REVIEW"
+  },
+  {
+    slug: "flycat-review",
+    title: "2026 飞猫云机场评测：月付7元起全IPLC专线不限设备数与流媒体AI全解锁推荐",
+    description: "深度测评飞猫云机场，提供2026年最新速度与套餐分析。飞猫云采用全IPLC专线网络，不限制设备连接数量，提供原生IP完美解锁流媒体与AI大模型。",
+    keywords: "飞猫云,飞猫云测评,IPLC专线机场,不限设备数,流媒体解锁",
+    category: "机场评测推荐",
+    tags: ["飞猫云", "IPLC专线", "不限设备数", "流媒体解锁"],
+    date: "2026-07-26",
+    content: "GENERATE_AIRPORT_REVIEW"
+  },
+  {
+    slug: "breezenet-review",
+    title: "2026 微风网络评测：月付11.4元起全IEPL/IPLC物理专线不限速不限设备推荐",
+    description: "深度测评微风网络机场，提供2026年最新套餐与实测延迟数据。微风网络采用物理专线直连，全节点不限速且不限在线设备数，享受低延迟出海体验。",
+    keywords: "微风网络,微风网络测评,专线机场,不限速,不限设备数",
+    category: "机场评测推荐",
+    tags: ["微风网络", "IPLC专线", "不限速", "不限设备数"],
+    date: "2026-07-26",
     content: "GENERATE_AIRPORT_REVIEW"
   }
 ];

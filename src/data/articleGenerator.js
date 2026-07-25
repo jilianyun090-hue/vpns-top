@@ -512,6 +512,61 @@ function generateAirportReviewArticle(ap) {
             <td style="padding: 0.75rem; border: 1px solid var(--border-color);">全年特惠性价比极高，可使用9折优惠码 2026-99。</td>
           </tr>
     `;
+  } else if (ap.slug === 'flycat-review') {
+    pricingRows = `
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>飞猫·学生版</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">50 GB / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">￥84.00 / 年 (折合￥7/月)</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color); font-weight: bold;">不限制设备数</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">年费小包，适合低流量用户/学生党，月付自动刷新。</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>飞猫·星耀版</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">150 GB / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">￥25.00 / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color); font-weight: bold;">不限制设备数</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">季付及以上用户，购买日起每 30 天自动刷新流量。</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>飞猫·星环版</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">300 GB / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">￥45.00 / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color); font-weight: bold;">不限制设备数</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">季付及以上用户，购买日起每 30 天自动刷新流量。</td>
+          </tr>
+    `;
+  } else if (ap.slug === 'breezenet-review') {
+    pricingRows = `
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>清风 (Breeze)</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">100 GB / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">￥137.00 / 年 (折合￥11.4/月)</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color); font-weight: bold;">不限制设备数</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">高品质专线年付包，不限速，每月流量100G自动重置。</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>乘风 (Riding)</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">200 GB / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">￥27.00 / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color); font-weight: bold;">不限制设备数</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">全IPLC专线，享受低延迟高速率，适合主流日常使用。</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>破风 (Breaking)</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">500 GB / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">￥57.00 / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color); font-weight: bold;">不限制设备数</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">超大流量专线套餐，支持大文件下载与4K/8K视频播放。</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>御风 (Mastery)</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">1.2 TB / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">￥127.00 / 月</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color); font-weight: bold;">不限制设备数</td>
+            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">顶级奢华专线大流量包，适合多设备大流量企业与极客用户。</td>
+          </tr>
+    `;
   } else {
     pricingRows = `
           <tr>
