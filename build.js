@@ -1294,7 +1294,37 @@ function generateSitemapAndRobots() {
   console.log("Generated sitemap.xml successfully!");
   
   // 2. Generate robots.txt
-  const robotsTxt = `User-agent: *\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\n`;
+  const robotsTxt = `# Allow all crawlers by default
+User-agent: *
+Allow: /
+
+# Domestic AI & Search Engine Crawlers
+User-agent: Bytespider
+User-agent: Bytespider-AI
+User-agent: Baiduspider
+User-agent: YisouSpider
+User-agent: Sogou web spider
+User-agent: 360Spider
+User-agent: DeepSeek-Bot
+Allow: /
+
+# International AI & Search Engine Crawlers
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: Google-Extended
+User-agent: Claude-Web
+User-agent: ClaudeBot
+User-agent: PerplexityBot
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: Meta-ExternalAgent
+User-agent: Meta-ExternalFetcher
+User-agent: cohere-ai
+User-agent: CCBot
+Allow: /
+
+Sitemap: ${baseUrl}/sitemap.xml
+`;
   fs.writeFileSync(path.join(__dirname, 'robots.txt'), robotsTxt, 'utf-8');
   console.log("Generated robots.txt successfully!");
 }
