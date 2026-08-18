@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-  darkMode: 'class',
+  darkMode: 'media',
   theme: {
     extend: {
       colors: {
@@ -49,12 +49,14 @@ export default {
       typography: (/** @type {Function} */ theme) => ({
         DEFAULT: {
           css: {
-            '--tw-prose-body': theme('colors.slate.300'),
-            '--tw-prose-headings': theme('colors.white'),
-            '--tw-prose-links': theme('colors.brand.400'),
-            '--tw-prose-bold': theme('colors.white'),
-            '--tw-prose-code': theme('colors.amber.400'),
-            '--tw-prose-pre-bg': theme('colors.surface.800'),
+            '--tw-prose-body': theme('colors.slate.700'),
+            '--tw-prose-headings': theme('colors.slate.900'),
+            '--tw-prose-links': theme('colors.brand.600'),
+            '--tw-prose-bold': theme('colors.slate.900'),
+            '--tw-prose-code': theme('colors.brand.700'),
+            '--tw-prose-pre-bg': theme('colors.slate.900'),
+            '--tw-prose-th-borders': theme('colors.slate.200'),
+            '--tw-prose-td-borders': theme('colors.slate.200'),
             lineHeight: '1.8',
             h1: { fontWeight: '800' },
             h2: { fontWeight: '700', marginTop: '2em' },

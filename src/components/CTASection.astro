@@ -19,20 +19,20 @@ const {
 <section class:list={[
   'relative overflow-hidden rounded-2xl p-8 sm:p-12',
   variant === 'amber'
-    ? 'bg-gradient-to-br from-amber-900/40 to-surface-800 border border-amber-700/30'
-    : 'bg-gradient-to-br from-brand-900/60 to-surface-800 border border-brand-700/30'
+    ? 'bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200'
+    : 'bg-gradient-to-br from-brand-50 to-blue-100 border border-brand-200'
 ]}>
   <!-- Decorative blob -->
   <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-3xl pointer-events-none"
-       style={variant === 'amber' ? 'background: radial-gradient(circle, rgba(245,158,11,0.15), transparent)' :
-                                    'background: radial-gradient(circle, rgba(59,130,246,0.2), transparent)'}
+       style={variant === 'amber' ? 'background: radial-gradient(circle, rgba(245,158,11,0.12), transparent)' :
+                                    'background: radial-gradient(circle, rgba(59,130,246,0.12), transparent)'}
        aria-hidden="true">
   </div>
 
   <div class="relative flex flex-col sm:flex-row items-center justify-between gap-8">
     <div class="max-w-lg text-center sm:text-left">
-      <h2 class="text-2xl sm:text-3xl font-black text-white mb-3">{title}</h2>
-      <p class="text-slate-400 leading-relaxed">{subtitle}</p>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">{title}</h2>
+      <p class="text-slate-600 leading-relaxed">{subtitle}</p>
     </div>
     <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
       <a href={primaryCta.href}
