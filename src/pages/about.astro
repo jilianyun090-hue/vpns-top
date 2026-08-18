@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQ        from '../components/FAQ.astro';
+
+const criteria = [
+  { name: '连接稳定性', weight: '30%', desc: '连续 30 天监控丢包率与断连频率，取加权均值。' },
+  { name: '峰值速度',   weight: '25%', desc: '工作日晚高峰（20:00–22:00）YouTube 4K 缓冲实测，取中位值。' },
+  { name: '节点覆盖',   weight: '15%', desc: '地区数量与冷门线路（欧洲、南美等）节点质量评估。' },
+  { name: '流媒体解锁', weight: '15%', desc: 'Netflix、Disney+、YouTube Premium、DAZN 等主流平台每周实测。' },
+  { name: '性价比',     weight: '10%', desc: '单 GB 流量价格与套餐灵活性（月付 vs 年付）综合评估。' },
+  { name: '客服响应',   weight: '5%',  desc: '工单响应速度、解决率与用户满意度真实反馈。' },
+];
+
+const faqs = [
+  {
+    question: '本站如何保证评测的独立性？',
+    answer: '本站不接受厂商赞助测评，所有测速在真实使用环境下完成。推广链接通过 /go/ 内部路由解耦，与评分完全分离。',
+  },
+  {
+    question: '评测多久更新一次？',
+    answer: '速度与稳定性数据每周更新；流媒体解锁状态每周同步；套餐价格变动后 48 小时内更新。',
+  },
+  {
+    question: '本站是否有隐私政策？',
+    answer: '本站不收集个人信息，不使用 Cookie 追踪，不集成任何第三方广告 SDK。唯一的数据收集是通过订阅邮件（可选）。',
+  },
+];
+---
+
+<BaseLayout
+  title="关于我们"
+  description="了解 VPNs Top 的评测标准、独立性承诺、免责声明与隐私政策。"
+>
+  <div class="container-xl py-10 lg:py-14 max-w-4xl mx-auto">
+
+    <!-- About -->
+    <section class="mb-16">
+      <div class="inline-flex items-center gap-2 badge badge-brand mb-4">关于本站</div>
+      <h1 class="text-3xl sm:text-4xl font-black text-white mb-6">评测标准 & 关于我们</h1>
+      <div class="prose-cn">
+        <p>
+          <strong>VPNs Top</strong> 是一个专注于机场与VPN服务商评测的独立中文平台，由翻墙技术爱好者自发创建与维护。
+          我们的目标是通过客观、可重现的测试方法，帮助用户在信息不对称的环境下做出理性选择。
+        </p>
+        <p>
+          我们相信：好的评测必须建立在 <strong>独立性</strong>、<strong>可重现性</strong> 与 <strong>透明度</strong> 之上。
+          因此，本站从建立之初便拒绝接受任何形式的厂商赞助、买榜或利益捆绑式推广合作。
+        </p>
+      </div>
+    </section>
+
+    <!-- Criteria -->
+    <section class="mb-16" id="criteria">
+      <h2 class="text-2xl font-bold text-white mb-6">评测方法论</h2>
+      <p class="text-slate-400 mb-6 leading-relaxed">
+        每家品牌均经过以下 6 个维度的量化评测，总分 10 分：
+      </p>
+      <div class="space-y-3">
+        {criteria.map((c) => (
+          <div class="card p-5 flex gap-4">
+            <div class="flex-shrink-0 w-14 text-center">
+              <div class="text-sm font-black text-amber-400">{c.weight}</div>
+              <div class="text-xs text-slate-600">权重</div>
+            </div>
+            <div>
+              <div class="font-semibold text-white text-sm mb-1">{c.name}</div>
+              <div class="text-xs text-slate-400 leading-relaxed">{c.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="mb-16" id="disclaimer">
+      <h2 class="text-2xl font-bold text-white mb-4">免责声明</h2>
+      <div class="card p-6 border border-amber-700/20 prose-cn text-sm">
+        <p>
+          本站所有内容仅供技术研究与参考目的，不构成任何法律建议。科学上网行为在中国大陆存在法律风险，
+          使用者须自行判断并承担全部法律责任。本站对因使用本站信息而产生的任何直接或间接损失不承担责任。
+        </p>
+        <p>
+          本站部分链接为推广链接（Affiliate Links），点击后将通过 <code>/go/</code> 内部路由跳转，
+          用户支付价格不变，本站可能获取少量佣金以维持运营。推广关系不影响评测评分，评分均在建立推广关系前独立完成。
+        </p>
+      </div>
+    </section>
+
+    <!-- Privacy -->
+    <section class="mb-16" id="privacy">
+      <h2 class="text-2xl font-bold text-white mb-4">隐私政策</h2>
+      <div class="prose-cn text-sm">
+        <p>本站承诺：</p>
+        <ul>
+          <li>不收集访客个人信息</li>
+          <li>不使用追踪型 Cookie</li>
+          <li>不集成第三方广告 SDK</li>
+          <li>邮件订阅为完全自愿，可随时一键退订</li>
+          <li>网站日志数据仅用于安全防护，不对外共享</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <h2 class="text-2xl font-bold text-white mb-6">常见问题</h2>
+      <FAQ items={faqs} />
+    </section>
+  </div>
+</BaseLayout>

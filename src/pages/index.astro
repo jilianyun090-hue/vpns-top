@@ -1,0 +1,164 @@
+---
+import BaseLayout     from '../layouts/BaseLayout.astro';
+import Hero           from '../components/Hero.astro';
+import StatsStrip     from '../components/StatsStrip.astro';
+import SectionTitle   from '../components/SectionTitle.astro';
+import FeatureCard    from '../components/FeatureCard.astro';
+import ArticleCard    from '../components/ArticleCard.astro';
+import BrandCard      from '../components/BrandCard.astro';
+import TopicCluster   from '../components/TopicCluster.astro';
+import CTASection     from '../components/CTASection.astro';
+import NewsletterBox  from '../components/NewsletterBox.astro';
+import FAQ            from '../components/FAQ.astro';
+
+import { getCollection }  from 'astro:content';
+import { features, faqs } from '../data/homepage';
+
+// Fetch content
+const allPosts  = await getCollection('blog',   ({ data }) => !data.draft);
+const allBrands = await getCollection('brands');
+const allTopics = await getCollection('topics', ({ data }) => !data.draft);
+
+// Sort
+const latestPosts    = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 6);
+const featuredBrands = allBrands.filter((b) => b.data.featured).slice(0, 4);
+const topTopics      = allTopics.sort((a, b) => a.data.order - b.data.order).slice(0, 4);
+---
+
+<BaseLayout>
+  <!-- ① Hero 首屏 -->
+  <Hero />
+
+  <!-- ② 信任背书数据条 -->
+  <StatsStrip />
+
+  <!-- ③ 核心栏目导航 -->
+  <section class="section container-xl">
+    <SectionTitle
+      title="一站式评测导航"
+      subtitle="覆盖机场、VPN、教程、流媒体解锁全品类，数据每周更新。"
+      centered
+      tag="栏目导航"
+    />
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {features.map((f) => (
+        <FeatureCard
+          icon={f.icon}
+          title={f.title}
+          description={f.description}
+          href={f.href}
+          cta={f.cta}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- ④ 最新评测文章 -->
+  {latestPosts.length > 0 && (
+    <section class="section bg-surface-800/30 border-y border-white/5">
+      <div class="container-xl">
+        <div class="flex items-end justify-between mb-8">
+          <SectionTitle
+            title="最新评测"
+            subtitle="最近发布与更新的机场、VPN 深度测评。"
+            tag="NEW"
+          />
+          <a href="/blog/" class="btn-secondary text-sm hidden sm:inline-flex">查看全部 →</a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {latestPosts.map((post) => (
+            <ArticleCard
+              title={post.data.title}
+              description={post.data.description}
+              href={`/blog/${post.slug}/`}
+              category={post.data.category}
+              tags={post.data.tags}
+              pubDate={post.data.pubDate}
+              updatedDate={post.data.updatedDate}
+              featured={post.data.featured}
+            />
+          ))}
+        </div>
+        <div class="mt-6 text-center sm:hidden">
+          <a href="/blog/" class="btn-secondary text-sm">查看全部文章</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ⑤ 推荐品牌 -->
+  {featuredBrands.length > 0 && (
+    <section class="section container-xl">
+      <div class="flex items-end justify-between mb-8">
+        <SectionTitle
+          title="精选推荐品牌"
+          subtitle="综合评分前列，经过完整 12 维度测评的服务商。"
+          tag="精选"
+        />
+        <a href="/brands/" class="btn-secondary text-sm hidden sm:inline-flex">品牌库 →</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {featuredBrands.map((brand) => (
+          <BrandCard
+            name={brand.data.name}
+            slug={brand.slug}
+            rating={brand.data.rating}
+            tagline={brand.data.tagline}
+            nodeTypes={brand.data.nodeTypes}
+            streamingSupport={brand.data.streamingSupport}
+            minPrice={brand.data.minPrice}
+            referralId={brand.data.referralId}
+            tags={brand.data.tags}
+            featured={brand.data.featured}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ⑥ 专题聚合 -->
+  {topTopics.length > 0 && (
+    <section class="section bg-surface-800/30 border-y border-white/5">
+      <div class="container-xl">
+        <SectionTitle
+          title="热门专题"
+          subtitle="系统梳理翻墙知识，从入门到进阶一网打尽。"
+          centered
+          tag="专题"
+        />
+        <div class="grid sm:grid-cols-2 gap-4 mt-8">
+          {topTopics.map((topic) => (
+            <TopicCluster
+              title={topic.data.title}
+              description={topic.data.description}
+              href={`/topics/${topic.slug}/`}
+              articleCount={topic.data.articleCount}
+              tags={topic.data.tags}
+            />
+          ))}
+        </div>
+        <div class="mt-6 text-center">
+          <a href="/topics/" class="btn-secondary text-sm">查看全部专题</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ⑦ FAQ -->
+  <section class="section container-xl max-w-3xl mx-auto">
+    <SectionTitle
+      title="常见问题"
+      subtitle="关于机场、VPN 与本站评测方法论的热门疑问。"
+      centered
+    />
+    <FAQ items={[...faqs]} />
+  </section>
+
+  <!-- ⑧ CTA + Newsletter -->
+  <section class="section container-xl">
+    <CTASection />
+    <div class="mt-6 max-w-2xl mx-auto">
+      <NewsletterBox />
+    </div>
+  </section>
+</BaseLayout>

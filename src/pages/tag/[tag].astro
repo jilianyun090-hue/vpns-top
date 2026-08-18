@@ -1,0 +1,62 @@
+---
+import BaseLayout  from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Breadcrumb  from '../../components/Breadcrumb.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const allTags = [...new Set(posts.flatMap((p) => p.data.tags))];
+  return allTags.map((tag) => ({
+    params: { tag },
+    props:  { tag },
+  }));
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.props;
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const filtered = allPosts
+  .filter((p) => p.data.tags.includes(tag))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title={`#${tag} 标签`}
+  description={`标签 #${tag} 下的全部评测与教程文章，共 ${filtered.length} 篇。`}
+>
+  <div class="container-xl py-10 lg:py-14">
+    <Breadcrumb items={[
+      { label: '首页', href: '/' },
+      { label: '博客', href: '/blog/' },
+      { label: `#${tag}` },
+    ]} />
+
+    <SectionTitle
+      title={`#${tag}`}
+      subtitle={`共 ${filtered.length} 篇相关文章`}
+      tag="标签"
+    />
+
+    {filtered.length > 0 ? (
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filtered.map((post) => (
+          <ArticleCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/blog/${post.slug}/`}
+            category={post.data.category}
+            tags={post.data.tags}
+            pubDate={post.data.pubDate}
+            updatedDate={post.data.updatedDate}
+            featured={post.data.featured}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="text-slate-500 text-center py-20">该标签暂无文章。</p>
+    )}
+  </div>
+</BaseLayout>

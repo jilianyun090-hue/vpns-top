@@ -1,0 +1,38 @@
+---
+import BaseLayout    from '../../layouts/BaseLayout.astro';
+import TopicCluster  from '../../components/TopicCluster.astro';
+import SectionTitle  from '../../components/SectionTitle.astro';
+import { getCollection } from 'astro:content';
+
+const allTopics = await getCollection('topics', ({ data }) => !data.draft);
+const sorted = allTopics.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="专题大厅"
+  description="系统梳理翻墙、机场与VPN知识，涵盖流媒体解锁、新手教程、安全指南等核心专题合集。"
+>
+  <div class="container-xl py-10 lg:py-14">
+    <SectionTitle
+      title="专题大厅"
+      subtitle="精心策划的主题合集，系统深入掌握翻墙与科学上网知识体系。"
+      tag="专题"
+    />
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      {sorted.map((topic) => (
+        <TopicCluster
+          title={topic.data.title}
+          description={topic.data.description}
+          href={`/topics/${topic.slug}/`}
+          articleCount={topic.data.articleCount}
+          tags={topic.data.tags}
+        />
+      ))}
+    </div>
+
+    {sorted.length === 0 && (
+      <p class="text-slate-500 text-center py-20">专题建设中，敬请期待。</p>
+    )}
+  </div>
+</BaseLayout>

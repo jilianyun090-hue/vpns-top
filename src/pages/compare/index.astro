@@ -1,0 +1,64 @@
+---
+import LandingLayout    from '../../layouts/LandingLayout.astro';
+import ComparisonTable  from '../../components/ComparisonTable.astro';
+import SectionTitle     from '../../components/SectionTitle.astro';
+import { getCollection } from 'astro:content';
+
+const allBrands = await getCollection('brands');
+const sorted = allBrands.sort((a, b) => b.data.rating - a.data.rating);
+
+// Build comparison table data
+const tableHeaders = ['品牌', '评分', '最低价/月', 'SS', 'VMess', 'Hysteria2', 'Netflix', 'Disney+', 'YouTube'];
+
+const tableRows = sorted.map((b) => [
+  b.data.name,
+  `${b.data.rating.toFixed(1)} / 10`,
+  b.data.minPrice !== undefined ? `¥${b.data.minPrice.toFixed(1)}` : '—',
+  b.data.nodeTypes.includes('SS'),
+  b.data.nodeTypes.some((t) => t.includes('VMess') || t.includes('V2Ray')),
+  b.data.nodeTypes.some((t) => t.includes('Hysteria')),
+  b.data.streamingSupport.some((s) => s.includes('Netflix')),
+  b.data.streamingSupport.some((s) => s.includes('Disney')),
+  b.data.streamingSupport.some((s) => s.includes('YouTube')),
+]);
+---
+
+<LandingLayout
+  title="机场横向对比"
+  description="多维度横向矩阵对比 30+ 机场品牌，含协议支持、流媒体解锁、价格与综合评分，助您快速筛选最优方案。"
+  breadcrumbs={[
+    { label: '首页', href: '/' },
+    { label: '横向对比' },
+  ]}
+>
+  <div slot="header" class="mb-10">
+    <h1 class="text-3xl sm:text-4xl font-black text-white mb-4">机场横向对比矩阵</h1>
+    <p class="text-slate-400 leading-relaxed max-w-2xl">
+      基于独立测速数据，综合 12 个维度对 {sorted.length} 家主流机场进行量化评分与参数对比。
+      数据每周更新，最后更新时间以各品牌页为准。
+    </p>
+  </div>
+
+  <SectionTitle
+    title="参数对比表"
+    subtitle="向右滑动查看完整数据（移动端）"
+    tag="对比"
+  />
+
+  {sorted.length > 0 ? (
+    <ComparisonTable
+      headers={tableHeaders}
+      rows={tableRows}
+      caption={`共 ${sorted.length} 家品牌 · 数据更新于 ${new Date().toLocaleDateString('zh-CN')}`}
+    />
+  ) : (
+    <p class="text-slate-500 text-center py-20">品牌数据收录中，敬请期待。</p>
+  )}
+
+  <!-- Legend -->
+  <div class="mt-6 flex flex-wrap gap-4 text-xs text-slate-500">
+    <span class="flex items-center gap-1.5">✅ = 支持</span>
+    <span class="flex items-center gap-1.5">❌ = 不支持 / 未知</span>
+    <span class="flex items-center gap-1.5">— = 数据待补充</span>
+  </div>
+</LandingLayout>

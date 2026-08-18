@@ -1,0 +1,41 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumb  from '../components/Breadcrumb.astro';
+import CTASection  from '../components/CTASection.astro';
+
+interface Props {
+  title:        string;
+  description?: string;
+  breadcrumbs?: { label: string; href?: string }[];
+  showCta?:     boolean;
+}
+
+const {
+  title, description, 
+  breadcrumbs,
+  showCta = true,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container-xl py-10 lg:py-14">
+
+    {breadcrumbs && breadcrumbs.length > 0 && (
+      <Breadcrumb items={breadcrumbs} />
+    )}
+
+    <!-- Page heading slot -->
+    <slot name="header" />
+
+    <!-- Main content -->
+    <slot />
+
+    <!-- CTA -->
+    {showCta && (
+      <div class="mt-16">
+        <CTASection />
+      </div>
+    )}
+
+  </div>
+</BaseLayout>

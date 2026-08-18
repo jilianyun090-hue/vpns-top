@@ -1,0 +1,84 @@
+---
+interface Props {
+  name:             string;
+  slug:             string;
+  rating:           number;
+  tagline?:         string;
+  nodeTypes?:       string[];
+  streamingSupport?: string[];
+  minPrice?:        number;
+  referralId?:      string;
+  tags?:            string[];
+  featured?:        boolean;
+}
+
+const {
+  name, slug, rating, tagline, nodeTypes = [], streamingSupport = [], 
+  minPrice, referralId, featured = false
+} = Astro.props;
+
+// Convert rating to stars (0-10 → 0-5 half-stars)
+const fullStars  = Math.floor(rating / 2);
+const halfStar   = rating % 2 >= 1;
+const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+---
+
+<div class:list={['card card-hover p-6 flex flex-col gap-4', featured && 'border-amber-700/30']}>
+  
+  <!-- Top row -->
+  <div class="flex items-start justify-between gap-3">
+    <div>
+      {featured && <span class="badge badge-amber text-xs mb-2">推荐</span>}
+      <h3 class="font-bold text-white text-base leading-tight">{name}</h3>
+      {tagline && <p class="text-xs text-slate-400 mt-1">{tagline}</p>}
+    </div>
+    <!-- Rating badge -->
+    <div class="flex-shrink-0 flex flex-col items-center bg-surface-700 rounded-xl px-3 py-2">
+      <span class="text-xl font-black text-amber-400 leading-none">{rating.toFixed(1)}</span>
+      <span class="text-[10px] text-slate-500 mt-0.5">/ 10</span>
+    </div>
+  </div>
+
+  <!-- Stars -->
+  <div class="rating-stars text-base" aria-label={`评分 ${rating} 分，满分 10 分`}>
+    {'★'.repeat(fullStars)}
+    {halfStar && '☆'}
+    {'☆'.repeat(emptyStars)}
+  </div>
+
+  <!-- Info pills -->
+  <div class="flex flex-wrap gap-1.5">
+    {nodeTypes.slice(0, 3).map((t) => (
+      <span class="badge badge-brand text-xs">{t}</span>
+    ))}
+    {streamingSupport.slice(0, 2).map((s) => (
+      <span class="badge badge-green text-xs">{s}</span>
+    ))}
+  </div>
+
+  <!-- Price + CTA -->
+  <div class="flex items-center justify-between mt-auto pt-3 border-t border-white/5">
+    <div>
+      {minPrice !== undefined ? (
+        <span class="text-xs text-slate-400">
+          低至 <strong class="text-white font-bold">¥{minPrice.toFixed(1)}</strong>/月
+        </span>
+      ) : (
+        <span class="text-xs text-slate-600">价格面议</span>
+      )}
+    </div>
+    <div class="flex gap-2">
+      <a href={`/brands/${slug}/`}
+         class="text-xs font-medium text-brand-400 hover:text-brand-300 transition-colors">
+        查看评测 →
+      </a>
+      {referralId && (
+        <a href={`/go/${referralId}/`}
+           rel="noopener noreferrer sponsored"
+           class="btn-amber text-xs px-3 py-1">
+          官网
+        </a>
+      )}
+    </div>
+  </div>
+</div>

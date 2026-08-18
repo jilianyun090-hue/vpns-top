@@ -1,0 +1,24 @@
+---
+interface Props {
+  title:    string;
+  subtitle?: string;
+  centered?: boolean;
+  tag?:     string;
+}
+
+const { title, subtitle, centered = false, tag } = Astro.props;
+---
+
+<div class:list={['mb-10', centered && 'text-center']}>
+  {tag && (
+    <span class="badge badge-brand mb-3">{tag}</span>
+  )}
+  <h2 class="text-2xl sm:text-3xl font-bold text-white leading-tight">
+    {title}
+  </h2>
+  {subtitle && (
+    <p class="mt-3 text-slate-400 max-w-2xl leading-relaxed" class:list={[centered && 'mx-auto']}>
+      {subtitle}
+    </p>
+  )}
+</div>

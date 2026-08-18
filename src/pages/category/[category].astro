@@ -1,0 +1,67 @@
+---
+import BaseLayout   from '../../layouts/BaseLayout.astro';
+import ArticleCard  from '../../components/ArticleCard.astro';
+import CategoryNav  from '../../components/CategoryNav.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import Breadcrumb   from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+import { categories, getCategoryBySlug } from '../../data/categories';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  return categories.map((cat) => ({
+    params: { category: cat.slug },
+    props:  { catSlug: cat.slug },
+  }));
+}) satisfies GetStaticPaths;
+
+const { catSlug } = Astro.props;
+const cat = getCategoryBySlug(catSlug);
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const filtered = allPosts
+  .filter((p) => p.data.category === catSlug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title={cat ? `${cat.label}` : catSlug}
+  description={cat?.description ?? `${catSlug} 分类下的全部评测文章。`}
+>
+  <div class="container-xl py-10 lg:py-14">
+    <Breadcrumb items={[
+      { label: '首页', href: '/' },
+      { label: '博客', href: '/blog/' },
+      { label: cat?.label ?? catSlug },
+    ]} />
+
+    <SectionTitle
+      title={`${cat?.icon ?? ''} ${cat?.label ?? catSlug}`}
+      subtitle={cat?.description ?? ''}
+      tag="分类"
+    />
+
+    <div class="mb-8">
+      <CategoryNav activeCategory={catSlug} />
+    </div>
+
+    {filtered.length > 0 ? (
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filtered.map((post) => (
+          <ArticleCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/blog/${post.slug}/`}
+            category={post.data.category}
+            tags={post.data.tags}
+            pubDate={post.data.pubDate}
+            updatedDate={post.data.updatedDate}
+            featured={post.data.featured}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="text-slate-500 text-center py-20">该分类暂无文章。</p>
+    )}
+  </div>
+</BaseLayout>

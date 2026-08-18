@@ -1,0 +1,41 @@
+---
+// /go/[id] — 内部外链中转路由
+// 实现方式：meta http-equiv="refresh" 纯静态兼容
+// 如需 CF Pages _redirects 301 方案，请在下方注释中启用
+
+import { getRedirectById, redirects } from '../../data/redirects';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (() => {
+  return redirects.map((r) => ({
+    params: { id: r.id },
+    props:  { id: r.id },
+  }));
+}) satisfies GetStaticPaths;
+
+const { id } = Astro.props;
+const entry = getRedirectById(id);
+const destination = entry?.destination ?? '/';
+const brand = entry?.brand ?? '目标品牌';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>正在跳转至 {brand}…</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <link rel="canonical" href={destination} />
+  </head>
+  <body style="background:#0f172a;color:#94a3b8;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;">
+    <div>
+      <p style="font-size:1.1rem;margin-bottom:0.5rem;">正在跳转至 <strong style="color:#fff">{brand}</strong>…</p>
+      <p style="font-size:0.85rem;">
+        如未自动跳转，请
+        <a href={destination} style="color:#60a5fa" rel="noopener noreferrer sponsored">点击此处</a>
+      </p>
+    </div>
+  </body>
+</html>

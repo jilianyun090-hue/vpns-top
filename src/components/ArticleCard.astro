@@ -1,0 +1,59 @@
+---
+interface Props {
+  title:       string;
+  description: string;
+  href:        string;
+  category:    string;
+  tags?:       string[];
+  pubDate:     Date;
+  updatedDate?: Date;
+  featured?:   boolean;
+}
+
+const { title, description, href, category, tags = [], pubDate, updatedDate, featured = false } = Astro.props;
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<article class:list={['card card-hover p-6 flex flex-col gap-3', featured && 'border-brand-700/40']}>
+  <!-- Category + Featured badge -->
+  <div class="flex items-center gap-2">
+    <span class="badge badge-brand">{category}</span>
+    {featured && <span class="badge badge-amber">精选</span>}
+  </div>
+
+  <!-- Title -->
+  <h2 class="text-base font-bold text-white leading-snug">
+    <a href={href} class="hover:text-brand-300 transition-colors duration-150">
+      {title}
+    </a>
+  </h2>
+
+  <!-- Description -->
+  <p class="text-sm text-slate-400 leading-relaxed line-clamp-2 flex-1">
+    {description}
+  </p>
+
+  <!-- Tags -->
+  {tags.length > 0 && (
+    <div class="flex flex-wrap gap-1.5">
+      {tags.slice(0, 3).map((tag) => (
+        <a href={`/tag/${tag}/`} class="badge badge-slate text-xs hover:text-slate-200 transition-colors">
+          #{tag}
+        </a>
+      ))}
+    </div>
+  )}
+
+  <!-- Meta footer -->
+  <div class="flex items-center justify-between pt-2 border-t border-white/5 text-xs text-slate-600">
+    <time datetime={pubDate.toISOString()}>发布 {formatDate(pubDate)}</time>
+    {updatedDate && (
+      <time datetime={updatedDate.toISOString()} class="text-slate-600">
+        更新 {formatDate(updatedDate)}
+      </time>
+    )}
+  </div>
+</article>

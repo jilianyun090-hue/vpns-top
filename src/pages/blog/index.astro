@@ -1,0 +1,50 @@
+---
+import BaseLayout   from '../../layouts/BaseLayout.astro';
+import ArticleCard  from '../../components/ArticleCard.astro';
+import CategoryNav  from '../../components/CategoryNav.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sorted = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Collect unique tags
+const allTags = [...new Set(sorted.flatMap((p) => p.data.tags))].sort();
+---
+
+<BaseLayout
+  title="评测文章"
+  description="VPNs Top 全部机场、VPN 评测文章，涵盖速度、稳定性、流媒体解锁、性价比全维度深度测评。"
+>
+  <div class="container-xl py-10 lg:py-14">
+    <SectionTitle
+      title="评测文章"
+      subtitle={`共 ${sorted.length} 篇独立评测，数据每周更新。`}
+      tag="BLOG"
+    />
+
+    <!-- Category filter -->
+    <div class="mb-8">
+      <CategoryNav showTags tags={allTags} />
+    </div>
+
+    {sorted.length > 0 ? (
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {sorted.map((post) => (
+          <ArticleCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/blog/${post.slug}/`}
+            category={post.data.category}
+            tags={post.data.tags}
+            pubDate={post.data.pubDate}
+            updatedDate={post.data.updatedDate}
+            featured={post.data.featured}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="text-slate-500 text-center py-20">暂无文章，敬请期待。</p>
+    )}
+  </div>
+</BaseLayout>
