@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Reset ─────────────────────────────────────────── */
+@layer base {
+  :root {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  html {
+    @apply bg-white text-slate-800 font-sans antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+
+  /* 中文段落排版优化 */
+  p, li {
+    @apply leading-relaxed;
+    line-height: 1.85;
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    line-height: 1.35;
+  }
+
+  /* 链接 */
+  a {
+    @apply transition-colors duration-150;
+  }
+
+  /* 滚动条美化 */
+  ::-webkit-scrollbar { @apply w-1.5; }
+  ::-webkit-scrollbar-track { @apply bg-slate-100; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-300 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-slate-400; }
+
+  /* 选中文字 */
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+}
+
+/* ─── Components ─────────────────────────────────────────── */
+@layer components {
+  /* 容器 */
+  .container-xl {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 卡片基础样式 */
+  .card {
+    @apply bg-white rounded-2xl border border-slate-200
+           shadow-sm transition-all duration-300;
+  }
+  .card-hover {
+    @apply hover:border-brand-300 hover:shadow-md hover:shadow-brand-100
+           hover:-translate-y-0.5;
+  }
+
+  /* 按钮变体 */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
+           bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm
+           transition-all duration-200 shadow-md shadow-brand-200
+           hover:shadow-brand-300 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
+           bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 font-medium text-sm
+           border border-slate-200 hover:border-slate-300
+           transition-all duration-200;
+  }
+  .btn-amber {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
+           bg-amber-500 hover:bg-amber-400 text-white font-bold text-sm
+           transition-all duration-200 shadow-md shadow-amber-200
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* 标签/徽章 */
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-brand  { @apply bg-brand-100 text-brand-700 border border-brand-200; }
+  .badge-amber  { @apply bg-amber-100 text-amber-700 border border-amber-200; }
+  .badge-green  { @apply bg-emerald-100 text-emerald-700 border border-emerald-200; }
+  .badge-red    { @apply bg-red-100 text-red-700 border border-red-200; }
+  .badge-slate  { @apply bg-slate-100 text-slate-600 border border-slate-200; }
+
+  /* 星级评分 */
+  .rating-stars {
+    @apply text-amber-400 tracking-tight;
+  }
+
+  /* 分割线 */
+  .divider {
+    @apply border-t border-slate-100 my-8;
+  }
+
+  /* 渐变文字 */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #059669 100%);
+  }
+  .gradient-text-amber {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+  }
+
+  /* Section 间距 */
+  .section {
+    @apply py-16 lg:py-24;
+  }
+}
+
+/* ─── Code Block ─────────────────────────────────────────── */
+@layer components {
+  pre {
+    @apply rounded-xl text-sm overflow-x-auto bg-slate-900;
+    scrollbar-width: thin;
+  }
+  pre code {
+    @apply font-mono text-sm leading-relaxed text-slate-100;
+  }
+  :not(pre) > code {
+    @apply font-mono text-xs px-1.5 py-0.5 rounded bg-slate-100 text-brand-700
+           border border-slate-200;
+  }
+}
+
+/* ─── Prose Override (中文长文) ──────────────────────────── */
+@layer utilities {
+  .prose-cn {
+    @apply prose max-w-none;
+    @apply prose-headings:font-bold prose-a:text-brand-600;
+    line-height: 1.85;
+  }
+  .prose-cn p { @apply text-slate-700; }
+  .prose-cn h2 { @apply text-xl border-b border-slate-200 pb-2 text-slate-900; }
+  .prose-cn blockquote {
+    @apply border-l-4 border-brand-400 pl-4 italic text-slate-500 bg-slate-50 py-1;
+  }
+  .prose-cn table { @apply text-sm; }
+  .prose-cn th { @apply bg-slate-100 text-slate-700; }
+  .prose-cn td { @apply border-slate-200; }
+}
+
+/* ─── Animation Utilities ────────────────────────────────── */
+@layer utilities {
+  .animate-in { animation: fadeSlideIn 0.4s ease-out both; }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+}

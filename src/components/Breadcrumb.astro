@@ -1,0 +1,49 @@
+---
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: `https://vpns-top.com${item.href}` } : {}),
+  })),
+};
+---
+
+<nav aria-label="面包屑导航" class="flex items-center text-sm text-slate-400 mb-6">
+  {items.map((item, i) => (
+    <span class="flex items-center gap-1.5">
+      {i > 0 && (
+        <svg class="w-3.5 h-3.5 text-slate-600 flex-shrink-0" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 0 1-1.06-1.06L9.19 8 6.22 5.03a.75.75 0 0 1 0-1.06Z"/>
+        </svg>
+      )}
+      {item.href && i < items.length - 1 ? (
+        <a
+          href={item.href}
+          class="hover:text-brand-400 transition-colors duration-150"
+        >
+          {item.label}
+        </a>
+      ) : (
+        <span class={i === items.length - 1 ? 'text-slate-300 font-medium' : ''}>
+          {item.label}
+        </span>
+      )}
+    </span>
+  ))}
+</nav>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

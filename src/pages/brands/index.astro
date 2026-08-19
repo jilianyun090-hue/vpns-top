@@ -1,0 +1,43 @@
+---
+import BaseLayout   from '../../layouts/BaseLayout.astro';
+import BrandCard    from '../../components/BrandCard.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import { getCollection } from 'astro:content';
+
+const allBrands = await getCollection('brands');
+const sorted = allBrands.sort((a, b) => b.data.rating - a.data.rating);
+---
+
+<BaseLayout
+  title="机场品牌库"
+  description="收录 30+ 机场与VPN服务商，综合评分排名，含节点类型、流媒体解锁、价格与独立测速数据。"
+>
+  <div class="container-xl py-10 lg:py-14">
+    <SectionTitle
+      title="机场品牌库"
+      subtitle={`收录 ${sorted.length} 家经过完整 12 维度评测的服务商，按综合评分降序排列。`}
+      tag="品牌"
+    />
+
+    {sorted.length > 0 ? (
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {sorted.map((brand) => (
+          <BrandCard
+            name={brand.data.name}
+            slug={brand.slug}
+            rating={brand.data.rating}
+            tagline={brand.data.tagline}
+            nodeTypes={brand.data.nodeTypes}
+            streamingSupport={brand.data.streamingSupport}
+            minPrice={brand.data.minPrice}
+            referralId={brand.data.referralId}
+            tags={brand.data.tags}
+            featured={brand.data.featured}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="text-slate-500 text-center py-20">品牌收录中，敬请期待。</p>
+    )}
+  </div>
+</BaseLayout>

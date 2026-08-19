@@ -1,0 +1,92 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import NewsletterBox from '../../components/NewsletterBox.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const brands = await getCollection('brands');
+  return brands.map((brand) => ({
+    params: { slug: brand.slug },
+    props:  { brand },
+  }));
+}) satisfies GetStaticPaths;
+
+const { brand } = Astro.props;
+const { Content } = await brand.render();
+
+const fullStars  = Math.floor(brand.data.rating / 2);
+const halfStar   = brand.data.rating % 2 >= 1;
+const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+---
+
+<LandingLayout
+  title={`${brand.data.name} 评测`}
+  description={brand.data.tagline ?? `${brand.data.name} 深度评测报告，含速度、稳定性、流媒体解锁与性价比全面分析。`}
+  breadcrumbs={[
+    { label: '首页', href: '/' },
+    { label: '品牌库', href: '/brands/' },
+    { label: brand.data.name },
+  ]}
+>
+  <!-- Brand header -->
+  <div slot="header" class="mb-10">
+    <div class="flex flex-wrap gap-2 mb-4">
+      {brand.data.tags.map((t) => <span class="badge badge-brand">{t}</span>)}
+      {brand.data.featured && <span class="badge badge-amber">精选推荐</span>}
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-start gap-6">
+      <div class="flex-1">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-2">{brand.data.name}</h1>
+        {brand.data.tagline && (
+          <p class="text-lg text-slate-400 mb-4">{brand.data.tagline}</p>
+        )}
+        <!-- Stars + score -->
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-3xl font-black text-amber-400">{brand.data.rating.toFixed(1)}</span>
+          <div>
+            <div class="text-amber-400 text-lg">
+              {'★'.repeat(fullStars)}{halfStar ? '☆' : ''}{'☆'.repeat(emptyStars)}
+            </div>
+            <div class="text-xs text-slate-500">满分 10 分</div>
+          </div>
+        </div>
+        <!-- Quick specs -->
+        <div class="flex flex-wrap gap-2">
+          {brand.data.nodeTypes.map((t) => <span class="badge badge-brand">{t}</span>)}
+          {brand.data.streamingSupport.slice(0, 3).map((s) => <span class="badge badge-green">{s} ✅</span>)}
+          {brand.data.minPrice !== undefined && (
+            <span class="badge badge-amber">¥{brand.data.minPrice.toFixed(1)}/月起</span>
+          )}
+        </div>
+      </div>
+
+      <!-- CTA box -->
+      {brand.data.referralId && (
+        <div class="card p-5 border border-amber-700/30 text-center sm:min-w-[180px]">
+          <div class="text-2xl font-black text-amber-400 mb-1">
+            {brand.data.rating.toFixed(1)}
+          </div>
+          <div class="text-xs text-slate-500 mb-4">综合评分</div>
+          <a href={`/go/${brand.data.referralId}/`}
+             rel="noopener noreferrer sponsored"
+             class="btn-amber w-full justify-center text-sm">
+            访问官网
+          </a>
+          <p class="text-xs text-slate-600 mt-2">经由内部中转跳转</p>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Brand review content -->
+  <div class="prose-cn mb-12">
+    <Content />
+  </div>
+
+  <!-- Newsletter -->
+  <div class="mt-10">
+    <NewsletterBox />
+  </div>
+</LandingLayout>

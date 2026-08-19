@@ -1,0 +1,37 @@
+User-agent: *
+Allow: /
+Disallow: /go/
+
+# ── AI & GEO Optimized Crawler Rules ──────────────────────
+# Allow all major AI search crawlers for GEO optimization
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+# Google Bard / Gemini
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic Claude
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Bing / Copilot
+User-agent: Bingbot
+Allow: /
+
+# Baidu AI
+User-agent: Baiduspider
+Allow: /
+
+# Block redirect routes from all bots (protect affiliate links)
+User-agent: *
+Disallow: /go/
+
+# ── Sitemap ────────────────────────────────────────────────
+Sitemap: https://vpns-top.com/sitemap-index.xml

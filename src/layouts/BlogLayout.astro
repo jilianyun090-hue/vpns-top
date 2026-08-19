@@ -1,0 +1,111 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumb  from '../components/Breadcrumb.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import FAQ          from '../components/FAQ.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  title:        string;
+  description:  string;
+  pubDate:      Date;
+  updatedDate?: Date;
+  category:     string;
+  tags?:        string[];
+  author?:      string;
+  relatedPosts?: CollectionEntry<'blog'>[];
+  faqs?:         { question: string; answer: string }[];
+  breadcrumbs?:  { label: string; href?: string }[];
+}
+
+const {
+  title, description, pubDate, updatedDate, category, 
+  tags = [], author = 'VPNs Top 评测团队',
+  relatedPosts = [], faqs = [],
+  breadcrumbs = [
+    { label: '首页', href: '/' },
+    { label: '博客', href: '/blog/' },
+    { label: title },
+  ],
+} = Astro.props;
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  pubDate={pubDate}
+  updatedDate={updatedDate}
+>
+  <div class="container-xl py-10 lg:py-14">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <Breadcrumb items={breadcrumbs} />
+
+      <!-- Article Header -->
+      <header class="mb-10">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <a href={`/category/${category}/`} class="badge badge-brand">{category}</a>
+          {tags.slice(0, 4).map((tag) => (
+            <a href={`/tag/${tag}/`} class="badge badge-slate text-xs">#{tag}</a>
+          ))}
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl font-black text-white leading-tight mb-5">
+          {title}
+        </h1>
+        <p class="text-lg text-slate-400 leading-relaxed mb-5">{description}</p>
+
+        <!-- Meta strip -->
+        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-600 py-4 
+                    border-t border-b border-white/5">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/>
+            </svg>
+            {author}
+          </span>
+          <time datetime={pubDate.toISOString()} class="flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M5.75 7.5a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5ZM2 4.5A2.5 2.5 0 0 1 4.5 2h7A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5v-7Zm2.5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-7Z"/>
+            </svg>
+            发布 {formatDate(pubDate)}
+          </time>
+          {updatedDate && (
+            <time datetime={updatedDate.toISOString()} class="flex items-center gap-1.5 text-brand-500">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M13.836 2.477a.75.75 0 0 1 .75.75V7.5a.75.75 0 0 1-.75.75h-4.272a.75.75 0 0 1 0-1.5h2.651A6.5 6.5 0 1 0 8 14.5a6.454 6.454 0 0 0 4.81-2.12.75.75 0 0 1 1.14.975A8 8 0 1 1 8 1a7.967 7.967 0 0 1 5.5 2.195V2.477a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" fill-rule="evenodd"/>
+              </svg>
+              更新 {formatDate(updatedDate)}
+            </time>
+          )}
+        </div>
+      </header>
+
+      <!-- TOC slot (optional, filled by page) -->
+      <slot name="toc" />
+
+      <!-- Article body -->
+      <div class="prose-cn">
+        <slot />
+      </div>
+
+      <!-- FAQ section -->
+      {faqs.length > 0 && (
+        <section class="mt-12">
+          <h2 class="text-xl font-bold text-white mb-6">常见问题</h2>
+          <FAQ items={faqs} />
+        </section>
+      )}
+
+      <!-- Related posts -->
+      <RelatedPosts posts={relatedPosts} />
+
+    </div>
+  </div>
+</BaseLayout>

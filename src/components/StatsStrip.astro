@@ -1,0 +1,18 @@
+---
+import { stats } from '../data/homepage';
+---
+
+<div class="bg-slate-50 border-y border-slate-200">
+  <div class="container-xl py-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x divide-slate-200">
+      {stats.map((item) => (
+        <div class="flex flex-col items-center justify-center text-center py-2 md:px-8">
+          <span class="text-2xl sm:text-3xl font-black gradient-text-amber leading-none">
+            {item.value}
+          </span>
+          <span class="text-xs text-slate-500 mt-1 font-medium">{item.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
