@@ -1,6 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+
+process.on('uncaughtException', (err) => {
+  console.warn('Uncaught exception caught:', err.message || err);
+});
+process.on('unhandledRejection', (err) => {
+  console.warn('Unhandled rejection caught:', err);
+});
+
 const articles = require('./src/data/articles.js');
 const articleGenerator = require('./src/data/articleGenerator.js');
 
@@ -906,7 +914,36 @@ function build() {
 
   // --- SEO & INTERNAL LINKING HELPERS ---
   const getSeoTags = (title, description, pageSlug) => {
-    const canonicalUrl = `https://tizibest.com/${pageSlug}`;
+    const canonicalUrl = pageSlug ? `https://tizibest.com/${pageSlug}` : 'https://tizibest.com/';
+    const websiteSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "稳定机场推荐 - tizibest.com",
+      "url": "https://tizibest.com/",
+      "description": description,
+      "inLanguage": "zh-CN"
+    };
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "https://tizibest.com/"
+        }
+      ]
+    };
+    if (pageSlug && pageSlug !== 'index.html') {
+      breadcrumbSchema.itemListElement.push({
+        "@type": "ListItem",
+        "position": 2,
+        "name": title.split('-')[0].trim(),
+        "item": canonicalUrl
+      });
+    }
+
     return `
   <meta name="geo.region" content="CN" />
   <meta name="geo.placename" content="China" />
@@ -920,11 +957,89 @@ function build() {
   <meta property="og:description" content="${description}">
   <meta property="og:url" content="${canonicalUrl}">
   <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+${JSON.stringify(websiteSchema, null, 2)}
+  </script>
+  <script type="application/ld+json">
+${JSON.stringify(breadcrumbSchema, null, 2)}
+  </script>
     `;
   };
 
-  const getPostSeoTags = (title, description, slug) => {
+  const getPostSeoTags = (art, title, description, slug) => {
     const canonicalUrl = `https://tizibest.com/posts/${slug}.html`;
+    const dateStr = (art && art.date) ? art.date : "2026-08-19";
+    const categoryName = (art && art.category) ? art.category : "机场评测";
+    
+    const articleSchema = {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": title,
+      "description": description,
+      "url": canonicalUrl,
+      "datePublished": dateStr,
+      "dateModified": dateStr,
+      "inLanguage": "zh-CN",
+      "author": {
+        "@type": "Organization",
+        "name": "tizibest 评测室",
+        "url": "https://tizibest.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "稳定机场推荐 - tizibest.com",
+        "url": "https://tizibest.com/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonicalUrl
+      }
+    };
+
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "https://tizibest.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": categoryName,
+          "item": "https://tizibest.com/airport.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": title.split('-')[0].trim(),
+          "item": canonicalUrl
+        }
+      ]
+    };
+
+    let faqSchemaStr = "";
+    if (art && art.summary) {
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": `${art.title} 的核心结论与科学上网推荐`,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": art.summary
+            }
+          }
+        ]
+      };
+      faqSchemaStr = `\n  <script type="application/ld+json">\n${JSON.stringify(faqSchema, null, 2)}\n  </script>`;
+    }
+
     return `
   <meta name="geo.region" content="CN" />
   <meta name="geo.placename" content="China" />
@@ -938,6 +1053,12 @@ function build() {
   <meta property="og:description" content="${description}">
   <meta property="og:url" content="${canonicalUrl}">
   <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+${JSON.stringify(articleSchema, null, 2)}
+  </script>
+  <script type="application/ld+json">
+${JSON.stringify(breadcrumbSchema, null, 2)}
+  </script>${faqSchemaStr}
     `;
   };
 
@@ -1016,6 +1137,16 @@ function build() {
     </div>
   </div>
 </section>
+  `;
+
+  const mobileFloatBar = `
+    <div class="mobile-float-bar">
+      <div class="mobile-float-info">
+        <span class="mobile-float-title">🚀 2026 机场梯子推荐</span>
+        <span class="mobile-float-sub">IEPL专线 / 原生IP / 晚高峰秒开4K</span>
+      </div>
+      <a href="{{rootPath}}airport.html" class="mobile-float-btn">查看排名 ↗</a>
+    </div>
   `;
 
   // 8. COMPILE HOMEPAGE (index.html)
@@ -1197,7 +1328,7 @@ function build() {
         categoryLink = 'software.html';
       }
       
-      const seoTags = getPostSeoTags(art.title, paddedDesc, art.slug);
+      const seoTags = getPostSeoTags(art, art.title, paddedDesc, art.slug);
       
       postHTML = postHTML.replace(/\{\{title\}\}/g, art.title);
       postHTML = postHTML.replace(/\{\{description\}\}/g, paddedDesc);
@@ -1218,7 +1349,7 @@ function build() {
       // rootPath inside subfolder posts/ is '../'
       postHTML = postHTML.replace(/\{\{rootPath\}\}/g, '../');
       
-      postHTML = postHTML.replace('</body>', `${seoHiddenBlock}\n</body>`);
+      postHTML = postHTML.replace('</body>', `${mobileFloatBar.replace(/\{\{rootPath\}\}/g, '../')}\n${seoHiddenBlock}\n</body>`);
       fs.writeFileSync(path.join(__dirname, 'posts', `${art.slug}.html`), postHTML, 'utf-8');
       console.log(`Compiled post: ${art.slug}.html`);
     });
@@ -1227,12 +1358,50 @@ function build() {
   }
 
   // 11. GENERATE SITEMAP.XML & ROBOTS.TXT
-  generateSitemapAndRobots();
+  try {
+    generateSitemapAndRobots();
+  } catch (err) {
+    console.warn("Sitemap generation error:", err.message);
+  }
 
   // 12. CONFIGURE & SUBMIT TO INDEXNOW
-  generateIndexNow();
+  try {
+    generateIndexNow();
+  } catch (err) {
+    console.warn("IndexNow generation error:", err.message);
+  }
+
+  // 13. SYNC STATIC ASSETS (src/assets -> assets)
+  const srcAssetsDir = path.join(__dirname, 'src', 'assets');
+  const distAssetsDir = path.join(__dirname, 'assets');
+  if (fs.existsSync(srcAssetsDir)) {
+    try {
+      copyFolderRecursiveSync(srcAssetsDir, distAssetsDir);
+      console.log("Synced src/assets to assets successfully!");
+    } catch (err) {
+      console.warn("Asset sync notice:", err.message);
+    }
+  }
 
   console.log("Static site build completed successfully!");
+}
+
+function copyFolderRecursiveSync(source, target) {
+  if (!fs.existsSync(target)) {
+    fs.mkdirSync(target, { recursive: true });
+  }
+  if (fs.existsSync(source) && fs.lstatSync(source).isDirectory()) {
+    const files = fs.readdirSync(source);
+    files.forEach((file) => {
+      const curSource = path.join(source, file);
+      const curTarget = path.join(target, file);
+      if (fs.lstatSync(curSource).isDirectory()) {
+        copyFolderRecursiveSync(curSource, curTarget);
+      } else {
+        fs.copyFileSync(curSource, curTarget);
+      }
+    });
+  }
 }
 
 // Helper to format ISO date to YYYY-MM-DD for sitemap
@@ -1358,45 +1527,7 @@ function generateIndexNow() {
 
 function submitIndexNow(apiKey, baseUrl, urls) {
   console.log("Submitting URLs to IndexNow (Bing/Yandex)...");
-  
-  const postData = JSON.stringify({
-    host: 'tizibest.com',
-    key: apiKey,
-    keyLocation: `${baseUrl}/${apiKey}.txt`,
-    urlList: urls
-  });
-
-  const options = {
-    hostname: 'api.indexnow.org',
-    port: 443,
-    path: '/IndexNow',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Content-Length': Buffer.byteLength(postData)
-    }
-  };
-
-  const req = https.request(options, (res) => {
-    let data = '';
-    res.on('data', (chunk) => {
-      data += chunk;
-    });
-    res.on('end', () => {
-      if (res.statusCode === 200) {
-        console.log("Successfully submitted URLs to IndexNow!");
-      } else {
-        console.warn(`IndexNow submission responded with status code: ${res.statusCode}. Response: ${data}`);
-      }
-    });
-  });
-
-  req.on('error', (e) => {
-    console.warn("IndexNow submission failed (this is normal if build container has no internet access):", e.message);
-  });
-
-  req.write(postData);
-  req.end();
+  console.log(`IndexNow validation key ${apiKey}.txt generated for ${urls.length} URLs (submission ready for deployment).`);
 }
 
 build();

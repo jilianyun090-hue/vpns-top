@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} - tizibest.com</title>
+  <meta name="description" content="{{description}}">
+  <meta name="keywords" content="{{keywords}}">
+  <link rel="stylesheet" href="{{rootPath}}assets/css/style.css?v=20260819">
+  <link rel="icon" type="image/svg+xml" href="{{rootPath}}favicon.svg">
+  <link rel="alternate icon" href="{{rootPath}}favicon.svg">
+  <meta name="theme-color" content="#2563eb">
+  {{seoTags}}
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header>
+    <div class="header-container">
+      <a href="{{rootPath}}index.html" class="logo">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99zM13 16h-2v2h2v-2zm0-6h-2v4h2v-4z"/>
+        </svg>
+        <span>稳定机场推荐</span>
+      </a>
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">☰</button>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="{{rootPath}}index.html" class="nav-link">首页</a></li>
+        <li><a href="{{rootPath}}airport.html" class="nav-link">机场推荐</a></li>
+        <li><a href="{{rootPath}}reviews.html" class="nav-link">机场测评</a></li>
+        <li><a href="{{rootPath}}guides.html" class="nav-link">科学上网指南</a></li>
+        <li><a href="{{rootPath}}software.html" class="nav-link">新手指南</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <button class="search-btn" id="search-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>搜索</span>
+          <span class="search-shortcut">Ctrl K</span>
+        </button>
+        
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section for Landing Page -->
+  <section class="landing-hero" style="background: linear-gradient(135deg, rgba(37,99,235,0.06) 0%, rgba(124,58,237,0.06) 100%); padding: 3rem 1.5rem; text-align: center; border-bottom: 1px solid var(--border);">
+    <div style="max-width: var(--max-width); margin: 0 auto;">
+      <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--text-primary);">{{landingTitle}}</h1>
+      <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto 1.5rem auto; line-height: 1.6;">{{landingSubtitle}}</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="{{affLink}}" target="_blank" rel="nofollow" class="list-btn btn-go" style="padding: 0.75rem 2rem; font-size: 1rem; border-radius: 8px;">🚀 访问官方防封入口 ↗</a>
+        <a href="#details" class="list-btn btn-review" style="padding: 0.75rem 2rem; font-size: 1rem; border-radius: 8px;">📖 查看深度评测</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <div class="main-wrapper" style="margin-top: 2rem;">
+    <main class="content-area">
+      <article class="article-wrapper" id="details">
+        <div class="article-body">
+          {{content}}
+        </div>
+      </article>
+    </main>
+
+    <!-- Sidebar Column -->
+    <aside class="sidebar">
+      <div class="widget bio-widget">
+        <div class="bio-avatar">V</div>
+        <h3 class="bio-name">tizibest 评测室</h3>
+        <p class="bio-desc">权威客观的机场与科学上网代理评测平台，编辑自费购买体验，为您保驾护航。</p>
+      </div>
+      {{sidebarLadderRecs}}
+      <div class="widget">
+        <h3 class="widget-title">文章分类</h3>
+        {{categoriesWidget}}
+      </div>
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-logo">tizibest<span>.com</span></div>
+        <p class="footer-desc">tizibest.com 致力于为广大用户提供客观、中立、真实的翻墙机场测评与教程服务。</p>
+      </div>
+      <div class="footer-copyright">
+        &copy; 2026 稳定机场推荐. 保留所有权利.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.SEARCH_INDEX = {{searchIndex}};
+  </script>
+  <script src="{{rootPath}}assets/js/main.js"></script>
+</body>
+</html>

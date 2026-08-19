@@ -1862,3 +1862,55 @@ html {
     display: none;
   }
 }
+
+/* Mobile Floating Affman CTA Bar */
+.mobile-float-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1rem;
+  z-index: 999;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .mobile-float-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+}
+
+.mobile-float-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-float-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.mobile-float-sub {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.mobile-float-btn {
+  background-color: var(--accent);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
