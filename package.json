@@ -1,13 +1,20 @@
 {
-  "name": "vpns-top-blog",
-  "version": "1.0.0",
-  "description": "Airport Recommendations Blog",
-  "main": "build.js",
+  "name": "vpns-top",
+  "type": "module",
+  "version": "0.1.0",
   "scripts": {
-    "build": "node build.js",
-    "dev": "node build.js && npx http-server ./ -p 8080"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.5",
+    "@tailwindcss/typography": "^0.5.16",
+    "astro": "^4.16.19",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3"
+  }
 }
