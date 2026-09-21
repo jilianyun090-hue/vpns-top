@@ -35,7 +35,7 @@
 
   /* 链接 */
   a {
-    @apply transition-colors duration-150;
+    @apply text-slate-900 transition-colors duration-150;
   }
 
   /* 滚动条美化 */
