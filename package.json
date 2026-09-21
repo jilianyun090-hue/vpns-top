@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/submit-indexnow.js",
+    "build": "astro build && node scripts/generate-sitemap.js && node scripts/submit-indexnow.js",
     "preview": "astro preview",
     "astro": "astro"
   },
