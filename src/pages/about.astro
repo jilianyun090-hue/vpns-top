@@ -36,7 +36,7 @@ const faqs = [
     <!-- About -->
     <section class="mb-16">
       <div class="inline-flex items-center gap-2 badge badge-brand mb-4">关于本站</div>
-      <h1 class="text-3xl sm:text-4xl font-black text-white mb-6">评测标准 & 关于我们</h1>
+      <h1 class="text-3xl sm:text-4xl font-black text-slate-900 mb-6">评测标准 & 关于我们</h1>
       <div class="prose-cn">
         <p>
           <strong>VPNs Top</strong> 是一个专注于机场与VPN服务商评测的独立中文平台，由翻墙技术爱好者自发创建与维护。
@@ -51,20 +51,20 @@ const faqs = [
 
     <!-- Criteria -->
     <section class="mb-16" id="criteria">
-      <h2 class="text-2xl font-bold text-white mb-6">评测方法论</h2>
-      <p class="text-slate-400 mb-6 leading-relaxed">
+      <h2 class="text-2xl font-bold text-slate-900 mb-6">评测方法论</h2>
+      <p class="text-slate-600 mb-6 leading-relaxed">
         每家品牌均经过以下 6 个维度的量化评测，总分 10 分：
       </p>
       <div class="space-y-3">
         {criteria.map((c) => (
           <div class="card p-5 flex gap-4">
             <div class="flex-shrink-0 w-14 text-center">
-              <div class="text-sm font-black text-amber-400">{c.weight}</div>
+              <div class="text-sm font-black text-amber-500">{c.weight}</div>
               <div class="text-xs text-slate-600">权重</div>
             </div>
             <div>
-              <div class="font-semibold text-white text-sm mb-1">{c.name}</div>
-              <div class="text-xs text-slate-400 leading-relaxed">{c.desc}</div>
+              <div class="font-semibold text-slate-900 text-sm mb-1">{c.name}</div>
+              <div class="text-xs text-slate-600 leading-relaxed">{c.desc}</div>
             </div>
           </div>
         ))}
@@ -73,8 +73,8 @@ const faqs = [
 
     <!-- Disclaimer -->
     <section class="mb-16" id="disclaimer">
-      <h2 class="text-2xl font-bold text-white mb-4">免责声明</h2>
-      <div class="card p-6 border border-amber-700/20 prose-cn text-sm">
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">免责声明</h2>
+      <div class="card p-6 border border-amber-500/20 prose-cn text-sm">
         <p>
           本站所有内容仅供技术研究与参考目的，不构成任何法律建议。科学上网行为在中国大陆存在法律风险，
           使用者须自行判断并承担全部法律责任。本站对因使用本站信息而产生的任何直接或间接损失不承担责任。
@@ -88,7 +88,7 @@ const faqs = [
 
     <!-- Privacy -->
     <section class="mb-16" id="privacy">
-      <h2 class="text-2xl font-bold text-white mb-4">隐私政策</h2>
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">隐私政策</h2>
       <div class="prose-cn text-sm">
         <p>本站承诺：</p>
         <ul>
@@ -103,7 +103,7 @@ const faqs = [
 
     <!-- FAQ -->
     <section>
-      <h2 class="text-2xl font-bold text-white mb-6">常见问题</h2>
+      <h2 class="text-2xl font-bold text-slate-900 mb-6">常见问题</h2>
       <FAQ items={faqs} />
     </section>
   </div>

@@ -2,7 +2,7 @@
 title: 流媒体解锁完全指南
 description: 覆盖 Netflix、Disney+、DAZN、YouTube Premium 解锁原理与最佳机场推荐，每周数据同步更新。
 articleCount: 12
-relatedBrands: ["example-brand"]
+relatedBrands: ["jilian-yun", "guangnian-ti", "feimao-yun", "yuntu"]
 tags: ["Netflix", "Disney+", "流媒体", "解锁"]
 order: 1
 draft: false

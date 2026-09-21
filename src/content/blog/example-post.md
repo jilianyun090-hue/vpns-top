@@ -8,7 +8,7 @@ tags: ["机场推荐", "2025年", "翻墙", "科学上网", "节点测速"]
 author: VPNs Top 评测团队
 featured: true
 draft: false
-referralId: example-brand
+referralId: jilian-yun
 ---
 
 ## 前言

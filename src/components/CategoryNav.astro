@@ -19,8 +19,8 @@ const { activeCategory, activeTag, showTags = false, tags = [] } = Astro.props;
       class:list={[
         'badge text-xs px-3 py-1.5 rounded-lg font-medium transition-all duration-150',
         !activeCategory
-          ? 'bg-brand-600 text-white border border-brand-500'
-          : 'badge-slate hover:text-white hover:bg-white/10'
+          ? 'bg-brand-600 text-white border border-brand-500 shadow-sm'
+          : 'badge-slate hover:text-slate-900 hover:bg-slate-200'
       ]}
     >
       全部
@@ -29,10 +29,10 @@ const { activeCategory, activeTag, showTags = false, tags = [] } = Astro.props;
       <a
         href={`/category/${cat.slug}/`}
         class:list={[
-          'badge text-xs px-3 py-1.5 rounded-lg font-medium transition-all duration-150',
+          'badge text-xs px-3 py-1.5 rounded-lg font-medium transition-all duration-150 flex items-center gap-1',
           activeCategory === cat.slug
-            ? 'bg-brand-600 text-white border border-brand-500'
-            : 'badge-slate hover:text-white hover:bg-white/10'
+            ? 'bg-brand-600 text-white border border-brand-500 shadow-sm'
+            : 'badge-slate hover:text-slate-900 hover:bg-slate-200'
         ]}
       >
         <span aria-hidden="true">{cat.icon}</span>
@@ -50,8 +50,8 @@ const { activeCategory, activeTag, showTags = false, tags = [] } = Astro.props;
           class:list={[
             'text-xs px-2.5 py-1 rounded-full border transition-colors',
             activeTag === tag
-              ? 'border-brand-500 text-brand-300 bg-brand-900/40'
-              : 'border-white/10 text-slate-500 hover:text-slate-300 hover:border-white/20'
+              ? 'border-brand-500 text-brand-600 bg-brand-50 font-semibold'
+              : 'border-slate-200 text-slate-600 hover:text-brand-600 hover:border-brand-300'
           ]}
         >
           #{tag}

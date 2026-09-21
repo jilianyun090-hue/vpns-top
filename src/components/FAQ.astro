@@ -28,9 +28,9 @@ const faqSchema = {
 
 <div class="space-y-3">
   {items.map((item) => (
-    <details class="group card border border-white/5 overflow-hidden">
+    <details class="group card border border-slate-200 overflow-hidden">
       <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer
-                       font-semibold text-slate-200 hover:text-white list-none
+                       font-semibold text-slate-800 hover:text-brand-600 list-none
                        transition-colors duration-150">
         <span class="text-sm sm:text-base">{item.question}</span>
         <!-- Chevron icon, rotates when open -->
@@ -40,7 +40,7 @@ const faqSchema = {
           <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
         </svg>
       </summary>
-      <div class="px-5 pb-5 pt-1 text-sm text-slate-400 leading-relaxed border-t border-white/5">
+      <div class="px-5 pb-5 pt-1 text-sm text-slate-600 leading-relaxed border-t border-slate-100">
         {item.answer}
       </div>
     </details>
