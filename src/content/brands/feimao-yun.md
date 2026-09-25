@@ -1,6 +1,6 @@
 ---
 name: "飞猫云"
-rating: 9.4
+rating: 9.3
 tagline: "全 IPLC 专线网络，最高 2.5Gbps 稳定速率不限设备"
 nodeTypes: ["IPLC", "Shadowsocks", "Trojan"]
 streamingSupport: ["Netflix", "Disney+", "ChatGPT", "TikTok"]

@@ -23,66 +23,92 @@ const halfStar   = rating % 2 >= 1;
 const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 ---
 
-<div class:list={['card card-hover p-6 flex flex-col gap-4', featured && 'border-amber-300 bg-amber-50/30']}>
+<div class:list={[
+  'relative group bg-white rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 border hover:-translate-y-1',
+  featured
+    ? 'border-amber-300/80 shadow-md shadow-amber-500/5 hover:shadow-xl hover:shadow-amber-500/10 hover:border-amber-400 bg-gradient-to-b from-amber-50/20 via-white to-white'
+    : 'border-slate-200/80 shadow-sm hover:shadow-lg hover:shadow-slate-200/50 hover:border-slate-300'
+]}>
   
-  <!-- Top row -->
-  <div class="flex items-start justify-between gap-3">
-    <div>
-      {featured && <span class="badge badge-amber text-xs mb-2">推荐</span>}
-      <h3 class="font-bold text-slate-900 text-base leading-tight">
-        <a href={`/brands/${slug}/`} class="text-slate-900 hover:text-brand-600 transition-colors">
-          {name}
-        </a>
-      </h3>
-      {tagline && <p class="text-xs text-slate-500 mt-1">{tagline}</p>}
+  <div>
+    <!-- Top Row: Badge + Title + Rating -->
+    <div class="flex items-start justify-between gap-3 mb-2">
+      <div class="flex-1 min-w-0">
+        {featured && (
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100/90 text-amber-700 mb-2 shadow-2xs">
+            推荐
+          </span>
+        )}
+        <h3 class="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-snug truncate">
+          <a href={`/brands/${slug}/`} class="hover:text-amber-600 transition-colors">
+            {name}
+          </a>
+        </h3>
+      </div>
+
+      <!-- Rating score badge -->
+      <div class="flex-shrink-0 flex flex-col items-center bg-slate-50 border border-slate-100 rounded-xl px-2.5 py-1.5 min-w-[52px]">
+        <span class="text-xl sm:text-2xl font-black text-amber-500 leading-none tracking-tight">{rating.toFixed(1)}</span>
+        <span class="text-[9px] font-semibold text-slate-400 mt-0.5 tracking-wider">/ 10</span>
+      </div>
     </div>
-    <!-- Rating badge -->
-    <div class="flex-shrink-0 flex flex-col items-center bg-slate-100 rounded-xl px-3 py-2">
-      <span class="text-xl font-black text-amber-500 leading-none">{rating.toFixed(1)}</span>
-      <span class="text-[10px] text-slate-400 mt-0.5">/ 10</span>
+
+    <!-- Tagline -->
+    {tagline && (
+      <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3 min-h-[32px]">
+        {tagline}
+      </p>
+    )}
+
+    <!-- Stars -->
+    <div class="flex items-center gap-1 text-amber-400 text-sm mb-4" aria-label={`评分 ${rating} 分`}>
+      <span>{'★'.repeat(fullStars)}{halfStar ? '☆' : ''}{'☆'.repeat(emptyStars)}</span>
+    </div>
+
+    <!-- Pill tags (Node types + Streaming) -->
+    <div class="flex flex-wrap gap-1.5 mb-5">
+      {nodeTypes.slice(0, 3).map((t) => (
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-sky-50 text-sky-700 border border-sky-100">
+          {t}
+        </span>
+      ))}
+      {streamingSupport.slice(0, 2).map((s) => (
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-100">
+          {s}
+        </span>
+      ))}
     </div>
   </div>
 
-  <!-- Stars -->
-  <div class="rating-stars text-base" aria-label={`评分 ${rating} 分，满分 10 分`}>
-    {'★'.repeat(fullStars)}
-    {halfStar && '☆'}
-    {'☆'.repeat(emptyStars)}
-  </div>
-
-  <!-- Info pills -->
-  <div class="flex flex-wrap gap-1.5">
-    {nodeTypes.slice(0, 3).map((t) => (
-      <span class="badge badge-brand text-xs">{t}</span>
-    ))}
-    {streamingSupport.slice(0, 2).map((s) => (
-      <span class="badge badge-green text-xs">{s}</span>
-    ))}
-  </div>
-
-  <!-- Price + CTA -->
-  <div class="flex items-center justify-between mt-auto pt-3 border-t border-slate-100">
+  <!-- Bottom Row: Price + Actions -->
+  <div class="flex items-center justify-between pt-3.5 border-t border-slate-100 mt-auto">
     <div>
       {minPrice !== undefined ? (
         <span class="text-xs text-slate-500">
-          低至 <strong class="text-slate-900 font-bold">¥{minPrice.toFixed(1)}</strong>/月
+          低至 <strong class="text-slate-900 font-extrabold text-sm sm:text-base">¥{minPrice.toFixed(1)}</strong><span class="text-[10px] text-slate-400">/{minPrice === 1.0 ? '次' : '月'}</span>
         </span>
       ) : (
-        <span class="text-xs text-slate-400">价格面议</span>
+        <span class="text-xs text-slate-400">价格详见官网</span>
       )}
     </div>
-    <div class="flex gap-2">
+    
+    <div class="flex items-center gap-2">
       <a href={`/brands/${slug}/`}
-         class="text-xs font-medium text-brand-600 hover:text-brand-500 transition-colors">
-        查看评测 →
+         class="text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-0.5">
+        查看评测
+        <svg class="w-3 h-3" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 0 1-1.06-1.06L9.19 8 6.22 5.03a.75.75 0 0 1 0-1.06Z"/>
+        </svg>
       </a>
       {referralId && (
         <a href={`/go/${referralId}/`}
+           target="_blank"
            rel="noopener noreferrer sponsored"
-           class="btn-amber text-xs px-3 py-1">
+           class="inline-flex items-center justify-center px-3.5 py-1.5 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs shadow-sm shadow-amber-200 transition-all duration-200 hover:scale-105 active:scale-95">
           官网
         </a>
       )}
     </div>
   </div>
+
 </div>

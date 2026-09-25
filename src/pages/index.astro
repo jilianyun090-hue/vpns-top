@@ -21,7 +21,7 @@ const allTopics = await getCollection('topics', ({ data }) => !data.draft);
 
 // Sort
 const latestPosts    = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 6);
-const featuredBrands = allBrands.filter((b) => b.data.featured).slice(0, 4);
+const featuredBrands = allBrands.filter((b) => b.data.featured).sort((a, b) => b.data.rating - a.data.rating).slice(0, 4);
 const topTopics      = allTopics.sort((a, b) => a.data.order - b.data.order).slice(0, 4);
 ---
 
@@ -32,72 +32,18 @@ const topTopics      = allTopics.sort((a, b) => a.data.order - b.data.order).sli
   <!-- ② 信任背书数据条 -->
   <StatsStrip />
 
-  <!-- ③ 核心栏目导航 -->
-  <section class="section container-xl">
-    <SectionTitle
-      title="一站式评测导航"
-      subtitle="覆盖机场、VPN、教程、流媒体解锁全品类，数据每周更新。"
-      centered
-      tag="栏目导航"
-    />
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {features.map((f) => (
-        <FeatureCard
-          icon={f.icon}
-          title={f.title}
-          description={f.description}
-          href={f.href}
-          cta={f.cta}
-        />
-      ))}
-    </div>
-  </section>
-
-  <!-- ④ 最新评测文章 -->
-  {latestPosts.length > 0 && (
-    <section class="section bg-slate-50 border-y border-slate-100">
-      <div class="container-xl">
-        <div class="flex items-end justify-between mb-8">
-          <SectionTitle
-            title="最新评测"
-            subtitle="最近发布与更新的机场、VPN 深度测评。"
-            tag="NEW"
-          />
-          <a href="/blog/" class="btn-secondary text-sm hidden sm:inline-flex">查看全部 →</a>
-        </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {latestPosts.map((post) => (
-            <ArticleCard
-              title={post.data.title}
-              description={post.data.description}
-              href={`/blog/${post.slug}/`}
-              category={post.data.category}
-              tags={post.data.tags}
-              pubDate={post.data.pubDate}
-              updatedDate={post.data.updatedDate}
-              featured={post.data.featured}
-            />
-          ))}
-        </div>
-        <div class="mt-6 text-center sm:hidden">
-          <a href="/blog/" class="btn-secondary text-sm">查看全部文章</a>
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- ⑤ 推荐品牌 -->
+  <!-- ③ 精选推荐品牌 (极连云第一 光年梯第二 鲲鹏加速第三) -->
   {featuredBrands.length > 0 && (
-    <section class="section container-xl">
+    <section class="section container-xl py-12 lg:py-16">
       <div class="flex items-end justify-between mb-8">
         <SectionTitle
-          title="精选推荐品牌"
-          subtitle="综合评分前列，经过完整 12 维度测评的服务商。"
-          tag="精选"
+          title="2026 精选推荐品牌榜单"
+          subtitle="综合 12 维度严苛实测，极连云、光年梯、鲲鹏加速领跑排行榜。"
+          tag="TOP 推荐"
         />
-        <a href="/brands/" class="btn-secondary text-sm hidden sm:inline-flex">品牌库 →</a>
+        <a href="/brands/" class="btn-secondary text-sm hidden sm:inline-flex">查看完整品牌库 →</a>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {featuredBrands.map((brand) => (
           <BrandCard
             name={brand.data.name}
@@ -116,17 +62,71 @@ const topTopics      = allTopics.sort((a, b) => a.data.order - b.data.order).sli
     </section>
   )}
 
-  <!-- ⑥ 专题聚合 -->
+  <!-- ④ 一站式评测导航 -->
+  <section class="section bg-slate-50/70 border-y border-slate-200/80">
+    <div class="container-xl">
+      <SectionTitle
+        title="一站式评测导航"
+        subtitle="覆盖机场、VPN、教程、流媒体解锁全品类，数据每周动态更新。"
+        centered
+        tag="核心栏目"
+      />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+        {features.map((f) => (
+          <FeatureCard
+            icon={f.icon}
+            title={f.title}
+            description={f.description}
+            href={f.href}
+            cta={f.cta}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 最新评测文章 -->
+  {latestPosts.length > 0 && (
+    <section class="section container-xl">
+      <div class="flex items-end justify-between mb-8">
+        <SectionTitle
+          title="最新评测与教程"
+          subtitle="最近发布与更新的机场、VPN 深度测评与翻墙指南。"
+          tag="最新动态"
+        />
+        <a href="/blog/" class="btn-secondary text-sm hidden sm:inline-flex">查看全部文章 →</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {latestPosts.map((post) => (
+          <ArticleCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/blog/${post.slug}/`}
+            category={post.data.category}
+            tags={post.data.tags}
+            pubDate={post.data.pubDate}
+            updatedDate={post.data.updatedDate}
+            featured={post.data.featured}
+          />
+        ))}
+      </div>
+      <div class="mt-6 text-center sm:hidden">
+        <a href="/blog/" class="btn-secondary text-sm">查看全部文章</a>
+      </div>
+    </section>
+  )}
+
+  <!-- ⑥ 热门专题 -->
   {topTopics.length > 0 && (
-    <section class="section bg-slate-50 border-y border-slate-100">
+    <section class="section bg-slate-50/70 border-y border-slate-200/80">
       <div class="container-xl">
         <SectionTitle
-          title="热门专题"
-          subtitle="系统梳理翻墙知识，从入门到进阶一网打尽。"
+          title="热门专题集群"
+          subtitle="系统梳理网络出海知识，从新手入门到进阶避坑一网打尽。"
           centered
-          tag="专题"
+          tag="专题集群"
         />
-        <div class="grid sm:grid-cols-2 gap-4 mt-8">
+        <div class="grid sm:grid-cols-2 gap-5 mt-8">
           {topTopics.map((topic) => (
             <TopicCluster
               title={topic.data.title}
@@ -137,18 +137,18 @@ const topTopics      = allTopics.sort((a, b) => a.data.order - b.data.order).sli
             />
           ))}
         </div>
-        <div class="mt-6 text-center">
-          <a href="/topics/" class="btn-secondary text-sm">查看全部专题</a>
+        <div class="mt-8 text-center">
+          <a href="/topics/" class="btn-secondary text-sm">探索所有专题集群</a>
         </div>
       </div>
     </section>
   )}
 
-  <!-- ⑦ FAQ -->
+  <!-- ⑦ 常见问题 -->
   <section class="section container-xl max-w-3xl mx-auto">
     <SectionTitle
-      title="常见问题"
-      subtitle="关于机场、VPN 与本站评测方法论的热门疑问。"
+      title="常见问题解答 (FAQ)"
+      subtitle="关于机场、VPN 选择与本站测评方法论的解答。"
       centered
     />
     <FAQ items={[...faqs]} />

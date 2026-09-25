@@ -26,6 +26,12 @@ export const redirects: RedirectEntry[] = [
     description: '全线 IPLC 专线，7.42元/月59G，高峰期满速不降速',
   },
   {
+    id: 'kunpeng-jiasu',
+    brand: '鲲鹏加速',
+    destination: 'https://kunpengjiasu.com/#/register?code=QAo8sMhc',
+    description: '全球多国原生节点与冷门线路，全站统一 1.0 倍率扣费无暗扣，完美解锁 ChatGPT/Netflix/YouTube',
+  },
+  {
     id: 'feimao-yun',
     brand: '飞猫云',
     destination: 'https://flycat.flycatvipaff.cc/#/?code=1arEKHqh',
@@ -134,12 +140,7 @@ export const redirects: RedirectEntry[] = [
     description: '7.4元/月60G，全 IEPL 专线+直连双线路，2.5Gbps 超大带宽',
   },
 
-  // 示例条目（兼容保留）
-  {
-    id: 'example-brand',
-    brand: '示例品牌',
-    destination: '/',
-  },
+
 ];
 
 /**
