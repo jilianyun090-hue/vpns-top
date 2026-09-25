@@ -2,90 +2,94 @@
 import { heroHighlights } from '../data/homepage';
 ---
 
-<section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900 section">
-  <!-- Background decorations -->
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-white section py-16 lg:py-24">
+  <!-- Subtle ambient background blur -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <!-- Radial gradient blob -->
-    <div class="absolute -top-40 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-    <div class="absolute top-1/2 -right-20 w-72 h-72 bg-purple-400/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 left-1/3 w-64 h-64 bg-white/5 rounded-full blur-2xl"></div>
-    <!-- Grid pattern -->
-    <div class="absolute inset-0 opacity-[0.06]"
-         style="background-image: linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -right-20 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl"></div>
+    <!-- Clean grid overlay -->
+    <div class="absolute inset-0 opacity-[0.04]"
+         style="background-image: linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 36px 36px;"></div>
   </div>
 
   <div class="container-xl relative">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-      <!-- Left: Text Content -->
-      <div class="max-w-2xl animate-in">
-        <!-- Label -->
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold
-                    bg-white/20 text-white border border-white/30 mb-6">
-          <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
-          独立评测 · 数据每周更新
+      <!-- Left 7 cols: SEO Headline & Content -->
+      <div class="lg:col-span-7 animate-in">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold
+                    bg-amber-500/15 text-amber-300 border border-amber-500/30 mb-6">
+          <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+          2026年最新 · 独立测速与科学上网机场评测指南
         </div>
 
-        <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] text-white mb-6">
-          找到最适合你的
-          <span class="block mt-1 text-amber-300">机场 &amp; VPN</span>
+        <!-- H1 Headline targeting core SEO keywords: 机场推荐, VPN推荐, 梯子, 魔法, 科学上网 -->
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.2] text-white tracking-tight mb-5">
+          2026 翻墙机场推荐
+          <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200">
+            便宜好用的 VPN 机场评测与梯子指南
+          </span>
         </h1>
 
-        <!-- Subtext -->
-        <p class="text-lg text-blue-100 leading-relaxed mb-8 max-w-lg">
-          专业中文评测平台，覆盖 30+ 服务商。独立测速、安全审计、流媒体解锁实测，帮你做出最优选择。
+        <!-- Subtitle with keyword density -->
+        <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-8 max-w-2xl">
+          专业翻墙梯子与魔法科学上网评测平台。实测对比 30+ 优质 IEPL/IPLC 专线机场，提供独家节点测速、流媒体与 AI 解锁数据，助您快速挑选最稳定靠谱的上网线路。
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-wrap gap-3 mb-10">
-          <a href="/brands/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl
-                     bg-white text-brand-700 font-bold text-base shadow-lg hover:bg-blue-50
-                     transition-all duration-200 hover:-translate-y-0.5">
-            查看品牌排名
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3.5 mb-8">
+          <a href="#featured-brands" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl
+                     bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm sm:text-base
+                     transition-all duration-200 shadow-lg shadow-amber-500/20 hover:scale-105 active:scale-95">
+            🏆 查看 Top 3 推荐机场
             <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
               <path d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.5 3.5a.75.75 0 0 1 0 1.06l-3.5 3.5a.75.75 0 0 1-1.06-1.06L9.19 8 6.22 5.03a.75.75 0 0 1 0-1.06Z"/>
             </svg>
           </a>
-          <a href="/compare/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl
-                     bg-white/10 hover:bg-white/20 text-white font-medium text-base
-                     border border-white/30 transition-all duration-200">
-            横向对比表格
+          <a href="/compare/" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl
+                     bg-slate-800/80 hover:bg-slate-800 text-white font-bold text-sm sm:text-base
+                     border border-slate-700 transition-all duration-200 hover:border-slate-600">
+            📊 横向对比参数矩阵
           </a>
         </div>
 
-        <!-- Trust badges -->
-        <div class="flex flex-wrap gap-3 text-xs text-blue-100">
-          <span class="flex items-center gap-1">
-            <svg class="w-4 h-4 text-green-300" viewBox="0 0 16 16" fill="currentColor">
+        <!-- Trust Features Checklist -->
+        <div class="flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium text-slate-400 border-t border-slate-800/80 pt-5">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 16 16" fill="currentColor">
               <path d="M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2.5-2.5a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0Z"/>
             </svg>
-            不接受厂商赞助测评
+            不接受厂商付费赞助
           </span>
-          <span class="flex items-center gap-1">
-            <svg class="w-4 h-4 text-green-300" viewBox="0 0 16 16" fill="currentColor">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 16 16" fill="currentColor">
               <path d="M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2.5-2.5a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0Z"/>
             </svg>
-            真实环境测速
+            晚高峰真实环境实测
           </span>
-          <span class="flex items-center gap-1">
-            <svg class="w-4 h-4 text-green-300" viewBox="0 0 16 16" fill="currentColor">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 16 16" fill="currentColor">
               <path d="M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2.5-2.5a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0Z"/>
             </svg>
-            外链全程解耦
+            外链中转加密保护
           </span>
         </div>
       </div>
 
-      <!-- Right: Highlight Cards -->
-      <div class="grid grid-cols-2 gap-3 lg:max-w-md lg:ml-auto animate-in delay-200">
-        {heroHighlights.map((item) => (
-          <div class="bg-white/15 backdrop-blur-sm rounded-2xl border border-white/20 p-5 flex flex-col gap-3 hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5">
-            <span class="text-2xl" aria-hidden="true">{item.icon}</span>
-            <p class="text-sm font-semibold text-white leading-snug">{item.text}</p>
-          </div>
-        ))}
+      <!-- Right 5 cols: Highlight 4-Grid -->
+      <div class="lg:col-span-5 animate-in delay-200">
+        <div class="grid grid-cols-2 gap-3.5">
+          {heroHighlights.map((item) => (
+            <div class="bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-700/60 p-4 sm:p-5 flex flex-col gap-2.5 hover:border-amber-500/40 hover:bg-slate-800/80 transition-all duration-300">
+              <span class="text-2xl" aria-hidden="true">{item.icon}</span>
+              <p class="text-xs sm:text-sm font-bold text-slate-200 leading-snug">{item.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
+
     </div>
   </div>
 </section>

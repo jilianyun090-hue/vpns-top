@@ -25,20 +25,23 @@ const featuredBrands = allBrands.filter((b) => b.data.featured).sort((a, b) => b
 const topTopics      = allTopics.sort((a, b) => a.data.order - b.data.order).slice(0, 4);
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="2026年翻墙机场推荐：便宜好用的VPN机场评测与科学上网指南"
+  description="【2026最新】专业翻墙机场推荐与VPN测评指南。收录极连云、光年梯、鲲鹏加速等高性价比IEPL/IPLC专线机场，提供梯子排行、魔法科学上网客户端配置与不限时流量包对比。"
+>
   <!-- ① Hero 首屏 -->
   <Hero />
 
   <!-- ② 信任背书数据条 -->
   <StatsStrip />
 
-  <!-- ③ 精选推荐品牌 (极连云第一 光年梯第二 鲲鹏加速第三) -->
+  <!-- ③ 精选推荐品牌 (极连云第一 光年梯第二 鲲鹏加速第三 飞猫云第四) -->
   {featuredBrands.length > 0 && (
-    <section class="section container-xl py-12 lg:py-16">
+    <section id="featured-brands" class="section container-xl py-12 lg:py-16">
       <div class="flex items-end justify-between mb-8">
         <SectionTitle
-          title="2026 精选推荐品牌榜单"
-          subtitle="综合 12 维度严苛实测，极连云、光年梯、鲲鹏加速领跑排行榜。"
+          title="2026 精选翻墙机场推荐榜单"
+          subtitle="综合 12 维度严苛实测，极连云、光年梯、鲲鹏加速领跑高性价比梯子排行榜。"
           tag="TOP 推荐"
         />
         <a href="/brands/" class="btn-secondary text-sm hidden sm:inline-flex">查看完整品牌库 →</a>
@@ -62,99 +65,145 @@ const topTopics      = allTopics.sort((a, b) => a.data.order - b.data.order).sli
     </section>
   )}
 
-  <!-- ④ 一站式评测导航 -->
-  <section class="section bg-slate-50/70 border-y border-slate-200/80">
-    <div class="container-xl">
+  <!-- ④ SEO 核心长文科普（参考二毛博客结构：机场、VPN、梯子、魔法、科学上网） -->
+  <section class="section bg-slate-50/80 border-y border-slate-200/80">
+    <div class="container-xl max-w-5xl">
       <SectionTitle
-        title="一站式评测导航"
-        subtitle="覆盖机场、VPN、教程、流媒体解锁全品类，数据每周动态更新。"
+        title="科学上网与翻墙机场选购指南"
+        subtitle="系统梳理 2026 年机场推荐、VPN 测评、魔法梯子原理与防坑技巧。"
         centered
-        tag="核心栏目"
+        tag="核心指南"
       />
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-        {features.map((f) => (
-          <FeatureCard
-            icon={f.icon}
-            title={f.title}
-            description={f.description}
-            href={f.href}
-            cta={f.cta}
-          />
-        ))}
+
+      <div class="mt-10 grid gap-8 text-slate-700 text-sm leading-relaxed">
+        <!-- Pillar Box 1 -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs">
+          <h3 class="text-xl font-extrabold text-slate-900 mb-3">
+            什么是翻墙机场？“机场”与传统 VPN 有何区别？
+          </h3>
+          <p class="mb-3">
+            在网络科学上网领域，<strong>“机场”</strong> 是指基于 <em>Shadowsocks (SS)、Trojan、VMess、VLESS 或 Hysteria 2</em> 协议提供网络代理服务的接入平台。因为早期广泛使用的客户端程序（ShadowsocksR、Clash）图标类似于纸飞机，故被网友形象地称为“机场”。
+          </p>
+          <p>
+            与 ExpressVPN、NordVPN 等传统商业 <strong>VPN</strong> 相比，机场的主要优势在于：<strong>支持企业级物理专线（IEPL/IPLC）过境</strong>，延迟更低、丢包率接近零、且针对 GFW 的深度包检测（DPI）具备极强的抗封锁能力。
+          </p>
+        </div>
+
+        <!-- Pillar Box 2 -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs">
+          <h3 class="text-xl font-extrabold text-slate-900 mb-3">
+            如何挑选便宜好用的魔法梯子与科学上网机场？
+          </h3>
+          <ul class="list-disc pl-5 space-y-2 text-slate-600">
+            <li>
+              <strong class="text-slate-900">看线路类型（专线 vs 中转）</strong>：优先选择全 IEPL / IPLC 专线过境服务商。例如本站推荐的 <a href="/brands/jilian-yun/" class="text-amber-600 font-bold hover:underline">极连云</a> 与 <a href="/brands/guangnian-ti/" class="text-amber-600 font-bold hover:underline">光年梯</a>，晚高峰期满速不降速。
+            </li>
+            <li>
+              <strong class="text-slate-900">看扣费倍率与透明度</strong>：避开隐藏倍率陷阱。例如 <a href="/brands/kunpeng-jiasu/" class="text-amber-600 font-bold hover:underline">鲲鹏加速</a> 承诺全站节点统一 1.0 倍率，并提供 ¥1.00 低门槛体验包。
+            </li>
+            <li>
+              <strong class="text-slate-900">看流媒体与 AI 工具解锁</strong>：确认节点是否提供纯净原生 IP，能否无缝解锁 ChatGPT、Claude、Netflix 4K 及 YouTube Premium。
+            </li>
+            <li>
+              <strong class="text-slate-900">看客户端兼容性</strong>：确保支持 Clash Verge Rev、Shadowrocket (小火箭)、Sing-box 及 v2rayN 一键订阅导入。
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ⑤ 最新评测文章 -->
-  {latestPosts.length > 0 && (
-    <section class="section container-xl">
-      <div class="flex items-end justify-between mb-8">
-        <SectionTitle
-          title="最新评测与教程"
-          subtitle="最近发布与更新的机场、VPN 深度测评与翻墙指南。"
-          tag="最新动态"
+  <!-- ⑤ 核心栏目导航 -->
+  <section class="section container-xl">
+    <SectionTitle
+      title="一站式评测与教程导航"
+      subtitle="覆盖机场评测、VPN对比、故障排查与选购决策全品类。"
+      centered
+      tag="栏目矩阵"
+    />
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+      {features.map((f) => (
+        <FeatureCard
+          icon={f.icon}
+          title={f.title}
+          description={f.description}
+          href={f.href}
+          cta={f.cta}
         />
-        <a href="/blog/" class="btn-secondary text-sm hidden sm:inline-flex">查看全部文章 →</a>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {latestPosts.map((post) => (
-          <ArticleCard
-            title={post.data.title}
-            description={post.data.description}
-            href={`/blog/${post.slug}/`}
-            category={post.data.category}
-            tags={post.data.tags}
-            pubDate={post.data.pubDate}
-            updatedDate={post.data.updatedDate}
-            featured={post.data.featured}
-          />
-        ))}
-      </div>
-      <div class="mt-6 text-center sm:hidden">
-        <a href="/blog/" class="btn-secondary text-sm">查看全部文章</a>
-      </div>
-    </section>
-  )}
+      ))}
+    </div>
+  </section>
 
-  <!-- ⑥ 热门专题 -->
-  {topTopics.length > 0 && (
-    <section class="section bg-slate-50/70 border-y border-slate-200/80">
+  <!-- ⑥ 最新评测文章 -->
+  {latestPosts.length > 0 && (
+    <section class="section bg-slate-50/80 border-y border-slate-200/80">
       <div class="container-xl">
-        <SectionTitle
-          title="热门专题集群"
-          subtitle="系统梳理网络出海知识，从新手入门到进阶避坑一网打尽。"
-          centered
-          tag="专题集群"
-        />
-        <div class="grid sm:grid-cols-2 gap-5 mt-8">
-          {topTopics.map((topic) => (
-            <TopicCluster
-              title={topic.data.title}
-              description={topic.data.description}
-              href={`/topics/${topic.slug}/`}
-              articleCount={topic.data.articleCount}
-              tags={topic.data.tags}
+        <div class="flex items-end justify-between mb-8">
+          <SectionTitle
+            title="最新评测与魔法梯子教程"
+            subtitle="最近发布与更新的机场深度测评、VPN 比较与科学上网指南。"
+            tag="最新动态"
+          />
+          <a href="/blog/" class="btn-secondary text-sm hidden sm:inline-flex">查看全部文章 →</a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {latestPosts.map((post) => (
+            <ArticleCard
+              title={post.data.title}
+              description={post.data.description}
+              href={`/blog/${post.slug}/`}
+              category={post.data.category}
+              tags={post.data.tags}
+              pubDate={post.data.pubDate}
+              updatedDate={post.data.updatedDate}
+              featured={post.data.featured}
             />
           ))}
         </div>
-        <div class="mt-8 text-center">
-          <a href="/topics/" class="btn-secondary text-sm">探索所有专题集群</a>
+        <div class="mt-6 text-center sm:hidden">
+          <a href="/blog/" class="btn-secondary text-sm">查看全部文章</a>
         </div>
       </div>
     </section>
   )}
 
-  <!-- ⑦ 常见问题 -->
+  <!-- ⑦ 热门专题 -->
+  {topTopics.length > 0 && (
+    <section class="section container-xl">
+      <SectionTitle
+        title="热门专题集群"
+        subtitle="系统梳理网络出海知识，从新手入门到进阶避坑一网打尽。"
+        centered
+        tag="专题集群"
+      />
+      <div class="grid sm:grid-cols-2 gap-5 mt-8">
+        {topTopics.map((topic) => (
+          <TopicCluster
+            title={topic.data.title}
+            description={topic.data.description}
+            href={`/topics/${topic.slug}/`}
+            articleCount={topic.data.articleCount}
+            tags={topic.data.tags}
+          />
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/topics/" class="btn-secondary text-sm">探索所有专题集群</a>
+      </div>
+    </section>
+  )}
+
+  <!-- ⑧ 常见问题 -->
   <section class="section container-xl max-w-3xl mx-auto">
     <SectionTitle
       title="常见问题解答 (FAQ)"
-      subtitle="关于机场、VPN 选择与本站测评方法论的解答。"
+      subtitle="关于机场推荐、VPN 选择与本站测评方法论的解答。"
       centered
     />
     <FAQ items={[...faqs]} />
   </section>
 
-  <!-- ⑧ CTA + Newsletter -->
+  <!-- ⑨ CTA + Newsletter -->
   <section class="section container-xl">
     <CTASection />
     <div class="mt-6 max-w-2xl mx-auto">

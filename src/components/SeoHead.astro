@@ -25,19 +25,20 @@ const {
   schema,
 } = Astro.props;
 
-const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} | ${SITE.tagline}`;
+const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.tagline} | ${SITE.name}`;
 const canonicalURL = canonical
   ? new URL(canonical, SITE.url).href
   : new URL(Astro.url.pathname, SITE.url).href;
 const ogImageURL = new URL(ogImage, SITE.url).href;
 
-// Default JSON-LD: WebSite schema
+// Default JSON-LD: WebSite & Article Schema for GEO & Search
 const defaultSchema = {
   '@context': 'https://schema.org',
   '@type': type === 'article' ? 'Article' : 'WebSite',
   name: SITE.name,
   url: SITE.url,
   description,
+  keywords: SITE.keywords,
   ...(type === 'article' && pubDate
     ? {
         headline:      title ?? SITE.name,
@@ -47,7 +48,7 @@ const defaultSchema = {
         publisher: {
           '@type': 'Organization',
           name:    SITE.name,
-          logo:    { '@type': 'ImageObject', url: `${SITE.url}/logo.svg` },
+          logo:    { '@type': 'ImageObject', url: `${SITE.url}/favicon.svg` },
         },
       }
     : {}),
@@ -60,6 +61,7 @@ const jsonLD = schema ?? defaultSchema;
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
+<meta name="keywords"    content={SITE.keywords} />
 <meta name="author"      content={SITE.author} />
 <link rel="canonical"    href={canonicalURL} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
