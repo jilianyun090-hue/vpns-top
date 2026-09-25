@@ -27,4 +27,4 @@ User-agent: cohere-ai
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://vpns-top.com/sitemap.xml
+Sitemap: https://tizibest.com/sitemap.xml
