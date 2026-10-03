@@ -140,6 +140,25 @@ export const redirects: RedirectEntry[] = [
     description: '7.4元/月60G，全 IEPL 专线+直连双线路，2.5Gbps 超大带宽',
   },
 
+  // ── AI 工具中转站 ───────────────────────────────────────
+  {
+    id: 'heimao-ai',
+    brand: '黑喵',
+    destination: 'https://ai.ex-girlfriendis.best/',
+    description: '第三方 AI 模型中转服务',
+  },
+  {
+    id: 'kuai-ai',
+    brand: '快AI',
+    destination: 'https://www.kuaiaiapi.com/register?aff=ULLB',
+    description: '第三方 AI 模型中转服务',
+  },
+  {
+    id: 'keji-hu',
+    brand: '科技狐',
+    destination: 'https://xiaohuliapi.pw/sign-up?aff=c4CP',
+    description: '第三方 AI 模型中转服务',
+  },
 
 ];
 

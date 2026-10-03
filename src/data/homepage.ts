@@ -9,28 +9,28 @@ export const stats = [
 
 export const features = [
   {
-    icon:        '📊',
+    icon:        '评',
     title:       '深度评测',
     description: '速度、稳定性、延迟、节点覆盖多维度实测，数据来自真实环境。',
     href:        '/blog/',
     cta:         '查看评测',
   },
   {
-    icon:        '⚖️',
+    icon:        '比',
     title:       '横向对比',
     description: '多品牌参数并列对比矩阵，价格、流量、协议一目了然。',
     href:        '/compare/',
     cta:         '打开对比表',
   },
   {
-    icon:        '📖',
+    icon:        '入',
     title:       '新手教程',
     description: '从购买到配置、从 Clash 到 Sing-box 的完整中文入门指南。',
     href:        '/topics/tutorial/',
     cta:         '开始阅读',
   },
   {
-    icon:        '📺',
+    icon:        '映',
     title:       '流媒体实测',
     description: 'Netflix、Disney+、YouTube Premium 解锁状态每周同步更新。',
     href:        '/topics/streaming/',

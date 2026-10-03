@@ -1,47 +1,51 @@
 ---
 interface Props {
-  title?:    string;
+  title?: string;
   subtitle?: string;
-  primaryCta?:   { label: string; href: string };
+  primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   variant?: 'default' | 'amber';
 }
 
 const {
-  title      = '找到最适合你的机场？',
-  subtitle   = '查看独立评测数据，对比价格与节点覆盖，一站式做出最优决策。',
-  primaryCta    = { label: '查看品牌排名', href: '/brands/' },
-  secondaryCta  = { label: '横向对比表格', href: '/compare/' },
-  variant    = 'default',
+  title = '找到最适合你的机场？',
+  subtitle = '查看独立评测数据，对比价格与节点覆盖，一站式做出最优决策。',
+  primaryCta = { label: '查看品牌排名', href: '/brands/' },
+  secondaryCta = { label: '横向对比表格', href: '/compare/' },
+  variant = 'default',
 } = Astro.props;
 ---
 
 <section class:list={[
-  'relative overflow-hidden rounded-2xl p-8 sm:p-12',
+  'relative overflow-hidden border p-8 sm:p-10 lg:p-12',
   variant === 'amber'
-    ? 'bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200'
-    : 'bg-gradient-to-br from-brand-50 to-blue-100 border border-brand-200'
+    ? 'border-amber-300 bg-amber-50'
+    : 'border-brand-950 bg-ink'
 ]}>
-  <!-- Decorative blob -->
-  <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-3xl pointer-events-none"
-       style={variant === 'amber' ? 'background: radial-gradient(circle, rgba(245,158,11,0.12), transparent)' :
-                                    'background: radial-gradient(circle, rgba(59,130,246,0.12), transparent)'}
-       aria-hidden="true">
-  </div>
-
-  <div class="relative flex flex-col sm:flex-row items-center justify-between gap-8">
-    <div class="max-w-lg text-center sm:text-left">
-      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">{title}</h2>
-      <p class="text-slate-600 leading-relaxed">{subtitle}</p>
+  <div class="absolute right-0 top-0 h-full w-1/3 border-l border-white/10 bg-[linear-gradient(135deg,transparent_25%,rgba(255,255,255,.035)_25%,rgba(255,255,255,.035)_50%,transparent_50%,transparent_75%,rgba(255,255,255,.035)_75%)] bg-[length:28px_28px]" aria-hidden="true"></div>
+  <div class="relative flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+    <div class="max-w-2xl">
+      <span class:list={[
+        'mb-4 block text-[10px] font-bold uppercase tracking-[0.16em]',
+        variant === 'amber' ? 'text-amber-700' : 'text-brand-400'
+      ]}>Decision support</span>
+      <h2 class:list={[
+        'text-3xl font-black sm:text-4xl',
+        variant === 'amber' ? 'text-slate-950' : 'text-white'
+      ]}>{title}</h2>
+      <p class:list={[
+        'mt-4 max-w-xl text-sm leading-relaxed sm:text-base',
+        variant === 'amber' ? 'text-slate-600' : 'text-slate-400'
+      ]}>{subtitle}</p>
     </div>
-    <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
-      <a href={primaryCta.href}
-         class:list={[variant === 'amber' ? 'btn-amber' : 'btn-primary', 'px-6 py-3 text-sm']}>
-        {primaryCta.label}
-      </a>
-      <a href={secondaryCta.href} class="btn-secondary px-6 py-3 text-sm">
-        {secondaryCta.label}
-      </a>
+    <div class="flex shrink-0 flex-col gap-3 sm:flex-row">
+      <a href={primaryCta.href} class="bg-brand-600 px-6 py-3 text-center text-sm font-bold text-[#fbf8f0] hover:bg-brand-700">{primaryCta.label}</a>
+      <a href={secondaryCta.href} class:list={[
+        'border px-6 py-3 text-center text-sm font-bold',
+        variant === 'amber'
+          ? 'border-slate-300 bg-white text-slate-800 hover:border-slate-500'
+          : 'border-slate-700 bg-slate-900 text-slate-200 hover:border-slate-500 hover:text-white'
+      ]}>{secondaryCta.label}</a>
     </div>
   </div>
 </section>

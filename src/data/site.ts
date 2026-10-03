@@ -12,7 +12,7 @@ export const SITE = {
   twitterHandle: '',
   // 暂用现有站点图标避免 OG 资源 404；后续应替换为 1200×630 的 PNG/WebP 社交分享图。
   ogImage:     '/favicon.svg',
-  themeColor:  '#0f172a',
+  themeColor:  '#f7f4ec',
 } as const;
 
 export type SiteConfig = typeof SITE;

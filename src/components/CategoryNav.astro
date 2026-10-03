@@ -3,63 +3,59 @@ import { categories } from '../data/categories';
 
 interface Props {
   activeCategory?: string;
-  activeTag?:      string;
-  showTags?:       boolean;
-  tags?:           string[];
+  activeTag?: string;
+  showTags?: boolean;
+  tags?: string[];
 }
 
 const { activeCategory, activeTag, showTags = false, tags = [] } = Astro.props;
 ---
 
-<nav class="flex flex-col gap-4" aria-label="文章分类与标签筛选">
-  <!-- Category filter -->
+<nav class="space-y-5 border-y border-slate-200 py-5" aria-label="文章分类与标签筛选">
   <div class="flex flex-wrap gap-2">
     <a
       href="/blog/"
       class:list={[
-        'badge text-xs px-3 py-1.5 rounded-lg font-medium transition-all duration-150',
+        'border px-3 py-2 text-xs font-bold transition-colors',
         !activeCategory
-          ? 'bg-brand-600 text-white border border-brand-500 shadow-sm'
-          : 'badge-slate hover:text-slate-900 hover:bg-slate-200'
+          ? 'border-ink bg-ink text-[#fbf8f0]'
+          : 'border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-950'
       ]}
       aria-current={!activeCategory && !activeTag ? 'page' : undefined}
-    >
-      全部
-    </a>
-    {categories.map((cat) => (
+    >全部</a>
+    {categories.map((category) => (
       <a
-        href={`/category/${cat.slug}/`}
+        href={`/category/${category.slug}/`}
         class:list={[
-          'badge text-xs px-3 py-1.5 rounded-lg font-medium transition-all duration-150 flex items-center gap-1',
-          activeCategory === cat.slug
-            ? 'bg-brand-600 text-white border border-brand-500 shadow-sm'
-            : 'badge-slate hover:text-slate-900 hover:bg-slate-200'
+          'border px-3 py-2 text-xs font-bold transition-colors',
+          activeCategory === category.slug
+            ? 'border-ink bg-ink text-[#fbf8f0]'
+            : 'border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-950'
         ]}
-        aria-current={activeCategory === cat.slug ? 'page' : undefined}
-      >
-        <span aria-hidden="true">{cat.icon}</span>
-        {cat.label}
-      </a>
+        aria-current={activeCategory === category.slug ? 'page' : undefined}
+      >{category.label}</a>
     ))}
   </div>
 
-  <!-- Tag filter (optional) -->
   {showTags && tags.length > 0 && (
-    <div class="flex flex-wrap gap-1.5">
-      {tags.map((tag) => (
-        <a
-          href={`/tag/${encodeURIComponent(tag)}/`}
-          class:list={[
-            'text-xs px-2.5 py-1 rounded-full border transition-colors',
-            activeTag === tag
-              ? 'border-brand-500 text-brand-600 bg-brand-50 font-semibold'
-              : 'border-slate-200 text-slate-600 hover:text-brand-600 hover:border-brand-300'
-          ]}
-          aria-current={activeTag === tag ? 'page' : undefined}
-        >
-          #{tag}
-        </a>
-      ))}
-    </div>
+    <details class="group" open={Boolean(activeTag)}>
+      <summary class="flex w-fit cursor-pointer list-none items-center gap-2 text-xs font-bold text-slate-500 hover:text-brand-600">
+        浏览全部标签
+        <span class="font-mono text-[10px] text-slate-400">({tags.length})</span>
+        <span class="transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+      </summary>
+      <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 border-l-2 border-slate-200 pl-4">
+        {tags.map((tag) => (
+          <a
+            href={`/tag/${encodeURIComponent(tag)}/`}
+            class:list={[
+              'text-[11px] transition-colors',
+              activeTag === tag ? 'font-bold text-brand-700' : 'text-slate-400 hover:text-brand-600'
+            ]}
+            aria-current={activeTag === tag ? 'page' : undefined}
+          >#{tag}</a>
+        ))}
+      </div>
+    </details>
   )}
 </nav>

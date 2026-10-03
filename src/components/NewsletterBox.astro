@@ -1,44 +1,28 @@
 ---
-// NewsletterBox — static placeholder; wire up to EmailOctopus/ConvertKit on deployment
 ---
 
-<div class="card p-6 sm:p-8 border border-brand-200 bg-gradient-to-br from-brand-50 to-slate-50">
-  <div class="flex flex-col sm:flex-row gap-6 items-start">
-    <!-- Icon -->
-    <div class="w-12 h-12 rounded-xl bg-brand-100 border border-brand-200 
-                flex items-center justify-center text-2xl flex-shrink-0">
-      📬
-    </div>
-
-    <!-- Content -->
-    <div class="flex-1 min-w-0">
-      <h3 class="font-bold text-slate-900 text-base mb-1.5">
-        获取每周评测更新
-      </h3>
-      <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+<div class="border border-slate-200 bg-slate-50 p-6 sm:p-8">
+  <div class="grid gap-6 sm:grid-cols-[1fr_1.2fr] sm:items-center">
+    <div>
+      <span class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700">Weekly intelligence</span>
+      <h3 class="mt-2 text-xl font-extrabold text-slate-950">获取每周评测更新</h3>
+      <p class="mt-2 text-sm leading-relaxed text-slate-600">
         新评测、节点速度变化、流媒体解锁状态，每周五发送，不做任何广告。
       </p>
+    </div>
 
-      <!-- Form (static placeholder) -->
+    <div>
       <form class="flex gap-2" onsubmit="return false;" aria-label="订阅表单">
         <input
           type="email"
           placeholder="your@email.com"
-          class="flex-1 min-w-0 px-4 py-2.5 rounded-xl bg-white border border-slate-300
-                 text-sm text-slate-800 placeholder-slate-400 focus:outline-none 
-                 focus:border-brand-500 focus:ring-1 focus:ring-brand-500/40
-                 transition-colors"
+          class="min-w-0 flex-1 border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-brand-500"
           aria-label="邮箱地址"
           autocomplete="email"
         />
-        <button
-          type="submit"
-          class="btn-primary text-sm px-4 py-2.5 flex-shrink-0"
-        >
-          订阅
-        </button>
+        <button type="submit" class="bg-ink px-5 py-3 text-sm font-bold text-[#fbf8f0] hover:bg-brand-700">订阅</button>
       </form>
-      <p class="text-xs text-slate-400 mt-2">无垃圾邮件，随时退订。</p>
+      <p class="mt-2 text-[11px] text-slate-400">无垃圾邮件，随时退订。</p>
     </div>
   </div>
 </div>

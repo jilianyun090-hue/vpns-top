@@ -1,54 +1,44 @@
 ---
-// ComparisonTable: responsive horizontal matrix comparison
-// Pass headers array and rows as 2D array (first cell = row label)
-
 interface Props {
   headers: string[];
-  rows:    (string | number | boolean)[][];
+  rows: (string | number | boolean)[][];
   caption?: string;
 }
 
 const { headers, rows, caption } = Astro.props;
 
 function renderCell(val: string | number | boolean): string {
-  if (val === true)  return '✅';
-  if (val === false) return '❌';
+  if (val === true) return '是';
+  if (val === false) return '否';
   return String(val);
 }
 ---
 
-<div class="overflow-x-auto rounded-xl border border-slate-200 scrollbar-thin">
-  <table class="w-full text-sm border-collapse min-w-[600px]">
-    {caption && (
-      <caption class="text-xs text-slate-500 text-left px-4 py-2 border-b border-slate-100">
-        {caption}
-      </caption>
-    )}
+<div class="overflow-x-auto border border-slate-300 bg-white">
+  <table class="w-full min-w-[760px] border-collapse text-sm">
+    {caption && <caption class="border-b border-slate-200 px-5 py-3 text-left text-[11px] text-slate-500">{caption}</caption>}
     <thead>
-      <tr class="bg-slate-100">
-        {headers.map((h, i) => (
+      <tr class="bg-ink text-[#fbf8f0]">
+        {headers.map((header, index) => (
           <th class:list={[
-            'px-4 py-3 text-xs font-semibold text-slate-600 whitespace-nowrap',
-            i === 0 ? 'text-left sticky left-0 bg-slate-100 z-10' : 'text-center'
-          ]}>
-            {h}
-          </th>
+            'whitespace-nowrap px-4 py-4 text-[11px] font-bold uppercase tracking-wide',
+            index === 0 ? 'sticky left-0 z-10 bg-ink text-left' : 'text-center'
+          ]}>{header}</th>
         ))}
       </tr>
     </thead>
     <tbody>
-      {rows.map((row, ri) => (
-        <tr class:list={[
-          'border-t border-slate-100 transition-colors hover:bg-brand-50/50',
-          ri % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'
-        ]}>
-          {row.map((cell, ci) => (
+      {rows.map((row) => (
+        <tr class="border-t border-slate-200 transition-colors hover:bg-brand-50/60">
+          {row.map((cell, cellIndex) => (
             <td class:list={[
-              'px-4 py-3 whitespace-nowrap',
-              ci === 0 ? 'font-semibold text-slate-800 text-left sticky left-0 bg-white z-10 border-r border-slate-100' : 'text-center text-slate-600'
-            ]}>
-              {renderCell(cell)}
-            </td>
+              'whitespace-nowrap px-4 py-3.5',
+              cellIndex === 0
+                ? 'sticky left-0 z-10 border-r border-slate-200 bg-white text-left font-bold text-slate-950'
+                : 'text-center text-slate-600',
+              cell === true && 'font-bold text-emerald-700',
+              cell === false && 'text-slate-400'
+            ]}>{renderCell(cell)}</td>
           ))}
         </tr>
       ))}

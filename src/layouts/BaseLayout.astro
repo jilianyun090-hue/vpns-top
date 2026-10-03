@@ -2,6 +2,7 @@
 import SeoHead from '../components/SeoHead.astro';
 import Header  from '../components/Header.astro';
 import Footer  from '../components/Footer.astro';
+import InkMistBackground from '../components/InkMistBackground.astro';
 import { SITE } from '../data/site';
 import '../styles/global.css';
 
@@ -26,7 +27,8 @@ const props = Astro.props;
   <head>
     <SeoHead {...props} />
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body class="flex min-h-screen flex-col">
+    <InkMistBackground />
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100]
@@ -35,7 +37,7 @@ const props = Astro.props;
       跳到主要内容
     </a>
     <Header />
-    <main id="main-content" class="flex-1" tabindex="-1">
+    <main id="main-content" class="relative z-10 flex-1 overflow-hidden" tabindex="-1">
       <slot />
     </main>
     <Footer />

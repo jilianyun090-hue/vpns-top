@@ -1,111 +1,89 @@
 ---
 interface Props {
-  name:             string;
-  slug:             string;
-  rating:           number;
-  tagline?:         string;
-  nodeTypes?:       string[];
+  name: string;
+  slug: string;
+  rating: number;
+  tagline?: string;
+  nodeTypes?: string[];
   streamingSupport?: string[];
-  minPrice?:        number;
-  referralId?:      string;
-  tags?:            string[];
-  featured?:        boolean;
+  minPrice?: number;
+  referralId?: string;
+  tags?: string[];
+  featured?: boolean;
 }
 
 const {
-  name, slug, rating, tagline, nodeTypes = [], streamingSupport = [], 
+  name, slug, rating, tagline, nodeTypes = [], streamingSupport = [],
   minPrice, referralId, featured = false
 } = Astro.props;
-
-// Convert rating to stars (0-10 → 0-5 half-stars)
-const fullStars  = Math.floor(rating / 2);
-const halfStar   = rating % 2 >= 1;
-const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 ---
 
-<div class:list={[
-  'relative group bg-white rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 border-2 hover:-translate-y-1',
+<article class:list={[
+  'group relative flex h-full flex-col border bg-white transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 hover:border-brand-500 hover:bg-brand-50/40 hover:shadow-[0_20px_45px_rgba(67,87,76,0.18)] focus-within:-translate-y-1.5 focus-within:border-brand-500 focus-within:bg-brand-50/40 focus-within:shadow-[0_20px_45px_rgba(67,87,76,0.18)]',
   featured
-    ? 'border-amber-300 shadow-md shadow-amber-500/10 hover:shadow-xl hover:border-amber-400'
-    : 'border-slate-200 shadow-xs hover:shadow-md hover:border-amber-300'
+    ? 'border-slate-300 shadow-[inset_0_3px_0_#526b5d]'
+    : 'border-slate-200'
 ]}>
-  
-  <div>
-    <!-- Top Row: Badge + Title + Rating -->
-    <div class="flex items-start justify-between gap-3 mb-2">
-      <div class="flex-1 min-w-0">
-        {featured && (
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 mb-2">
-            推荐
+  <span class:list={[
+    'pointer-events-none absolute inset-x-[-1px] top-[-1px] z-10 h-[2px] origin-left bg-brand-600 transition-transform duration-300',
+    featured ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100 group-focus-within:scale-x-100'
+  ]} aria-hidden="true"></span>
+
+  <div class="flex items-start justify-between border-b border-slate-200 p-5 transition-colors duration-300 group-hover:border-brand-200 group-hover:bg-brand-50/60 group-focus-within:border-brand-200 group-focus-within:bg-brand-50/60">
+    <div class="min-w-0 pr-4">
+      {featured && (
+        <span class="mb-3 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-brand-700">
+          <span class="h-1.5 w-1.5 bg-brand-600"></span>
+          推荐
+        </span>
+      )}
+      <h3 class="truncate text-xl font-extrabold tracking-tight text-slate-950">
+        <a href={`/brands/${slug}/`} class="hover:text-brand-600">{name}</a>
+      </h3>
+      {tagline && <p class="mt-2 line-clamp-2 min-h-[44px] text-xs leading-relaxed text-slate-500">{tagline}</p>}
+    </div>
+
+    <div class="shrink-0 border-l border-slate-200 pl-4 text-right transition-colors duration-300 group-hover:border-brand-200 group-focus-within:border-brand-200">
+      <span class="block text-3xl font-black leading-none tracking-[-0.04em] text-slate-950 transition-colors duration-300 group-hover:text-brand-600 group-focus-within:text-brand-600">{rating.toFixed(1)}</span>
+      <span class="mt-1 block text-[9px] font-bold uppercase tracking-wider text-slate-400">Score / 10</span>
+    </div>
+  </div>
+
+  <div class="flex flex-1 flex-col p-5">
+    <div class="mb-5 grid grid-cols-2 gap-x-3 gap-y-2 text-[11px]">
+      {nodeTypes.slice(0, 3).map((item) => (
+        <span class="flex items-center gap-2 text-slate-600">
+          <span class="h-1 w-1 bg-brand-500"></span>{item}
+        </span>
+      ))}
+      {streamingSupport.slice(0, 2).map((item) => (
+        <span class="flex items-center gap-2 text-slate-600">
+          <span class="h-1 w-1 bg-emerald-500"></span>{item}
+        </span>
+      ))}
+    </div>
+
+    <div class="mt-auto flex items-end justify-between border-t border-slate-200 pt-4">
+      <div>
+        <span class="block text-[10px] font-semibold uppercase tracking-wider text-slate-400">Entry price</span>
+        {minPrice !== undefined ? (
+          <span class="mt-1 block text-sm text-slate-600">
+            <strong class="text-lg font-black text-slate-950">¥{minPrice.toFixed(1)}</strong>
+            <span class="text-[10px]">/{minPrice === 1.0 ? '次' : '月'}</span>
           </span>
+        ) : (
+          <span class="mt-1 block text-xs text-slate-400">价格详见官网</span>
         )}
-        <h3 class="font-extrabold text-slate-900 text-lg sm:text-xl tracking-tight leading-snug truncate">
-          <a href={`/brands/${slug}/`} class="hover:text-amber-600 transition-colors">
-            {name}
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href={`/brands/${slug}/`} class="text-xs font-bold text-slate-600 transition-transform group-hover:translate-x-0.5 group-hover:text-brand-600">评测 →</a>
+        {referralId && (
+          <a href={`/go/${referralId}/`} target="_blank" rel="noopener noreferrer sponsored" class="bg-ink px-3 py-2 text-xs font-bold text-[#fbf8f0] hover:bg-brand-700">
+            官网
           </a>
-        </h3>
-      </div>
-
-      <!-- Rating score badge -->
-      <div class="flex-shrink-0 flex flex-col items-center bg-slate-50 border border-slate-100 rounded-xl px-2.5 py-1 min-w-[50px]">
-        <span class="text-xl font-black text-amber-500 leading-none tracking-tight">{rating.toFixed(1)}</span>
-        <span class="text-[9px] font-medium text-slate-400 mt-0.5">/ 10</span>
+        )}
       </div>
     </div>
-
-    <!-- Tagline -->
-    {tagline && (
-      <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3 min-h-[32px]">
-        {tagline}
-      </p>
-    )}
-
-    <!-- Stars -->
-    <div class="flex items-center gap-1 text-amber-400 text-sm mb-4" aria-label={`评分 ${rating} 分`}>
-      <span>{'★'.repeat(fullStars)}{halfStar ? '☆' : ''}{'☆'.repeat(emptyStars)}</span>
-    </div>
-
-    <!-- Pill tags (Node types + Streaming) -->
-    <div class="flex flex-wrap gap-1.5 mb-5">
-      {nodeTypes.slice(0, 3).map((t) => (
-        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-sky-100/90 text-sky-800 border border-sky-200/60">
-          {t}
-        </span>
-      ))}
-      {streamingSupport.slice(0, 2).map((s) => (
-        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-100/90 text-emerald-800 border border-emerald-200/60">
-          {s}
-        </span>
-      ))}
-    </div>
   </div>
-
-  <!-- Bottom Row: Price + Actions -->
-  <div class="flex items-center justify-between pt-3.5 border-t border-slate-100 mt-auto">
-    <div>
-      {minPrice !== undefined ? (
-        <span class="text-xs text-slate-500">
-          低至 <strong class="text-slate-900 font-black text-sm sm:text-base">¥{minPrice.toFixed(1)}</strong><span class="text-[10px] text-slate-400">/{minPrice === 1.0 ? '次' : '月'}</span>
-        </span>
-      ) : (
-        <span class="text-xs text-slate-400">价格详见官网</span>
-      )}
-    </div>
-    
-    <div class="flex items-center gap-2">
-      <a href={`/brands/${slug}/`}
-         class="text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-0.5">
-        查看评测 →
-      </a>
-      {referralId && (
-        <a href={`/go/${referralId}/`}
-           target="_blank"
-           rel="noopener noreferrer sponsored"
-           class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs shadow-md shadow-amber-200 transition-all duration-200 hover:scale-105 active:scale-95">
-          官网
-        </a>
-      )}
-    </div>
-  </div>
-
-</div>
+</article>

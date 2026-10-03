@@ -1,0 +1,33 @@
+---
+---
+
+<div class="ink-atmosphere" aria-hidden="true">
+  <span class="ink-cloud ink-cloud-one"></span>
+  <span class="ink-cloud ink-cloud-two"></span>
+  <span class="ink-cloud ink-cloud-three"></span>
+  <span class="ink-ripple-static ink-ripple-static-one"></span>
+  <span class="ink-ripple-static ink-ripple-static-two"></span>
+  <div id="ink-ripple-layer"></div>
+</div>
+
+<script is:inline>
+  (() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const layer = document.getElementById('ink-ripple-layer');
+    if (!layer || reduceMotion.matches) return;
+
+    document.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+      const ripple = document.createElement('span');
+      ripple.className = 'ink-click-ripple';
+      ripple.style.left = `${event.clientX}px`;
+      ripple.style.top = `${event.clientY}px`;
+      layer.appendChild(ripple);
+
+      const ripples = layer.querySelectorAll('.ink-click-ripple');
+      if (ripples.length > 6) ripples[0].remove();
+      ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+    }, { passive: true });
+  })();
+</script>
