@@ -9,13 +9,15 @@ const sorted = allBrands.sort((a, b) => b.data.rating - a.data.rating);
 ---
 
 <BaseLayout
-  title="机场品牌库"
-  description="收录 30+ 机场与VPN服务商，综合评分排名，含节点类型、流媒体解锁、价格与独立测速数据。"
+  title="2026 机场推荐品牌库：VPN 机场与节点对比"
+  description="集中查看2026机场推荐品牌与VPN机场信息，按节点线路、协议、流媒体支持、价格和综合评分筛选稳定或高性价比机场。"
 >
   <div class="container-xl py-10 lg:py-14">
     <SectionTitle
-      title="机场品牌库"
-      subtitle={`收录 ${sorted.length} 家经过完整 12 维度评测的服务商，按综合评分降序排列。`}
+      headingLevel={1}
+      id="brands-index-heading"
+      title="机场推荐品牌与 VPN 机场库"
+      subtitle={`收录 ${sorted.length} 家服务商，按节点线路、协议、价格与综合评分辅助筛选。`}
       tag="品牌"
     />
 

@@ -11,7 +11,7 @@ interface Props {
 const { activeCategory, activeTag, showTags = false, tags = [] } = Astro.props;
 ---
 
-<div class="flex flex-col gap-4">
+<nav class="flex flex-col gap-4" aria-label="文章分类与标签筛选">
   <!-- Category filter -->
   <div class="flex flex-wrap gap-2">
     <a
@@ -22,6 +22,7 @@ const { activeCategory, activeTag, showTags = false, tags = [] } = Astro.props;
           ? 'bg-brand-600 text-white border border-brand-500 shadow-sm'
           : 'badge-slate hover:text-slate-900 hover:bg-slate-200'
       ]}
+      aria-current={!activeCategory && !activeTag ? 'page' : undefined}
     >
       全部
     </a>
@@ -34,6 +35,7 @@ const { activeCategory, activeTag, showTags = false, tags = [] } = Astro.props;
             ? 'bg-brand-600 text-white border border-brand-500 shadow-sm'
             : 'badge-slate hover:text-slate-900 hover:bg-slate-200'
         ]}
+        aria-current={activeCategory === cat.slug ? 'page' : undefined}
       >
         <span aria-hidden="true">{cat.icon}</span>
         {cat.label}
@@ -46,17 +48,18 @@ const { activeCategory, activeTag, showTags = false, tags = [] } = Astro.props;
     <div class="flex flex-wrap gap-1.5">
       {tags.map((tag) => (
         <a
-          href={`/tag/${tag}/`}
+          href={`/tag/${encodeURIComponent(tag)}/`}
           class:list={[
             'text-xs px-2.5 py-1 rounded-full border transition-colors',
             activeTag === tag
               ? 'border-brand-500 text-brand-600 bg-brand-50 font-semibold'
               : 'border-slate-200 text-slate-600 hover:text-brand-600 hover:border-brand-300'
           ]}
+          aria-current={activeTag === tag ? 'page' : undefined}
         >
           #{tag}
         </a>
       ))}
     </div>
   )}
-</div>
+</nav>

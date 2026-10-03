@@ -13,13 +13,15 @@ const allTags = [...new Set(sorted.flatMap((p) => p.data.tags))].sort();
 ---
 
 <BaseLayout
-  title="评测文章"
-  description="VPNs Top 全部机场、VPN 评测文章，涵盖速度、稳定性、流媒体解锁、性价比全维度深度测评。"
+  title="机场推荐、VPN 软件与梯子评测文章"
+  description="汇总2026机场推荐、VPN软件推荐、梯子排行、机场节点与客户端教程，覆盖稳定性、性价比、流媒体解锁和故障排查。"
 >
   <div class="container-xl py-10 lg:py-14">
     <SectionTitle
-      title="评测文章"
-      subtitle={`共 ${sorted.length} 篇独立评测，数据每周更新。`}
+      headingLevel={1}
+      id="blog-index-heading"
+      title="机场推荐、VPN 软件与梯子评测"
+      subtitle={`共 ${sorted.length} 篇选购、评测与使用指南，持续更新机场节点、稳定性和性价比信息。`}
       tag="BLOG"
     />
 

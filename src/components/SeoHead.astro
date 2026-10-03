@@ -9,8 +9,9 @@ interface Props {
   type?:        'website' | 'article';
   pubDate?:     Date;
   updatedDate?: Date;
+  author?:      string;
   noindex?:     boolean;
-  schema?:      Record<string, unknown>; // custom JSON-LD override
+  schema?:      Record<string, unknown> | Record<string, unknown>[]; // additional JSON-LD nodes
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   type        = 'website',
   pubDate,
   updatedDate,
+  author      = SITE.author,
   noindex     = false,
   schema,
 } = Astro.props;
@@ -31,29 +33,105 @@ const canonicalURL = canonical
   : new URL(Astro.url.pathname, SITE.url).href;
 const ogImageURL = new URL(ogImage, SITE.url).href;
 
-// Default JSON-LD: WebSite & Article Schema for GEO & Search
-const defaultSchema = {
-  '@context': 'https://schema.org',
-  '@type': type === 'article' ? 'Article' : 'WebSite',
+type JsonLdNode = Record<string, unknown>;
+
+const organizationId = `${SITE.url}/#organization`;
+const websiteId = `${SITE.url}/#website`;
+const webpageId = `${canonicalURL}#webpage`;
+
+const organizationSchema: JsonLdNode = {
+  '@type': 'Organization',
+  '@id': organizationId,
   name: SITE.name,
   url: SITE.url,
-  description,
-  keywords: SITE.keywords,
-  ...(type === 'article' && pubDate
-    ? {
-        headline:      title ?? SITE.name,
-        datePublished: pubDate.toISOString(),
-        dateModified:  (updatedDate ?? pubDate).toISOString(),
-        author: { '@type': 'Organization', name: SITE.author },
-        publisher: {
-          '@type': 'Organization',
-          name:    SITE.name,
-          logo:    { '@type': 'ImageObject', url: `${SITE.url}/favicon.svg` },
-        },
-      }
-    : {}),
+  logo: {
+    '@type': 'ImageObject',
+    url: new URL('/favicon.svg', SITE.url).href,
+  },
 };
-const jsonLD = schema ?? defaultSchema;
+
+const websiteSchema: JsonLdNode = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  inLanguage: SITE.lang,
+  publisher: { '@id': organizationId },
+};
+
+const pageSchema: JsonLdNode = type === 'article'
+  ? {
+      '@type': 'Article',
+      '@id': `${canonicalURL}#article`,
+      headline: title ?? SITE.name,
+      description,
+      url: canonicalURL,
+      mainEntityOfPage: { '@id': webpageId },
+      image: [ogImageURL],
+      inLanguage: SITE.lang,
+      ...(pubDate ? { datePublished: pubDate.toISOString() } : {}),
+      ...(pubDate || updatedDate
+        ? { dateModified: (updatedDate ?? pubDate)?.toISOString() }
+        : {}),
+      author: { '@type': 'Organization', name: author },
+      publisher: { '@id': organizationId },
+    }
+  : {
+      '@type': 'WebPage',
+      '@id': webpageId,
+      name: title ?? SITE.name,
+      description,
+      url: canonicalURL,
+      inLanguage: SITE.lang,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': organizationId },
+    };
+
+const webpageSchema: JsonLdNode | null = type === 'article'
+  ? {
+      '@type': 'WebPage',
+      '@id': webpageId,
+      name: title ?? SITE.name,
+      description,
+      url: canonicalURL,
+      inLanguage: SITE.lang,
+      isPartOf: { '@id': websiteId },
+      primaryImageOfPage: { '@type': 'ImageObject', url: ogImageURL },
+    }
+  : null;
+
+function getCustomSchemaNodes(value: Props['schema']): JsonLdNode[] {
+  if (!value) return [];
+
+  const entries = Array.isArray(value) ? value : [value];
+  return entries.flatMap((entry) => {
+    const graph = entry['@graph'];
+    if (Array.isArray(graph)) {
+      return graph.filter(
+        (node): node is JsonLdNode => Boolean(node) && typeof node === 'object' && !Array.isArray(node),
+      );
+    }
+
+    const node = { ...entry };
+    delete node['@context'];
+    return [node];
+  });
+}
+
+const jsonLD = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organizationSchema,
+    websiteSchema,
+    pageSchema,
+    ...(webpageSchema ? [webpageSchema] : []),
+    ...getCustomSchemaNodes(schema),
+  ],
+};
+
+// Prevent user-controlled content from closing the inline script tag.
+const serializedJsonLD = JSON.stringify(jsonLD).replace(/</g, '\\u003c');
 ---
 
 <!-- Primary Meta -->
@@ -64,7 +142,12 @@ const jsonLD = schema ?? defaultSchema;
 <meta name="keywords"    content={SITE.keywords} />
 <meta name="author"      content={SITE.author} />
 <link rel="canonical"    href={canonicalURL} />
-{noindex && <meta name="robots" content="noindex, nofollow" />}
+<meta
+  name="robots"
+  content={noindex
+    ? 'noindex, follow'
+    : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
+/>
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -75,6 +158,7 @@ const jsonLD = schema ?? defaultSchema;
 <meta property="og:title"       content={pageTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image"       content={ogImageURL} />
+<meta property="og:image:alt"   content={title ?? SITE.name} />
 <meta property="og:locale"      content={SITE.locale} />
 <meta property="og:site_name"   content={SITE.name} />
 
@@ -83,13 +167,16 @@ const jsonLD = schema ?? defaultSchema;
 <meta name="twitter:title"       content={pageTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image"       content={ogImageURL} />
+<meta name="twitter:image:alt"   content={title ?? SITE.name} />
+{SITE.twitterHandle && <meta name="twitter:site" content={SITE.twitterHandle} />}
 
 <!-- Article Dates -->
 {pubDate     && <meta property="article:published_time" content={pubDate.toISOString()} />}
 {updatedDate && <meta property="article:modified_time"  content={updatedDate.toISOString()} />}
+{type === 'article' && <meta property="article:author" content={author} />}
 
 <!-- Theme Color -->
 <meta name="theme-color" content={SITE.themeColor} />
 
 <!-- JSON-LD -->
-<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLD)} />
+<script type="application/ld+json" is:inline set:html={serializedJsonLD} />

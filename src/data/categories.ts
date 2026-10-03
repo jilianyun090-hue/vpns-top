@@ -77,6 +77,20 @@ export const categories: Category[] = [
     icon:        '⚙️',
     color:       'bg-slate-700/50 text-slate-300',
   },
+  {
+    slug:        'tutorial',
+    label:       '配置教程',
+    description: '机场订阅导入、客户端安装、规则分流与 TUN 模式等完整实操教程。',
+    icon:        '🧩',
+    color:       'bg-cyan-900/50 text-cyan-300',
+  },
+  {
+    slug:        'faq',
+    label:       '常见问题',
+    description: '集中解答机场选购、节点配置、连接异常、流媒体解锁与安全合规问题。',
+    icon:        '❓',
+    color:       'bg-blue-900/50 text-blue-300',
+  },
 ];
 
 export function getCategoryBySlug(slug: string): Category | undefined {

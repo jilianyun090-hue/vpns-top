@@ -40,6 +40,7 @@ function formatDate(d: Date) {
   type="article"
   pubDate={pubDate}
   updatedDate={updatedDate}
+  author={author}
 >
   <div class="container-xl py-10 lg:py-14">
     <div class="max-w-4xl mx-auto">
@@ -47,12 +48,13 @@ function formatDate(d: Date) {
       <!-- Breadcrumb -->
       <Breadcrumb items={breadcrumbs} />
 
-      <!-- Article Header -->
-      <header class="mb-10">
+      <article>
+        <!-- Article Header -->
+        <header class="mb-10">
         <div class="flex flex-wrap gap-2 mb-4">
-          <a href={`/category/${category}/`} class="badge badge-brand">{category}</a>
+          <a href={`/category/${encodeURIComponent(category)}/`} class="badge badge-brand">{category}</a>
           {tags.slice(0, 4).map((tag) => (
-            <a href={`/tag/${tag}/`} class="badge badge-slate text-xs">#{tag}</a>
+            <a href={`/tag/${encodeURIComponent(tag)}/`} class="badge badge-slate text-xs">#{tag}</a>
           ))}
         </div>
 
@@ -85,23 +87,24 @@ function formatDate(d: Date) {
             </time>
           )}
         </div>
-      </header>
+        </header>
 
-      <!-- TOC slot (optional, filled by page) -->
-      <slot name="toc" />
+        <!-- TOC slot (optional, filled by page) -->
+        <slot name="toc" />
 
-      <!-- Article body -->
-      <div class="prose-cn">
-        <slot />
-      </div>
+        <!-- Article body -->
+        <div class="prose-cn">
+          <slot />
+        </div>
 
-      <!-- FAQ section -->
-      {faqs.length > 0 && (
-        <section class="mt-12">
-          <h2 class="text-xl font-bold text-slate-900 mb-6">常见问题</h2>
-          <FAQ items={faqs} />
-        </section>
-      )}
+        <!-- FAQ section -->
+        {faqs.length > 0 && (
+          <section class="mt-12" aria-labelledby="article-faq-heading">
+            <h2 id="article-faq-heading" class="text-xl font-bold text-slate-900 mb-6">常见问题</h2>
+            <FAQ items={faqs} />
+          </section>
+        )}
+      </article>
 
       <!-- Related posts -->
       <RelatedPosts posts={relatedPosts} />

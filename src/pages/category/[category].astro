@@ -25,8 +25,9 @@ const filtered = allPosts
 ---
 
 <BaseLayout
-  title={cat ? `${cat.label}` : catSlug}
-  description={cat?.description ?? `${catSlug} 分类下的全部评测文章。`}
+  title={cat ? `${cat.label}：机场推荐与 VPN 使用指南` : `${catSlug} 文章`}
+  description={cat ? `${cat.description} 本页汇总 ${filtered.length} 篇相关评测与教程。` : `${catSlug} 分类下的全部评测文章。`}
+  noindex={filtered.length === 0}
 >
   <div class="container-xl py-10 lg:py-14">
     <Breadcrumb items={[
@@ -36,6 +37,8 @@ const filtered = allPosts
     ]} />
 
     <SectionTitle
+      headingLevel={1}
+      id="category-heading"
       title={`${cat?.icon ?? ''} ${cat?.label ?? catSlug}`}
       subtitle={cat?.description ?? ''}
       tag="分类"

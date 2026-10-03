@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://vpns-top.com',
+  trailingSlash: 'always',
   output: 'static',
   integrations: [
     tailwind({

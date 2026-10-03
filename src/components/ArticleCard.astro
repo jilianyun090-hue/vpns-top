@@ -8,9 +8,14 @@ interface Props {
   pubDate:     Date;
   updatedDate?: Date;
   featured?:   boolean;
+  headingLevel?: 2 | 3 | 4;
 }
 
-const { title, description, href, category, tags = [], pubDate, updatedDate, featured = false } = Astro.props;
+const {
+  title, description, href, category, tags = [], pubDate, updatedDate,
+  featured = false, headingLevel = 2,
+} = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
 
 function formatDate(d: Date) {
   return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -25,11 +30,11 @@ function formatDate(d: Date) {
   </div>
 
   <!-- Title -->
-  <h2 class="text-base font-bold leading-snug">
+  <Heading class="text-base font-bold leading-snug">
     <a href={href} class="text-slate-900 hover:text-brand-600 transition-colors duration-150">
       {title}
     </a>
-  </h2>
+  </Heading>
 
   <!-- Description -->
   <p class="text-sm text-slate-600 leading-relaxed line-clamp-2 flex-1">
@@ -40,7 +45,7 @@ function formatDate(d: Date) {
   {tags.length > 0 && (
     <div class="flex flex-wrap gap-1.5">
       {tags.slice(0, 3).map((tag) => (
-        <a href={`/tag/${tag}/`} class="badge badge-slate text-xs hover:text-brand-600 transition-colors">
+        <a href={`/tag/${encodeURIComponent(tag)}/`} class="badge badge-slate text-xs hover:text-brand-600 transition-colors">
           #{tag}
         </a>
       ))}

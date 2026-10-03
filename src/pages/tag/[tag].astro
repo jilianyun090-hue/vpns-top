@@ -24,8 +24,9 @@ const filtered = allPosts
 ---
 
 <BaseLayout
-  title={`#${tag} 标签`}
-  description={`标签 #${tag} 下的全部评测与教程文章，共 ${filtered.length} 篇。`}
+  title={`${tag} 相关文章与选购指南`}
+  description={`汇总 ${filtered.length} 篇关于${tag}的机场评测、VPN使用与选购指南。`}
+  noindex={filtered.length < 2}
 >
   <div class="container-xl py-10 lg:py-14">
     <Breadcrumb items={[
@@ -35,6 +36,8 @@ const filtered = allPosts
     ]} />
 
     <SectionTitle
+      headingLevel={1}
+      id="tag-heading"
       title={`#${tag}`}
       subtitle={`共 ${filtered.length} 篇相关文章`}
       tag="标签"

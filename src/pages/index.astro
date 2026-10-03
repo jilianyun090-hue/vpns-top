@@ -23,11 +23,34 @@ const allTopics = await getCollection('topics', ({ data }) => !data.draft);
 const latestPosts    = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 6);
 const featuredBrands = allBrands.filter((b) => b.data.featured).sort((a, b) => b.data.rating - a.data.rating).slice(0, 4);
 const topTopics      = allTopics.sort((a, b) => a.data.order - b.data.order).slice(0, 4);
+
+const priorityGuides = [
+  {
+    title: '2026 梯子排行榜与机场节点选择',
+    description: '按线路、晚高峰表现、节点倍率与月付风险理解梯子排行。',
+    href: '/blog/ladder-ranking-airport-recommendation-2026/',
+  },
+  {
+    title: '稳定梯子与机场 VPN 推荐',
+    description: '从可用性、丢包、线路冗余和售后判断长期稳定性。',
+    href: '/blog/stable-ladder-vpn-guide-2026/',
+  },
+  {
+    title: '瞬云机场评测与购买前核验',
+    description: '了解瞬云的节点、线路、套餐与适用场景，并核对最新信息。',
+    href: '/blog/shunyun-review-2026/',
+  },
+  {
+    title: '机场推荐与性价比选择指南',
+    description: '按预算、设备、流量和使用场景筛选适合自己的 VPN 机场。',
+    href: '/blog/airport-recommendations-2026/',
+  },
+];
 ---
 
 <BaseLayout
-  title="2026年翻墙机场推荐：便宜好用的VPN机场评测与科学上网指南"
-  description="【2026最新】专业翻墙机场推荐与VPN测评指南。收录极连云、光年梯、鲲鹏加速等高性价比IEPL/IPLC专线机场，提供梯子排行、魔法科学上网客户端配置与不限时流量包对比。"
+  title="2026年机场推荐：高性价比VPN机场、稳定梯子排行与节点评测"
+  description="【2026更新】聚焦机场推荐、VPN机场与稳定梯子评测，对比高性价比机场的IEPL/IPLC线路、机场节点、速度、流媒体解锁与价格，并提供Clash等客户端使用教程。"
 >
   <!-- ① Hero 首屏 -->
   <Hero />
@@ -111,6 +134,35 @@ const topTopics      = allTopics.sort((a, b) => a.data.order - b.data.order).sli
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- Bing 高曝光关键词对应的核心内容入口 -->
+  <section class="section container-xl" aria-labelledby="priority-guides-heading">
+    <SectionTitle
+      id="priority-guides-heading"
+      title="热门机场与梯子选购指南"
+      subtitle="围绕梯子排行榜、稳定机场 VPN、机场节点与瞬云机场等高频问题，直达对应深度文章。"
+      centered
+      tag="热门搜索"
+    />
+    <nav class="mt-8 grid md:grid-cols-2 gap-x-10 gap-y-2" aria-label="热门搜索指南">
+      {priorityGuides.map((guide) => (
+        <a
+          href={guide.href}
+          class="group flex items-start justify-between gap-5 border-b border-slate-200 py-5"
+        >
+          <span>
+            <span class="block text-base font-extrabold text-slate-900 group-hover:text-brand-600 transition-colors">
+              {guide.title}
+            </span>
+            <span class="mt-1 block text-sm leading-relaxed text-slate-600">
+              {guide.description}
+            </span>
+          </span>
+          <span class="mt-0.5 shrink-0 text-brand-600" aria-hidden="true">→</span>
+        </a>
+      ))}
+    </nav>
   </section>
 
   <!-- ⑤ 核心栏目导航 -->

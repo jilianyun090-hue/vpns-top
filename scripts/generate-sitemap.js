@@ -1,8 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import astroConfig from '../astro.config.mjs';
 
-const domain = 'https://vpns-top.com';
-const currentDate = new Date().toISOString().split('T')[0];
+if (!astroConfig.site) {
+  throw new Error('[Sitemap] astro.config.mjs must define a canonical site URL.');
+}
+
+const siteOrigin = new URL(astroConfig.site).origin;
 
 function getAllRoutes(dir, baseRoute = '') {
   let routes = [];
@@ -43,18 +47,17 @@ function generateSitemap() {
   // Deduplicate and sort routes
   const sortedRoutes = Array.from(new Set(routes)).sort();
 
-  console.log(`🗺️ [Sitemap] Generating sitemap.xml for ${sortedRoutes.length} pages on ${domain}...`);
+  console.log(`🗺️ [Sitemap] Generating sitemap.xml for ${sortedRoutes.length} pages on ${siteOrigin}...`);
 
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
   for (const route of sortedRoutes) {
-    const loc = `${domain}${route}`;
+    const loc = new URL(route, `${siteOrigin}/`).href;
     const { priority, changefreq } = getPriorityAndFreq(route);
 
     xml += `  <url>\n`;
     xml += `    <loc>${loc}</loc>\n`;
-    xml += `    <lastmod>${currentDate}</lastmod>\n`;
     xml += `    <changefreq>${changefreq}</changefreq>\n`;
     xml += `    <priority>${priority}</priority>\n`;
     xml += `  </url>\n`;
