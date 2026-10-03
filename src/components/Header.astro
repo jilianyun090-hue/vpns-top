@@ -31,8 +31,8 @@ const isNavActive = (item: (typeof mainNav)[number]) =>
         {mainNav.map((item, index) => (
           item.children ? (
             <div class="group relative">
-              <button
-                type="button"
+              <a
+                href={item.href}
                 class:list={[
                   'flex items-center gap-1.5 px-3 py-3 text-[13px] font-medium tracking-wide transition-colors',
                   isNavActive(item) ? 'text-brand-700' : 'text-stone-600 hover:text-ink'
@@ -48,7 +48,7 @@ const isNavActive = (item: (typeof mainNav)[number]) =>
                   'absolute bottom-2 h-px bg-brand-600 transition-all duration-300',
                   isNavActive(item) ? 'inset-x-3' : 'left-1/2 right-1/2 group-hover:inset-x-3'
                 ]}></span>
-              </button>
+              </a>
 
               <div class:list={[
                 'invisible absolute top-full z-50 mt-0 w-[540px] translate-y-2 border border-stone-300/80 bg-[#fbf8f0]/95 p-3 opacity-0 shadow-[0_24px_70px_rgba(42,48,43,0.16)] backdrop-blur-xl transition-all duration-300 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100',
@@ -56,10 +56,10 @@ const isNavActive = (item: (typeof mainNav)[number]) =>
               ]}>
                 <div class="flex items-end justify-between border-b border-stone-200 px-3 pb-3 pt-2">
                   <div>
-                    <p class="font-serif text-base font-bold text-ink">{item.label}</p>
+                    <a href={item.href} class="font-serif text-base font-bold text-ink hover:text-brand-700">{item.label}</a>
                     <p class="mt-1 text-[11px] text-stone-500">{item.description}</p>
                   </div>
-                  <span class="font-serif text-2xl text-brand-300">水</span>
+                  <a href={item.href} class="text-[11px] font-semibold text-brand-700 hover:text-brand-900">栏目首页 →</a>
                 </div>
 
                 <div class="grid grid-cols-2 gap-1 pt-2">

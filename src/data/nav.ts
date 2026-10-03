@@ -9,7 +9,7 @@ export interface NavItem {
 export const mainNav: NavItem[] = [
   {
     label: '评测与排行',
-    href: '/brands/',
+    href: '/reviews/',
     description: '先看结论，再读证据',
     children: [
       {
@@ -40,7 +40,7 @@ export const mainNav: NavItem[] = [
   },
   {
     label: '入门与使用',
-    href: '/category/beginner/',
+    href: '/guides/',
     description: '从第一次连接到日常维护',
     children: [
       {
@@ -71,7 +71,7 @@ export const mainNav: NavItem[] = [
   },
   {
     label: '选购与场景',
-    href: '/category/decision/',
+    href: '/decisions/',
     description: '按预算和用途做选择',
     children: [
       {
@@ -102,7 +102,7 @@ export const mainNav: NavItem[] = [
   },
   {
     label: '专题与方法',
-    href: '/topics/',
+    href: '/knowledge/',
     description: '系统知识与评测方法',
     children: [
       {
@@ -124,18 +124,24 @@ export const mainNav: NavItem[] = [
         mark: '尺',
       },
       {
-        label: '识别软文广告',
-        href: '/blog/spot-fake-airport-reviews/',
-        description: '判断评测是否真实可信',
-        mark: '识',
+        label: '机场术语词典',
+        href: '/blog/airport-terms-dictionary/',
+        description: '线路、协议与节点概念速查',
+        mark: '典',
       },
     ],
   },
   {
     label: 'AI 工具',
-    href: '/category/tools/',
+    href: '/ai-tools/',
     description: '第三方 AI 模型中转服务',
     children: [
+      {
+        label: 'AI 节点指南',
+        href: '/category/ai/',
+        description: 'ChatGPT、Claude 与 API 场景',
+        mark: '智',
+      },
       {
         label: '黑喵',
         href: '/go/heimao-ai/',
@@ -168,10 +174,10 @@ export const footerColumns: FooterColumn[] = [
   {
     title: '开始探索',
     links: [
-      { label: '2026 机场推荐榜', href: '/compare/' },
-      { label: '品牌评测总览', href: '/brands/' },
-      { label: '全部评测文章', href: '/blog/' },
-      { label: '专题集群大厅', href: '/topics/' },
+      { label: '评测与排行', href: '/reviews/' },
+      { label: '入门与使用', href: '/guides/' },
+      { label: '选购与场景', href: '/decisions/' },
+      { label: '专题与方法', href: '/knowledge/' },
     ],
   },
   {
@@ -180,7 +186,7 @@ export const footerColumns: FooterColumn[] = [
       { label: '新手入门', href: '/category/beginner/' },
       { label: '配置教程', href: '/category/tutorial/' },
       { label: '客户端工具', href: '/category/tools/' },
-      { label: '常见故障排查', href: '/category/troubleshoot/' },
+      { label: 'AI 工具导航', href: '/ai-tools/' },
     ],
   },
   {

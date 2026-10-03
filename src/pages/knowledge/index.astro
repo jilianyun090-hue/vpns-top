@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import HubCard from '../../components/HubCard.astro';
+import TopicCluster from '../../components/TopicCluster.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const topics = (await getCollection('topics', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const knowledgePosts = allPosts
+  .filter((post) => ['topics', 'faq'].includes(post.data.category))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 10);
+
+const routes = [
+  { mark: '集', title: '专题集群', description: '按主题连续阅读相关内容，建立完整知识脉络。', href: '/topics/', meta: `${topics.length} 个专题` },
+  { mark: '问', title: '常见问题', description: '集中查看机场选购、连接和使用中的高频疑问。', href: '/category/faq/', meta: 'FAQ' },
+  { mark: '尺', title: '评测方法论', description: '了解本站如何评估稳定性、速度、覆盖与性价比。', href: '/about/#criteria', meta: '公开标准' },
+  { mark: '典', title: '机场术语词典', description: '集中解释机场、节点、专线、协议与客户端常用概念。', href: '/blog/airport-terms-dictionary/', meta: '概念速查' },
+];
+---
+
+<BaseLayout title="专题与方法：机场知识专题、常见问题与评测标准" description="独立整理机场与VPN知识专题、常见问题、评测方法论和软文识别指南，建立可连续阅读的知识结构。">
+  <div class="container-xl py-10 lg:py-14">
+    <Breadcrumb items={[{ label: '首页', href: '/' }, { label: '专题与方法' }]} />
+    <SectionTitle headingLevel={1} title="专题与方法" subtitle="把知识专题、常见问题和评测标准从首页拆出，形成可持续扩展的独立知识区。" tag="KNOWLEDGE" />
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {routes.map((item) => <HubCard {...item} />)}
+    </div>
+
+    {topics.length > 0 && (
+      <section class="section border-b border-stone-300/70" aria-labelledby="knowledge-topics">
+        <SectionTitle id="knowledge-topics" title="主题知识集群" subtitle="从一个问题出发，连续阅读同一主题下的内容。" tag="专题" />
+        <div class="grid gap-4 sm:grid-cols-2">
+          {topics.map((topic) => (
+            <TopicCluster title={topic.data.title} description={topic.data.description} href={`/topics/${topic.slug}/`} articleCount={topic.data.articleCount} tags={topic.data.tags} />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="pt-14" aria-labelledby="knowledge-latest-posts">
+      <SectionTitle id="knowledge-latest-posts" title="方法与问答" subtitle="用于理解评测边界、常见误区与判断方法。" tag="文章" />
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {knowledgePosts.map((post) => (
+          <ArticleCard title={post.data.title} description={post.data.description} href={`/blog/${post.slug}/`} category={post.data.category} tags={post.data.tags} pubDate={post.data.pubDate} updatedDate={post.data.updatedDate} featured={post.data.featured} />
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

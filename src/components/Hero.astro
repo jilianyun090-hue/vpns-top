@@ -10,34 +10,24 @@ import { heroHighlights } from '../data/homepage';
     <div class="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-brand-800/20 to-transparent"></div>
   </div>
 
-  <div class="container-xl relative py-16 lg:py-24">
-    <div class="grid items-center gap-14 lg:grid-cols-[1.2fr_.8fr]">
+  <div class="container-xl relative py-14 lg:py-20">
+    <div class="grid items-start gap-12 lg:grid-cols-[1.25fr_.75fr]">
       <div class="animate-in">
-        <div class="mb-7 flex items-center gap-3 text-[11px] font-semibold tracking-[0.16em] text-brand-700">
+        <div class="mb-6 flex items-center gap-3 text-[11px] font-semibold tracking-[0.16em] text-brand-700">
           <span class="h-px w-9 bg-brand-600"></span>
-          2026年最新 · 独立测速与科学上网机场评测指南
+          独立评测 · 清醒选择 · 2026 持续更新
         </div>
 
-        <h1 class="max-w-4xl font-serif text-4xl font-bold leading-[1.16] tracking-[-0.035em] text-ink sm:text-5xl lg:text-6xl">
-          2026 翻墙机场推荐
-          <span class="mt-3 block font-normal text-brand-700">便宜好用的 VPN 机场评测与梯子指南</span>
+        <h1 class="max-w-4xl font-serif text-4xl font-bold leading-[1.18] tracking-[-0.035em] text-ink sm:text-5xl lg:text-[56px]">
+          机场评测与使用指南
+          <span class="mt-3 block font-normal text-brand-700">把排行、教程与选购决策分开讲清楚</span>
         </h1>
 
-        <p class="mt-8 max-w-2xl border-l border-brand-500/60 pl-5 text-base leading-[1.9] text-stone-600 sm:text-lg">
-          专业翻墙梯子与魔法科学上网评测平台。实测对比 30+ 优质 IEPL/IPLC 专线机场，提供独家节点测速、流媒体与 AI 解锁数据，助您快速挑选最稳定靠谱的上网线路。
+        <p class="mt-7 max-w-2xl border-l border-brand-500/60 pl-5 text-base leading-[1.9] text-stone-600 sm:text-lg">
+          独立整理 30+ 服务商的线路、价格、稳定性与解锁表现。首页只提供清晰入口，完整内容分别进入评测、使用、选购、专题与 AI 工具栏目。
         </p>
 
-        <div class="mt-9 flex flex-wrap gap-3">
-          <a href="#featured-brands" class="inline-flex items-center gap-3 border border-ink bg-ink px-6 py-3.5 text-sm font-semibold tracking-wide text-[#fbf8f0] transition-all hover:border-brand-700 hover:bg-brand-700">
-            查看 Top 3 推荐机场
-            <span aria-hidden="true">→</span>
-          </a>
-          <a href="/compare/" class="inline-flex items-center gap-3 border border-stone-300 bg-[#fbf8f0]/70 px-6 py-3.5 text-sm font-semibold text-stone-700 transition-all hover:border-brand-500 hover:text-brand-800">
-            横向对比参数矩阵
-          </a>
-        </div>
-
-        <div class="mt-10 flex flex-wrap gap-x-7 gap-y-3 border-t border-stone-300/70 pt-5 text-xs text-stone-500">
+        <div class="mt-9 flex flex-wrap gap-x-7 gap-y-3 border-t border-stone-300/70 pt-5 text-xs text-stone-500">
           {['不接受厂商付费赞助', '晚高峰真实环境实测', '外链中转加密保护'].map((item) => (
             <span class="flex items-center gap-2">
               <span class="h-1.5 w-1.5 rounded-full bg-brand-600"></span>
@@ -47,32 +37,32 @@ import { heroHighlights } from '../data/homepage';
         </div>
       </div>
 
-      <div class="animate-in delay-200 relative mx-auto w-full max-w-md">
-        <div class="absolute -left-8 -top-8 font-serif text-7xl text-brand-900/[0.06]" aria-hidden="true">澜</div>
-        <div class="border border-stone-300/80 bg-[#fbf8f0]/72 p-6 shadow-[0_30px_80px_rgba(56,68,60,0.10)] backdrop-blur-sm sm:p-8">
+      <nav class="animate-in delay-200 relative mx-auto w-full max-w-md" aria-label="首页阅读路径">
+        <div class="absolute -left-8 -top-8 font-serif text-7xl text-brand-900/[0.06]" aria-hidden="true">阅</div>
+        <div class="border border-stone-300/80 bg-[#fbf8f0]/72 p-6 shadow-[0_24px_64px_rgba(56,68,60,0.08)] backdrop-blur-sm sm:p-8">
           <div class="flex items-center justify-between border-b border-stone-300/70 pb-4">
             <div>
-              <p class="font-serif text-lg font-bold text-ink">评测四则</p>
-              <p class="mt-1 text-[10px] tracking-[0.16em] text-stone-400">EVALUATION NOTES</p>
+              <p class="font-serif text-lg font-bold text-ink">阅读路径</p>
+              <p class="mt-1 text-[10px] tracking-[0.16em] text-stone-400">CONTENT DIRECTORY</p>
             </div>
-            <span class="font-serif text-3xl text-brand-500">水</span>
+            <span class="font-serif text-3xl text-brand-500">目</span>
           </div>
 
           <div class="divide-y divide-stone-200/80">
             {heroHighlights.map((item, index) => (
-              <div class="group grid grid-cols-[38px_1fr_auto] items-center gap-3 py-5">
+              <div class="group grid grid-cols-[38px_1fr_auto] items-center gap-3 py-4">
                 <span class="font-serif text-xs text-brand-500">0{index + 1}</span>
                 <p class="text-sm font-semibold text-stone-700 transition-colors group-hover:text-brand-800">{item.text}</p>
-                <span class="h-5 w-5 rounded-full border border-brand-300 transition-all group-hover:scale-125 group-hover:border-brand-600" aria-hidden="true"></span>
+                <span class="text-brand-500 transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
               </div>
             ))}
           </div>
 
           <p class="border-t border-stone-300/70 pt-4 text-xs leading-relaxed text-stone-500">
-            基于持续测速、线路验证与解锁状态记录形成的综合评估。
+            从栏目页进入，再按分类或文章继续阅读。
           </p>
         </div>
-      </div>
+      </nav>
     </div>
   </div>
 </section>

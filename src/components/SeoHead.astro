@@ -11,6 +11,8 @@ interface Props {
   updatedDate?: Date;
   author?:      string;
   noindex?:     boolean;
+  keywords?:    string[];
+  articleSection?: string;
   schema?:      Record<string, unknown> | Record<string, unknown>[]; // additional JSON-LD nodes
 }
 
@@ -24,6 +26,8 @@ const {
   updatedDate,
   author      = SITE.author,
   noindex     = false,
+  keywords    = [],
+  articleSection,
   schema,
 } = Astro.props;
 
@@ -76,6 +80,8 @@ const pageSchema: JsonLdNode = type === 'article'
         : {}),
       author: { '@type': 'Organization', name: author },
       publisher: { '@id': organizationId },
+      ...(articleSection ? { articleSection } : {}),
+      ...(keywords.length > 0 ? { keywords } : {}),
     }
   : {
       '@type': 'WebPage',
@@ -139,7 +145,7 @@ const serializedJsonLD = JSON.stringify(jsonLD).replace(/</g, '\\u003c');
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
-<meta name="keywords"    content={SITE.keywords} />
+<meta name="keywords"    content={keywords.length > 0 ? keywords.join(', ') : SITE.keywords} />
 <meta name="author"      content={SITE.author} />
 <link rel="canonical"    href={canonicalURL} />
 <meta

@@ -7,63 +7,47 @@ export const stats = [
   { value: '100%', label: '独立测速' },
 ] as const;
 
-export const features = [
+export const homeSections = [
   {
     icon:        '评',
-    title:       '深度评测',
-    description: '速度、稳定性、延迟、节点覆盖多维度实测，数据来自真实环境。',
-    href:        '/blog/',
-    cta:         '查看评测',
-  },
-  {
-    icon:        '比',
-    title:       '横向对比',
-    description: '多品牌参数并列对比矩阵，价格、流量、协议一目了然。',
-    href:        '/compare/',
-    cta:         '打开对比表',
+    title:       '评测与排行',
+    description: '查看年度榜单、品牌资料库、机场深度评测与稳定性推荐。',
+    href:        '/reviews/',
+    cta:         '进入评测栏目',
   },
   {
     icon:        '入',
-    title:       '新手教程',
-    description: '从购买到配置、从 Clash 到 Sing-box 的完整中文入门指南。',
-    href:        '/topics/tutorial/',
-    cta:         '开始阅读',
+    title:       '入门与使用',
+    description: '从首次购买、订阅导入到客户端配置和故障排查。',
+    href:        '/guides/',
+    cta:         '进入使用指南',
   },
   {
-    icon:        '映',
-    title:       '流媒体实测',
-    description: 'Netflix、Disney+、YouTube Premium 解锁状态每周同步更新。',
-    href:        '/topics/streaming/',
-    cta:         '查看实测',
+    icon:        '择',
+    title:       '选购与场景',
+    description: '围绕预算、续费、流媒体、AI 与安全场景做理性选择。',
+    href:        '/decisions/',
+    cta:         '进入选购指南',
+  },
+  {
+    icon:        '集',
+    title:       '专题与方法',
+    description: '阅读专题知识集群、常见问题与本站独立评测方法。',
+    href:        '/knowledge/',
+    cta:         '进入知识专题',
+  },
+  {
+    icon:        '智',
+    title:       'AI 工具',
+    description: '集中查看本站整理的第三方 AI 模型中转服务入口。',
+    href:        '/ai-tools/',
+    cta:         '查看 AI 工具',
   },
 ] as const;
 
 export const heroHighlights = [
-  { icon: '⚡', text: '实时测速数据' },
-  { icon: '🔍', text: '独立安全审计' },
-  { icon: '📺', text: '流媒体解锁实测' },
-  { icon: '💬', text: '真实用户反馈' },
-] as const;
-
-export const faqs = [
-  {
-    question: '什么是机场？',
-    answer:
-      '「机场」是国内对代理服务商的俗称，通常基于 Shadowsocks、V2Ray、Hysteria 等协议，提供境外网络加速服务。与商业 VPN 相比，机场节点更新灵活、速度更快，但合规风险需自行评估。',
-  },
-  {
-    question: '如何选择适合自己的机场？',
-    answer:
-      '建议优先关注：① 节点质量（延迟 < 100ms、丢包 < 5%）；② 流媒体解锁情况；③ 套餐性价比与月结/年付灵活性；④ 售后客服响应速度。本站评测报告覆盖以上全部维度。',
-  },
-  {
-    question: '机场和 VPN 有什么区别？',
-    answer:
-      '传统商业 VPN（如 ExpressVPN）采用专有协议，注重隐私合规；机场使用开放协议（SS/VMess 等），速度更快但厂商信誉参差不齐。两者各有适用场景，本站均有详细评测。',
-  },
-  {
-    question: '本站评测数据如何保证客观？',
-    answer:
-      '本站采用独立测速节点，不接受厂商赞助测评，所有数据来自真实使用环境。推广链接均通过 /go/ 内部路由解耦，不影响评分。',
-  },
+  { text: '年度榜单与品牌资料' },
+  { text: '新手配置与故障排查' },
+  { text: '预算、流媒体与安全决策' },
+  { text: '专题知识与评测方法' },
 ] as const;

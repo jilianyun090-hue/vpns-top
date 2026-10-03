@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build && node scripts/generate-sitemap.js && node scripts/submit-indexnow.js",
+    "content:audit": "node scripts/audit-content-seo.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

@@ -32,6 +32,16 @@ const {
 function formatDate(d: Date) {
   return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
 }
+
+const breadcrumbSchema = {
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, Astro.site).href } : {}),
+  })),
+};
 ---
 
 <BaseLayout
@@ -41,6 +51,9 @@ function formatDate(d: Date) {
   pubDate={pubDate}
   updatedDate={updatedDate}
   author={author}
+  keywords={tags}
+  articleSection={category}
+  schema={breadcrumbSchema}
 >
   <div class="container-xl py-12 lg:py-16">
     <div class="mx-auto max-w-[820px]">

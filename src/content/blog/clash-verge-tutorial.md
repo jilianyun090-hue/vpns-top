@@ -204,3 +204,5 @@ Shadowrocket（俗称「小火箭」）是iOS最主流的代理客户端，售�
 配合本站推荐的稳定机场，整个配置流程不超过15分钟：
 
 👉 [极连云（推荐新手）](/go/jilian-yun/) | 👉 [云图机场（追求稳定）](/go/yuntu/) | 👉 [光年梯（年付省钱）](/go/guangnian-ti/)
+
+第一次导入建议同时阅读[Clash 节点订阅完整教程](/blog/clash-subscription-import-guide/)，其中包含配置激活、代理组和更新流程；若浏览器可用但其他应用不通，再参考[部分应用无法联网排查](/blog/airport-connection-troubleshooting/)。

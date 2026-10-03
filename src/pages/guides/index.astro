@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import HubCard from '../../components/HubCard.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const guideCategories = ['beginner', 'tutorial', 'tools', 'troubleshoot'];
+const guidePosts = allPosts
+  .filter((post) => guideCategories.includes(post.data.category))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 10);
+const count = (category: string) => allPosts.filter((post) => post.data.category === category).length;
+
+const routes = [
+  { mark: '入', title: '新手入门', description: '理解机场、线路、套餐和首次购买前需要确认的事项。', href: '/category/beginner/', meta: `${count('beginner')} 篇` },
+  { mark: '配', title: '配置教程', description: '订阅导入、规则分流、TUN 模式与多设备配置流程。', href: '/category/tutorial/', meta: `${count('tutorial')} 篇` },
+  { mark: '器', title: '客户端工具', description: 'Clash Verge、Shadowrocket、Sing-box 等工具使用说明。', href: '/category/tools/', meta: `${count('tools')} 篇` },
+  { mark: '诊', title: '故障排查', description: '处理节点超时、DNS 污染和部分应用无法联网等问题。', href: '/category/troubleshoot/', meta: `${count('troubleshoot')} 篇` },
+];
+---
+
+<BaseLayout title="入门与使用：机场新手指南、配置教程与故障排查" description="从机场新手入门到客户端配置、工具使用和连接故障排查，按学习阶段整理独立教程栏目。">
+  <div class="container-xl py-10 lg:py-14">
+    <Breadcrumb items={[{ label: '首页', href: '/' }, { label: '入门与使用' }]} />
+    <SectionTitle headingLevel={1} title="入门与使用" subtitle="从第一次连接到日常维护，每类教程都有独立入口，不需要在综合文章列表中反复筛选。" tag="GUIDES" />
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {routes.map((item) => <HubCard {...item} />)}
+    </div>
+
+    <section class="pt-14" aria-labelledby="guides-latest-posts">
+      <div class="flex items-end justify-between gap-6">
+        <SectionTitle id="guides-latest-posts" title="最近更新的使用指南" subtitle="按实际操作顺序整理的新手、配置与排障文章。" tag="教程" />
+        <a href="/blog/" class="btn-secondary mb-9 hidden text-sm sm:inline-flex">全部文章 →</a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {guidePosts.map((post) => (
+          <ArticleCard title={post.data.title} description={post.data.description} href={`/blog/${post.slug}/`} category={post.data.category} tags={post.data.tags} pubDate={post.data.pubDate} updatedDate={post.data.updatedDate} featured={post.data.featured} />
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

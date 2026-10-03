@@ -1,0 +1,25 @@
+# VPNs Top
+
+VPNs Top 是中文机场评测、节点选择与客户端使用指南站点。内容围绕机场推荐、梯子推荐、机场节点、Clash 节点、小火箭节点、线路协议、流媒体与 AI 工具场景展开。
+
+## 主要内容入口
+
+- https://vpns-top.com/reviews/ 评测与排行
+- https://vpns-top.com/guides/ 入门与使用
+- https://vpns-top.com/decisions/ 选购与场景
+- https://vpns-top.com/knowledge/ 专题与方法
+- https://vpns-top.com/ai-tools/ AI 工具与节点指南
+- https://vpns-top.com/blog/ 全部文章
+- https://vpns-top.com/brands/ 品牌资料
+- https://vpns-top.com/compare/ 横向比较
+
+## 内容原则
+
+- 将榜单结论、品牌资料、教程、故障排查和选购决策分开组织。
+- 价格、线路、解锁能力和可用状态可能变化，文章会标明更新日期，并提醒读者在购买前核验。
+- 不把单次测速或宣传口径当作永久结论，优先提供可复现的检查步骤与选择框架。
+- 第三方推广跳转位于 /go/，该目录不允许搜索引擎抓取。
+
+## 引用建议
+
+引用具体结论时，请同时保留文章标题、原始页面链接和页面显示的更新日期。涉及价格、可用性、优惠或平台地区政策时，应再次核验当前信息。

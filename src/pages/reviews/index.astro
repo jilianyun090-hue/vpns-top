@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import HubCard from '../../components/HubCard.astro';
+import BrandCard from '../../components/BrandCard.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const allBrands = await getCollection('brands');
+const featuredBrands = allBrands
+  .filter((brand) => brand.data.featured)
+  .sort((a, b) => b.data.rating - a.data.rating)
+  .slice(0, 4);
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const totalReviewPosts = allPosts.filter((post) => post.data.category === 'airport').length;
+const reviewPosts = allPosts
+  .filter((post) => post.data.category === 'airport')
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 10);
+
+const routes = [
+  { mark: '榜', title: '2026 机场推荐榜', description: '按评分、价格、线路与流媒体能力进行横向比较。', href: '/compare/', meta: '横向对比' },
+  { mark: '库', title: '品牌评测总览', description: '浏览全部收录服务商及其价格、协议与综合评分。', href: '/brands/', meta: `${allBrands.length} 个品牌` },
+  { mark: '测', title: '机场深度评测', description: '阅读线路、晚高峰稳定性、节点质量与解锁实测。', href: '/category/airport/', meta: `${totalReviewPosts} 篇` },
+  { mark: '荐', title: '稳定机场推荐', description: '从持续可用性、丢包与线路冗余筛选长期方案。', href: '/blog/stable-airport-2026/', meta: '长期观察' },
+];
+---
+
+<BaseLayout
+  title="评测与排行：2026 机场推荐、品牌评测与横向对比"
+  description="独立汇总2026机场推荐榜、品牌资料库、机场深度评测和稳定机场推荐，按线路、价格、速度与解锁能力进行比较。"
+>
+  <div class="container-xl py-10 lg:py-14">
+    <Breadcrumb items={[{ label: '首页', href: '/' }, { label: '评测与排行' }]} />
+    <SectionTitle headingLevel={1} title="评测与排行" subtitle="先看结论，再读证据。榜单、品牌资料和深度评测分别承载，避免信息混在同一页面。" tag="REVIEWS" />
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {routes.map((item) => <HubCard {...item} />)}
+    </div>
+
+    {featuredBrands.length > 0 && (
+      <section class="section border-b border-stone-300/70" aria-labelledby="review-featured-brands">
+        <SectionTitle id="review-featured-brands" title="精选品牌" subtitle="优先展示评分靠前且资料相对完整的服务商。" tag="品牌" />
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {featuredBrands.map((brand) => (
+            <BrandCard
+              name={brand.data.name}
+              slug={brand.slug}
+              rating={brand.data.rating}
+              tagline={brand.data.tagline}
+              nodeTypes={brand.data.nodeTypes}
+              streamingSupport={brand.data.streamingSupport}
+              minPrice={brand.data.minPrice}
+              referralId={brand.data.referralId}
+              tags={brand.data.tags}
+              featured={brand.data.featured}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="pt-14" aria-labelledby="review-latest-posts">
+      <div class="flex items-end justify-between gap-6">
+        <SectionTitle id="review-latest-posts" title="最近评测" subtitle="品牌表现、线路质量与购买前核验。" tag="文章" />
+        <a href="/category/airport/" class="btn-secondary mb-9 hidden text-sm sm:inline-flex">全部评测 →</a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {reviewPosts.map((post) => (
+          <ArticleCard title={post.data.title} description={post.data.description} href={`/blog/${post.slug}/`} category={post.data.category} tags={post.data.tags} pubDate={post.data.pubDate} updatedDate={post.data.updatedDate} featured={post.data.featured} />
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

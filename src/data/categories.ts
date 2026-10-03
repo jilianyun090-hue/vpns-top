@@ -71,6 +71,13 @@ export const categories: Category[] = [
     color:       'bg-pink-900/50 text-pink-300',
   },
   {
+    slug:        'ai',
+    label:       'AI 工具与节点',
+    description: 'ChatGPT、Claude、Gemini 与 AI API 场景的节点选择、故障排查和隐私指南。',
+    icon:        'AI',
+    color:       'bg-teal-900/50 text-teal-300',
+  },
+  {
     slug:        'tools',
     label:       '工具教程',
     description: 'Clash Verge、Sing-box、Shadowrocket 等客户端配置技巧。',

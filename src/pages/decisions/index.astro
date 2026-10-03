@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import HubCard from '../../components/HubCard.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const decisionCategories = ['decision', 'streaming', 'security'];
+const decisionPosts = allPosts
+  .filter((post) => decisionCategories.includes(post.data.category))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 10);
+const count = (category: string) => allPosts.filter((post) => post.data.category === category).length;
+
+const routes = [
+  { mark: '择', title: '购买与续费', description: '比较月付、年付、终身套餐与流量包的成本和风险。', href: '/category/decision/', meta: `${count('decision')} 篇` },
+  { mark: '算', title: '主备预算分配', description: '用主用与备用服务降低单一服务中断带来的影响。', href: '/blog/airport-budget-allocation/', meta: '预算模型' },
+  { mark: '影', title: '流媒体与 AI', description: '围绕 Netflix、ChatGPT 等场景检查 IP 与解锁能力。', href: '/category/streaming/', meta: `${count('streaming')} 篇` },
+  { mark: '安', title: '安全与隐私', description: '了解账号、日志、支付和使用边界中的安全问题。', href: '/category/security/', meta: `${count('security')} 篇` },
+];
+---
+
+<BaseLayout title="选购与场景：机场预算、续费、流媒体与安全决策" description="按预算、续费周期、流媒体与AI使用、安全隐私等具体场景整理机场选购和风险判断指南。">
+  <div class="container-xl py-10 lg:py-14">
+    <Breadcrumb items={[{ label: '首页', href: '/' }, { label: '选购与场景' }]} />
+    <SectionTitle headingLevel={1} title="选购与场景" subtitle="先确定预算和用途，再看品牌。把购买决策、流媒体和安全问题拆分为独立内容路径。" tag="DECISIONS" />
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {routes.map((item) => <HubCard {...item} />)}
+    </div>
+
+    <section class="pt-14" aria-labelledby="decisions-latest-posts">
+      <SectionTitle id="decisions-latest-posts" title="场景决策文章" subtitle="围绕真实使用条件做取舍，而不是只看单一价格或评分。" tag="选购" />
+      {decisionPosts.length > 0 ? (
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {decisionPosts.map((post) => (
+            <ArticleCard title={post.data.title} description={post.data.description} href={`/blog/${post.slug}/`} category={post.data.category} tags={post.data.tags} pubDate={post.data.pubDate} updatedDate={post.data.updatedDate} featured={post.data.featured} />
+          ))}
+        </div>
+      ) : (
+        <p class="border border-stone-300/70 bg-[#fbf8f0]/70 p-8 text-sm text-stone-500">相关内容正在整理中。</p>
+      )}
+    </section>
+  </div>
+</BaseLayout>

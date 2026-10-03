@@ -4,7 +4,7 @@ export const SITE = {
   url:         'https://vpns-top.com',
   name:        'VPNs Top',
   tagline:     '2026年机场推荐：高性价比VPN机场、稳定梯子排行与节点评测',
-  keywords:    '机场推荐, VPN机场, 机场VPN, 性价比机场, 梯子推荐, 梯子排行, 机场节点, 稳定机场, 翻墙机场, VPN软件推荐, IEPL专线, IPLC专线, Clash教程',
+  keywords:    '机场推荐, 梯子推荐, 节点梯子, Clash节点, Clash机场, 小火箭节点, 小火箭机场, VPN机场, 机场VPN, 性价比机场, 机场排行, 机场测评, 机场订阅, 机场节点, 稳定机场, 高速机场, 便宜机场, IEPL机场, IPLC机场, 专线机场, Clash教程, Shadowrocket教程',
   description: '【2026更新】聚焦机场推荐、VPN机场与稳定梯子评测，对比高性价比机场的IEPL/IPLC线路、机场节点、速度、流媒体解锁与价格，并提供Clash等客户端使用教程。',
   lang:        'zh-CN',
   locale:      'zh_CN',

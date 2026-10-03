@@ -144,7 +144,7 @@ export const redirects: RedirectEntry[] = [
   {
     id: 'heimao-ai',
     brand: '黑喵',
-    destination: 'https://ai.ex-girlfriendis.best/',
+    destination: 'https://ai.ex-girlfriendis.best/register?aff=y6PC',
     description: '第三方 AI 模型中转服务',
   },
   {

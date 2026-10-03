@@ -1,6 +1,7 @@
 ---
 import BlogLayout   from '../../layouts/BlogLayout.astro';
 import { getCollection } from 'astro:content';
+import { getCategoryBySlug } from '../../data/categories';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -13,6 +14,7 @@ export const getStaticPaths = (async () => {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+const category = getCategoryBySlug(post.data.category);
 
 // Fetch related posts (same category, excluding self)
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
@@ -34,6 +36,7 @@ const related = allPosts
   breadcrumbs={[
     { label: '首页', href: '/' },
     { label: '博客', href: '/blog/' },
+    { label: category?.label ?? post.data.category, href: `/category/${post.data.category}/` },
     { label: post.data.title },
   ]}
 >
