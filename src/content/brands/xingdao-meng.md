@@ -1,6 +1,6 @@
 ---
 name: "星岛梦"
-rating: 8.5
+rating: 7.2
 tagline: "IEPL 专线晚高峰不降速，全线解锁流媒体与 AI，支持 TikTok"
 nodeTypes: ["IEPL", "Trojan", "Shadowsocks"]
 streamingSupport: ["Netflix", "Disney+", "YouTube", "ChatGPT", "Gemini"]
@@ -9,7 +9,7 @@ minPrice: 16.0
 referralId: "xingdao-meng"
 tags: ["IEPL专线", "晚高峰不降速", "TikTok跨区"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 星岛梦 概览

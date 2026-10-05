@@ -9,7 +9,7 @@ minPrice: 20.0
 referralId: "yuntu"
 tags: ["金融级专线", "无倍率陷阱", "原生IP", "稳定高速"]
 featured: true
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 云图机场 概览

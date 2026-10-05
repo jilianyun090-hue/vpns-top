@@ -1,6 +1,6 @@
 ---
 name: "边界云"
-rating: 8.6
+rating: 7.5
 tagline: "IEPL 优化线路，12.33元/月起支持3天无理由退款"
 nodeTypes: ["IEPL", "Shadowsocks", "UDP"]
 streamingSupport: ["Netflix", "Hulu", "YouTube"]
@@ -9,7 +9,7 @@ minPrice: 12.33
 referralId: "bianjie-yun"
 tags: ["IEPL专线", "3天退款", "1000Mbps"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 边界云 概览

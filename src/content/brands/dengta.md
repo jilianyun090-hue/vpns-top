@@ -1,6 +1,6 @@
 ---
 name: "灯塔机场"
-rating: 8.8
+rating: 7.8
 tagline: "全平台节点可用，高达 300Mbps 带宽，支持 24H 退款"
 nodeTypes: ["BGP", "Shadowsocks", "Trojan"]
 streamingSupport: ["Netflix", "YouTube", "ChatGPT"]
@@ -9,7 +9,7 @@ minPrice: 16.6
 referralId: "dengta"
 tags: ["高带宽", "退款保障", "大流量套餐"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 灯塔机场 概览

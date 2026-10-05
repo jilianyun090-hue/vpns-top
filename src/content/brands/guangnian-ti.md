@@ -9,7 +9,7 @@ minPrice: 7.42
 referralId: "guangnian-ti"
 tags: ["IPLC专线", "自有机房", "稳定极速", "年付优惠"]
 featured: true
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 光年梯 概览

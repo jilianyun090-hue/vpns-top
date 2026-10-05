@@ -120,7 +120,7 @@ export const mainNav: NavItem[] = [
       {
         label: '评测方法论',
         href: '/about/#criteria',
-        description: '12 维标准与评分原则',
+        description: '排序评分说明与复测建议',
         mark: '尺',
       },
       {

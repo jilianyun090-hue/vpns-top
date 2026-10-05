@@ -1,6 +1,6 @@
 ---
 name: "全球云"
-rating: 8.4
+rating: 7.1
 tagline: "BGP 智能多线路，IEPL/IPLC 4K/8K 极速出海"
 nodeTypes: ["IEPL", "IPLC", "BGP"]
 streamingSupport: ["Netflix", "YouTube", "ChatGPT", "Claude"]
@@ -9,7 +9,7 @@ minPrice: 20.0
 referralId: "quanqiu-yun"
 tags: ["BGP多线", "4K/8K极速", "商用解锁"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 全球云 概览

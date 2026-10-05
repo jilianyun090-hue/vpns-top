@@ -9,7 +9,7 @@ minPrice: 8.0
 referralId: "kexinyun"
 tags: ["IEPL专线", "不限设备", "原生IP", "高稳定性"]
 featured: true
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 可信云 概览

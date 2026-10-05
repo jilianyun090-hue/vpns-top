@@ -9,7 +9,7 @@ minPrice: 1.0
 referralId: "kunpeng-jiasu"
 tags: ["原生节点", "冷门地区", "1.0倍率", "无暗扣", "24H工单"]
 featured: true
-updatedDate: 2026-09-26
+updatedDate: 2026-10-05
 ---
 
 ## 鲲鹏加速 概览

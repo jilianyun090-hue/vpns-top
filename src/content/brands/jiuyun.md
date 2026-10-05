@@ -1,6 +1,6 @@
 ---
 name: "九云机场"
-rating: 9.1
+rating: 7.9
 tagline: "海外中转高性价比线路，6元/月150G VLESS 协议"
 nodeTypes: ["VLESS", "中转线路"]
 streamingSupport: ["Netflix", "YouTube", "ChatGPT", "Gemini"]
@@ -9,7 +9,7 @@ minPrice: 6.0
 referralId: "jiuyun"
 tags: ["VLESS协议", "低至6元", "4K流畅", "高性价比"]
 featured: true
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 九云机场 概览

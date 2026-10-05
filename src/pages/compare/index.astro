@@ -29,7 +29,7 @@ const tableRowLinks = sorted.map((b) =>
 ---
 
 <LandingLayout
-  title="2026 机场横向对比矩阵 - 极连云 / 光年梯 / 鲲鹏加速等 30+ 品牌测评"
+  title={`2026 机场横向对比矩阵 - 极连云 / 光年梯 / 鲲鹏加速等 ${sorted.length} 家品牌`}
   description="多维度横向矩阵对比主流机场品牌，包含 IEPL/IPLC 专线、协议支持、流媒体与 ChatGPT 解锁、价格与综合评分。"
   breadcrumbs={[
     { label: '首页', href: '/' },
@@ -38,14 +38,14 @@ const tableRowLinks = sorted.map((b) =>
 >
   <div slot="header" class="mb-10">
     <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-brand-100 text-brand-700 mb-3">
-      数据每周同步实测
+      站内排序评分
     </div>
     <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 mb-4 tracking-tight">
       机场横向对比矩阵
     </h1>
     <p class="text-slate-600 leading-relaxed max-w-3xl text-base sm:text-lg">
-      基于独立测速数据与全平台连通性测试，综合 12 个维度对 {sorted.length} 家主流机场进行量化评分与参数对比。
-      帮您一目了然筛选最优网络加速方案。
+      收录 {sorted.length} 家机场的套餐与线路资料。评分按当前品牌展示顺序设置，用于辅助浏览；
+      价格、协议和解锁能力请以官网信息及个人复测为准。
     </p>
   </div>
 
@@ -87,7 +87,7 @@ const tableRowLinks = sorted.map((b) =>
         headers={tableHeaders}
         rows={tableRows}
         rowLinks={tableRowLinks}
-        caption={`共 ${sorted.length} 家品牌 · 数据实时更新于 ${new Date().toLocaleDateString('zh-CN')}`}
+        caption={`共 ${sorted.length} 家品牌 · 排序评分更新于 ${new Date().toLocaleDateString('zh-CN')} · 套餐信息以官网为准`}
       />
     </div>
   ) : (

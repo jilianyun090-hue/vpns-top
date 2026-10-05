@@ -9,7 +9,7 @@ minPrice: 8.0
 referralId: "jilian-yun"
 tags: ["IEPL专线", "流媒体解锁", "不限速", "性价比"]
 featured: true
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 极连云 概览

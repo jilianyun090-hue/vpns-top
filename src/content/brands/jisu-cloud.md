@@ -1,6 +1,6 @@
 ---
 name: "极速cloud"
-rating: 9.2
+rating: 8.0
 tagline: "三网优化精品线路，8.9元/月起性价比专线"
 nodeTypes: ["BGP", "Shadowsocks", "V2Ray"]
 streamingSupport: ["Netflix", "Disney+", "YouTube", "ChatGPT"]
@@ -9,7 +9,7 @@ minPrice: 8.9
 referralId: "jisu-cloud"
 tags: ["三网优化", "体验套餐", "性价比", "流媒体解锁"]
 featured: true
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 极速cloud 概览

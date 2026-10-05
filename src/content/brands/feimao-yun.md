@@ -1,6 +1,6 @@
 ---
 name: "飞猫云"
-rating: 9.3
+rating: 8.1
 tagline: "全 IPLC 专线网络，最高 2.5Gbps 稳定速率不限设备"
 nodeTypes: ["IPLC", "Shadowsocks", "Trojan"]
 streamingSupport: ["Netflix", "Disney+", "ChatGPT", "TikTok"]
@@ -9,7 +9,7 @@ minPrice: 7.0
 referralId: "feimao-yun"
 tags: ["全IPLC", "原生IP", "不限设备", "2.5Gbps"]
 featured: true
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 飞猫云 概览

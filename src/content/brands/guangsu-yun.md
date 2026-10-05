@@ -1,6 +1,6 @@
 ---
 name: "光速云"
-rating: 8.7
+rating: 7.7
 tagline: "IEPL 专线，8.25元/月起无限速无倍率，全流媒体及 AI 解锁"
 nodeTypes: ["IEPL", "Shadowsocks", "Trojan"]
 streamingSupport: ["Netflix", "Disney+", "YouTube", "ChatGPT", "Gemini"]
@@ -9,7 +9,7 @@ minPrice: 8.25
 referralId: "guangsu-yun"
 tags: ["IEPL专线", "流媒体/AI全解", "不限速"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 光速云 概览

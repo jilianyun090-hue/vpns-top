@@ -1,6 +1,6 @@
 ---
 name: "快狸"
-rating: 8.9
+rating: 8.8
 tagline: "专属一键客户端专线机场，敏感时期出色的连通率"
 nodeTypes: ["IEPL", "Shadowsocks", "Trojan"]
 streamingSupport: ["Netflix", "Disney+", "ChatGPT"]
@@ -9,7 +9,7 @@ minPrice: 10.0
 referralId: "kuaili"
 tags: ["自研客户端", "专线加速", "敏感期稳定"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 快狸 概览

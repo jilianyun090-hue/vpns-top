@@ -1,6 +1,6 @@
 ---
 name: "边缘节点"
-rating: 8.8
+rating: 8.7
 tagline: "9元/月起中转加速架构，稳定不限速，支持多设备在线"
 nodeTypes: ["中转线路", "Shadowsocks", "V2Ray"]
 streamingSupport: ["Netflix", "Disney+", "ChatGPT"]
@@ -9,7 +9,7 @@ minPrice: 9.0
 referralId: "bianyuan-jd"
 tags: ["中转加速", "自研客户端", "不限设备"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 边缘节点 概览

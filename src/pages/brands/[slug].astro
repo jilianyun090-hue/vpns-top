@@ -24,14 +24,14 @@ const relatedPosts = allPosts.filter((post) =>
   post.data.title.includes(brand.data.name)
 ).slice(0, 3);
 
-const hasVerifiedRating = brand.data.rating > 0;
+const hasRating = brand.data.rating > 0;
 const fullStars  = Math.floor(brand.data.rating / 2);
 const halfStar   = brand.data.rating % 2 >= 1;
 const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 ---
 
 <LandingLayout
-  title={`${brand.data.name} 评测 - 2026 最新节点、价格与解锁实测`}
+  title={`${brand.data.name} 品牌资料 - 2026 套餐、节点与价格信息`}
   description={brand.data.tagline ?? `${brand.data.name} 深度评测报告，含速度、稳定性、流媒体解锁与性价比全面分析。`}
   breadcrumbs={[
     { label: '首页', href: '/' },
@@ -70,7 +70,7 @@ const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
           )}
 
           <!-- Rating + Stars -->
-          {hasVerifiedRating ? (
+          {hasRating ? (
             <div class="flex items-center gap-4">
               <div class="flex items-baseline gap-1">
                 <span class="text-3xl font-black text-amber-400">{brand.data.rating.toFixed(1)}</span>
@@ -80,7 +80,7 @@ const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
                 {'★'.repeat(fullStars)}{halfStar ? '☆' : ''}{'☆'.repeat(emptyStars)}
               </div>
               <span class="text-xs text-slate-400 border-l border-slate-700 pl-3">
-                已通过 12 维实测
+                站内排序评分 · 请以官网与个人复测为准
               </span>
             </div>
           ) : (

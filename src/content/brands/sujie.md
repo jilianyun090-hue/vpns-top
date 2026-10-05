@@ -9,7 +9,7 @@ minPrice: 7.5
 referralId: "sujie"
 tags: ["自研客户端", "高速IPLC", "小白首选", "专线加速"]
 featured: true
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 速界 概览

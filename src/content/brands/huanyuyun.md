@@ -1,6 +1,6 @@
 ---
 name: "寰宇云"
-rating: 8.3
+rating: 7.0
 tagline: "全 IEPL 专线+直连双线路，2.5Gbps 超大带宽"
 nodeTypes: ["IEPL", "直连双线", "Shadowsocks"]
 streamingSupport: ["Netflix", "Disney+", "ChatGPT", "Gemini", "TikTok"]
@@ -9,7 +9,7 @@ minPrice: 7.4
 referralId: "huanyuyun"
 tags: ["IEPL专线", "2.5Gbps", "原生IP"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 寰宇云 概览

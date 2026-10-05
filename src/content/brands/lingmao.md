@@ -1,6 +1,6 @@
 ---
 name: "灵猫网络"
-rating: 8.5
+rating: 7.3
 tagline: "企业级全 IPLC 物理专线，1000Mbps 带宽不限速"
 nodeTypes: ["IPLC", "Shadowsocks", "Trojan"]
 streamingSupport: ["Netflix", "Disney+", "Hulu", "ChatGPT", "Gemini"]
@@ -9,7 +9,7 @@ minPrice: 7.08
 referralId: "lingmao"
 tags: ["全IPLC", "企业专线", "原生IP"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 灵猫网络 概览

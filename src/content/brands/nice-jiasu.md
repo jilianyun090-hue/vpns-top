@@ -1,6 +1,6 @@
 ---
 name: "Nice加速"
-rating: 8.6
+rating: 7.4
 tagline: "IEPL 南北双通道专线，含家宽及纯净 AI 节点"
 nodeTypes: ["IEPL", "Shadowsocks", "家宽节点"]
 streamingSupport: ["ChatGPT", "Claude", "Gemini", "Grok"]
@@ -9,7 +9,7 @@ minPrice: 10.0
 referralId: "nice-jiasu"
 tags: ["双通道专线", "纯净AI节点", "家宽IP"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## Nice加速 概览

@@ -1,6 +1,6 @@
 ---
 name: "瞬云机场"
-rating: 8.4
+rating: 9.2
 tagline: "ANYCAST 高速节点，直连+专线架构，8.25元/月起全节点无倍率"
 nodeTypes: ["ANYCAST", "IEPL", "Shadowsocks"]
 streamingSupport: ["Netflix", "Disney+", "ChatGPT", "Gemini"]
@@ -9,7 +9,7 @@ minPrice: 8.25
 referralId: "shun-yun"
 tags: ["ANYCAST", "低延迟", "全节点无倍率"]
 featured: true
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 瞬云机场 概览

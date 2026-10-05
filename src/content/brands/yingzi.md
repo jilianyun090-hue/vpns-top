@@ -1,6 +1,6 @@
 ---
 name: "影子"
-rating: 8.7
+rating: 7.6
 tagline: "高端 IEPL 跨境专线，极低延迟与极低丢包"
 nodeTypes: ["IEPL", "Shadowsocks", "Trojan"]
 streamingSupport: ["Netflix", "Disney+", "TikTok", "ChatGPT"]
@@ -9,7 +9,7 @@ minPrice: 18.8
 referralId: "yingzi"
 tags: ["高端专线", "极低延迟", "原生IP"]
 featured: false
-updatedDate: 2026-09-22
+updatedDate: 2026-10-05
 ---
 
 ## 影子 概览
