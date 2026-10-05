@@ -2,10 +2,11 @@
 interface Props {
   headers: string[];
   rows: (string | number | boolean)[][];
+  rowLinks?: (string | undefined)[];
   caption?: string;
 }
 
-const { headers, rows, caption } = Astro.props;
+const { headers, rows, rowLinks = [], caption } = Astro.props;
 
 function renderCell(val: string | number | boolean): string {
   if (val === true) return '是';
@@ -28,7 +29,7 @@ function renderCell(val: string | number | boolean): string {
       </tr>
     </thead>
     <tbody>
-      {rows.map((row) => (
+      {rows.map((row, rowIndex) => (
         <tr class="border-t border-slate-200 transition-colors hover:bg-brand-50/60">
           {row.map((cell, cellIndex) => (
             <td class:list={[
@@ -38,7 +39,22 @@ function renderCell(val: string | number | boolean): string {
                 : 'text-center text-slate-600',
               cell === true && 'font-bold text-emerald-700',
               cell === false && 'text-slate-400'
-            ]}>{renderCell(cell)}</td>
+            ]}>
+              {cellIndex === 0 && rowLinks[rowIndex] ? (
+                <div class="flex items-center justify-between gap-3">
+                  <span>{renderCell(cell)}</span>
+                  <a
+                    href={rowLinks[rowIndex]}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    aria-label={`访问${renderCell(cell)}官网`}
+                    class="inline-flex shrink-0 items-center rounded-full border border-brand-200 bg-brand-50 px-2 py-1 text-[11px] font-bold text-brand-700 transition hover:border-brand-400 hover:bg-brand-100 hover:text-brand-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                  >
+                    官网 ↗
+                  </a>
+                </div>
+              ) : renderCell(cell)}
+            </td>
           ))}
         </tr>
       ))}

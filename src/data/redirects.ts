@@ -40,7 +40,7 @@ export const redirects: RedirectEntry[] = [
   {
     id: 'yuntu',
     brand: '云图机场',
-    destination: 'https://vip.ytjcok.org/#/register?code=qPHQtI9a',
+    destination: 'https://super.ytjcok.org/#/register?code=qPHQtI9a',
     description: '金融级专线传输，20元/月150G，原生 IP 无高倍率陷阱，优惠码 yt88',
   },
   {

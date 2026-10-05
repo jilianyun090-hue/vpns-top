@@ -21,6 +21,10 @@ const tableRows = sorted.map((b) => [
   b.data.streamingSupport.some((s) => s.includes('Disney')),
   b.data.streamingSupport.some((s) => s.includes('ChatGPT')),
 ]);
+
+const tableRowLinks = sorted.map((b) =>
+  b.data.referralId ? `/go/${b.data.referralId}/` : undefined
+);
 ---
 
 <LandingLayout
@@ -81,6 +85,7 @@ const tableRows = sorted.map((b) => [
       <ComparisonTable
         headers={tableHeaders}
         rows={tableRows}
+        rowLinks={tableRowLinks}
         caption={`共 ${sorted.length} 家品牌 · 数据实时更新于 ${new Date().toLocaleDateString('zh-CN')}`}
       />
     </div>
