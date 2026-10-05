@@ -134,6 +134,42 @@ export const redirects: RedirectEntry[] = [
     description: '8.25元/月59G，ANYCAST 高速节点，直连+专线架构，全节点无倍率',
   },
   {
+    id: 'dalao-yun',
+    brand: '大佬云',
+    destination: 'https://haozevpn01.dalaoyunaff.com/#/?code=xA9jCleY',
+    description: '官网注册入口，套餐、线路与服务状态请以官网当前页面为准',
+  },
+  {
+    id: 'huanqiu-ti',
+    brand: '环球梯',
+    destination: 'https://haozevpn01.huanqiutiaff.com/#/?code=2xpedcFa',
+    description: '官网注册入口，套餐、线路与服务状态请以官网当前页面为准',
+  },
+  {
+    id: 'liulian-yun',
+    brand: '榴莲云',
+    destination: 'https://haibing01.liulianyunaff.com/#/?code=0lnqSPF9',
+    description: '官网注册入口，套餐、线路与服务状态请以官网当前页面为准',
+  },
+  {
+    id: 'shandianshu',
+    brand: '闪电鼠',
+    destination: 'https://haozevpn.shandianshuaff.com/#/?code=htqQLwdu',
+    description: '官网注册入口，套餐、线路与服务状态请以官网当前页面为准',
+  },
+  {
+    id: 'shenxing-jiasu',
+    brand: '神行加速',
+    destination: 'https://haozevpn01.shenxingaff.com/#/?code=c2XNz7jn',
+    description: '官网注册入口，套餐、线路与服务状态请以官网当前页面为准',
+  },
+  {
+    id: 'yunjiexian',
+    brand: '云界线',
+    destination: 'https://yiyige163.yunjiexianaff.com/#/?code=oetFP4xi',
+    description: '官网注册入口，套餐、线路与服务状态请以官网当前页面为准',
+  },
+  {
     id: 'huanyuyun',
     brand: '寰宇云',
     destination: 'https://vip3.huanyuyunbest.com/#/register?code=K6h5VWw2',

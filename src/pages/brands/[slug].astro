@@ -24,6 +24,7 @@ const relatedPosts = allPosts.filter((post) =>
   post.data.title.includes(brand.data.name)
 ).slice(0, 3);
 
+const hasVerifiedRating = brand.data.rating > 0;
 const fullStars  = Math.floor(brand.data.rating / 2);
 const halfStar   = brand.data.rating % 2 >= 1;
 const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
@@ -69,18 +70,24 @@ const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
           )}
 
           <!-- Rating + Stars -->
-          <div class="flex items-center gap-4">
-            <div class="flex items-baseline gap-1">
-              <span class="text-3xl font-black text-amber-400">{brand.data.rating.toFixed(1)}</span>
-              <span class="text-xs text-slate-400">/ 10</span>
+          {hasVerifiedRating ? (
+            <div class="flex items-center gap-4">
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl font-black text-amber-400">{brand.data.rating.toFixed(1)}</span>
+                <span class="text-xs text-slate-400">/ 10</span>
+              </div>
+              <div class="text-amber-400 text-base tracking-widest">
+                {'★'.repeat(fullStars)}{halfStar ? '☆' : ''}{'☆'.repeat(emptyStars)}
+              </div>
+              <span class="text-xs text-slate-400 border-l border-slate-700 pl-3">
+                已通过 12 维实测
+              </span>
             </div>
-            <div class="text-amber-400 text-base tracking-widest">
-              {'★'.repeat(fullStars)}{halfStar ? '☆' : ''}{'☆'.repeat(emptyStars)}
+          ) : (
+            <div class="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-800/70 px-3 py-1.5 text-xs font-bold text-slate-300">
+              资料核验中 · 暂未纳入评分
             </div>
-            <span class="text-xs text-slate-400 border-l border-slate-700 pl-3">
-              已通过 12 维实测
-            </span>
-          </div>
+          )}
         </div>
 
         <!-- Right Side CTA Card -->
@@ -88,7 +95,7 @@ const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
           <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-5 text-center min-w-[220px] flex flex-col justify-center">
             <div class="text-xs text-amber-300 font-medium mb-1">优惠注册入口</div>
             <div class="text-2xl font-black text-white mb-3">
-              {brand.data.minPrice !== undefined ? `¥${brand.data.minPrice.toFixed(1)} 起` : '体验好价'}
+              {brand.data.minPrice !== undefined ? `¥${brand.data.minPrice.toFixed(1)} 起` : '价格待核验'}
             </div>
             <a href={`/go/${brand.data.referralId}/`}
                target="_blank"
@@ -109,20 +116,20 @@ const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
       <div class="bg-white border border-slate-200/80 rounded-2xl p-4 text-center shadow-xs">
         <div class="text-xs text-slate-400 mb-1">节点/线路类型</div>
-        <div class="font-bold text-slate-800 text-sm">{brand.data.nodeTypes.join(' · ') || '专线/中转'}</div>
+        <div class="font-bold text-slate-800 text-sm">{brand.data.nodeTypes.join(' · ') || '待核验'}</div>
       </div>
       <div class="bg-white border border-slate-200/80 rounded-2xl p-4 text-center shadow-xs">
         <div class="text-xs text-slate-400 mb-1">支持协议</div>
-        <div class="font-bold text-slate-800 text-sm">{brand.data.protocols.join(' · ') || 'Trojan/SS'}</div>
+        <div class="font-bold text-slate-800 text-sm">{brand.data.protocols.join(' · ') || '待核验'}</div>
       </div>
       <div class="bg-white border border-slate-200/80 rounded-2xl p-4 text-center shadow-xs">
         <div class="text-xs text-slate-400 mb-1">流媒体与 AI 解锁</div>
-        <div class="font-bold text-emerald-600 text-sm">{brand.data.streamingSupport.join(' · ') || '全平台'}</div>
+        <div class="font-bold text-emerald-600 text-sm">{brand.data.streamingSupport.join(' · ') || '待核验'}</div>
       </div>
       <div class="bg-white border border-slate-200/80 rounded-2xl p-4 text-center shadow-xs">
         <div class="text-xs text-slate-400 mb-1">最低价格</div>
         <div class="font-bold text-amber-600 text-sm">
-          {brand.data.minPrice !== undefined ? `¥${brand.data.minPrice.toFixed(1)}/月起` : '面议'}
+          {brand.data.minPrice !== undefined ? `¥${brand.data.minPrice.toFixed(1)}/月起` : '待核验'}
         </div>
       </div>
     </div>

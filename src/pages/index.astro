@@ -7,6 +7,7 @@ import ArticleCard from '../components/ArticleCard.astro';
 import BrandCard from '../components/BrandCard.astro';
 import { getCollection } from 'astro:content';
 import { homeSections } from '../data/homepage';
+import { compareBrands } from '../data/brandOrder';
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const latestPosts = allPosts
@@ -16,7 +17,7 @@ const latestPosts = allPosts
 const allBrands = await getCollection('brands');
 const featuredBrands = allBrands
   .filter((brand) => brand.data.featured)
-  .sort((a, b) => b.data.rating - a.data.rating)
+  .sort(compareBrands)
   .slice(0, 4);
 ---
 

@@ -3,9 +3,10 @@ import BaseLayout   from '../../layouts/BaseLayout.astro';
 import BrandCard    from '../../components/BrandCard.astro';
 import SectionTitle from '../../components/SectionTitle.astro';
 import { getCollection } from 'astro:content';
+import { compareBrands } from '../../data/brandOrder';
 
 const allBrands = await getCollection('brands');
-const sorted = allBrands.sort((a, b) => b.data.rating - a.data.rating);
+const sorted = allBrands.sort(compareBrands);
 ---
 
 <BaseLayout

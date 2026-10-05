@@ -3,23 +3,24 @@ import LandingLayout    from '../../layouts/LandingLayout.astro';
 import ComparisonTable  from '../../components/ComparisonTable.astro';
 import SectionTitle     from '../../components/SectionTitle.astro';
 import { getCollection } from 'astro:content';
+import { compareBrands } from '../../data/brandOrder';
 
 const allBrands = await getCollection('brands');
-const sorted = allBrands.sort((a, b) => b.data.rating - a.data.rating);
+const sorted = allBrands.sort(compareBrands);
 
 // Build comparison table data
 const tableHeaders = ['品牌名称', '综合评分', '最低价格', 'Trojan/SS', 'VMess/VLESS', '专线过境', 'Netflix解锁', 'Disney+解锁', 'ChatGPT AI'];
 
 const tableRows = sorted.map((b) => [
   b.data.name,
-  `${b.data.rating.toFixed(1)} / 10`,
+  b.data.rating > 0 ? `${b.data.rating.toFixed(1)} / 10` : '待核验',
   b.data.minPrice !== undefined ? (b.data.minPrice === 1.0 ? '¥1.0/次起' : `¥${b.data.minPrice.toFixed(1)}/月`) : '—',
-  b.data.nodeTypes.some((t) => t.includes('SS') || t.includes('Trojan') || t.includes('Shadowsocks')),
-  b.data.nodeTypes.some((t) => t.includes('VMess') || t.includes('V2Ray') || t.includes('VLESS')),
-  b.data.nodeTypes.some((t) => t.includes('IPLC') || t.includes('IEPL') || t.includes('专线')),
-  b.data.streamingSupport.some((s) => s.includes('Netflix')),
-  b.data.streamingSupport.some((s) => s.includes('Disney')),
-  b.data.streamingSupport.some((s) => s.includes('ChatGPT')),
+  b.data.nodeTypes.length > 0 ? b.data.nodeTypes.some((t) => t.includes('SS') || t.includes('Trojan') || t.includes('Shadowsocks')) : '—',
+  b.data.nodeTypes.length > 0 ? b.data.nodeTypes.some((t) => t.includes('VMess') || t.includes('V2Ray') || t.includes('VLESS')) : '—',
+  b.data.nodeTypes.length > 0 ? b.data.nodeTypes.some((t) => t.includes('IPLC') || t.includes('IEPL') || t.includes('专线')) : '—',
+  b.data.streamingSupport.length > 0 ? b.data.streamingSupport.some((s) => s.includes('Netflix')) : '—',
+  b.data.streamingSupport.length > 0 ? b.data.streamingSupport.some((s) => s.includes('Disney')) : '—',
+  b.data.streamingSupport.length > 0 ? b.data.streamingSupport.some((s) => s.includes('ChatGPT')) : '—',
 ]);
 
 const tableRowLinks = sorted.map((b) =>

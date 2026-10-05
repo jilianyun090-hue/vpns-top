@@ -6,11 +6,12 @@ import HubCard from '../../components/HubCard.astro';
 import BrandCard from '../../components/BrandCard.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
+import { compareBrands } from '../../data/brandOrder';
 
 const allBrands = await getCollection('brands');
 const featuredBrands = allBrands
   .filter((brand) => brand.data.featured)
-  .sort((a, b) => b.data.rating - a.data.rating)
+  .sort(compareBrands)
   .slice(0, 4);
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);

@@ -416,6 +416,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://vpns-top.com/brands/dalao-yun/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://vpns-top.com/brands/dengta/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -432,6 +437,11 @@
   </url>
   <url>
     <loc>https://vpns-top.com/brands/guangsu-yun/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vpns-top.com/brands/huanqiu-ti/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -476,12 +486,27 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://vpns-top.com/brands/liulian-yun/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://vpns-top.com/brands/nice-jiasu/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://vpns-top.com/brands/quanqiu-yun/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vpns-top.com/brands/shandianshu/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vpns-top.com/brands/shenxing-jiasu/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -502,6 +527,11 @@
   </url>
   <url>
     <loc>https://vpns-top.com/brands/yingzi/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vpns-top.com/brands/yunjiexian/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

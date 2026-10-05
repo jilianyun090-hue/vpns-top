@@ -16,6 +16,8 @@ const {
   name, slug, rating, tagline, nodeTypes = [], streamingSupport = [],
   minPrice, referralId, featured = false
 } = Astro.props;
+
+const hasVerifiedRating = rating > 0;
 ---
 
 <article class:list={[
@@ -44,8 +46,13 @@ const {
     </div>
 
     <div class="shrink-0 border-l border-slate-200 pl-4 text-right transition-colors duration-300 group-hover:border-brand-200 group-focus-within:border-brand-200">
-      <span class="block text-3xl font-black leading-none tracking-[-0.04em] text-slate-950 transition-colors duration-300 group-hover:text-brand-600 group-focus-within:text-brand-600">{rating.toFixed(1)}</span>
-      <span class="mt-1 block text-[9px] font-bold uppercase tracking-wider text-slate-400">Score / 10</span>
+      <span class:list={[
+        'block font-black leading-none tracking-[-0.04em] text-slate-950 transition-colors duration-300 group-hover:text-brand-600 group-focus-within:text-brand-600',
+        hasVerifiedRating ? 'text-3xl' : 'text-sm'
+      ]}>{hasVerifiedRating ? rating.toFixed(1) : '待评'}</span>
+      <span class="mt-1 block text-[9px] font-bold uppercase tracking-wider text-slate-400">
+        {hasVerifiedRating ? 'Score / 10' : '核验中'}
+      </span>
     </div>
   </div>
 
