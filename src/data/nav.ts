@@ -62,6 +62,12 @@ export const mainNav: NavItem[] = [
         mark: '器',
       },
       {
+        label: 'Clash 机场入门',
+        href: '/blog/clash-airport-beginner-checklist-2026/',
+        description: '订阅兼容与购买前核对',
+        mark: '核',
+      },
+      {
         label: '故障排查',
         href: '/category/troubleshoot/',
         description: '连接、DNS 与应用异常',
@@ -79,6 +85,12 @@ export const mainNav: NavItem[] = [
         href: '/category/decision/',
         description: '套餐、周期与风险判断',
         mark: '择',
+      },
+      {
+        label: '公益机场指南',
+        href: '/blog/public-benefit-airport-guide-2026/',
+        description: '免费节点的成本与风险',
+        mark: '益',
       },
       {
         label: '主备预算分配',
