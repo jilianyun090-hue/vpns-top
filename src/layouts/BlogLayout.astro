@@ -13,6 +13,7 @@ interface Props {
   category:     string;
   tags?:        string[];
   author?:      string;
+  referralId?:  string;
   relatedPosts?: CollectionEntry<'blog'>[];
   faqs?:         { question: string; answer: string }[];
   breadcrumbs?:  { label: string; href?: string }[];
@@ -20,7 +21,7 @@ interface Props {
 
 const {
   title, description, pubDate, updatedDate, category, 
-  tags = [], author = 'VPNs Top 评测团队',
+  tags = [], author = 'VPNs Top 评测团队', referralId,
   relatedPosts = [], faqs = [],
   breadcrumbs = [
     { label: '首页', href: '/' },
@@ -75,6 +76,18 @@ const breadcrumbSchema = {
           {title}
         </h1>
         <p class="mb-7 border-l-2 border-brand-500 pl-5 text-lg leading-relaxed text-slate-600">{description}</p>
+
+        {referralId && (
+          <div class="mb-7 flex flex-wrap items-center gap-4 rounded-2xl border border-brand-200 bg-brand-50/70 px-5 py-4">
+            <div class="flex-1 text-sm leading-relaxed text-slate-600">
+              <strong class="block text-slate-900">官方注册入口</strong>
+              <span>注册前请自行核对当前套餐、价格、隐私政策和服务条款。</span>
+            </div>
+            <a href={`/go/${referralId}/`} target="_blank" rel="noopener noreferrer sponsored" class="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-5 py-3 text-sm font-bold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-brand-800 hover:shadow-md">
+              前往官网注册 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        )}
 
         <!-- Meta strip -->
         <div class="flex flex-wrap items-center gap-x-5 gap-y-2 border-y border-slate-200 py-4 text-xs text-slate-500">

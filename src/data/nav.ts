@@ -172,6 +172,12 @@ export const mainNav: NavItem[] = [
         description: '访问科技狐 AI 中转站',
         mark: '狐',
       },
+      {
+        label: '犀速AI',
+        href: '/go/xisu-ai/',
+        description: '访问犀速AI中转服务',
+        mark: '犀',
+      },
     ],
   },
   { label: '关于本站', href: '/about/' },

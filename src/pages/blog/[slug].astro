@@ -32,6 +32,7 @@ const related = allPosts
   category={post.data.category}
   tags={post.data.tags}
   author={post.data.author}
+  referralId={post.data.category === 'ai' ? post.data.referralId : undefined}
   relatedPosts={related}
   breadcrumbs={[
     { label: '首页', href: '/' },

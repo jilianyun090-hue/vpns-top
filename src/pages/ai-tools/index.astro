@@ -10,25 +10,29 @@ const aiPosts = (await getCollection('blog', ({ data }) => !data.draft && data.c
   .slice(0, 10);
 
 const tools = [
-  { mark: '喵', name: '黑喵', href: '/go/heimao-ai/', description: '第三方 AI 模型中转服务入口。' },
-  { mark: '快', name: '快AI', href: '/go/kuai-ai/', description: '提供 AI API 与模型中转注册入口。' },
-  { mark: '狐', name: '科技狐', href: '/go/keji-hu/', description: '第三方 AI 模型中转与注册入口。' },
+  { mark: '喵', name: '黑喵', href: '/go/heimao-ai/', reviewHref: '/blog/heimao-ai-review-2026/', description: '第三方 AI 模型中转服务入口。' },
+  { mark: '快', name: '快AI', href: '/go/kuai-ai/', reviewHref: '/blog/kuai-ai-review-2026/', description: '提供 AI API 与模型中转注册入口。' },
+  { mark: '狐', name: '科技狐', href: '/go/keji-hu/', reviewHref: '/blog/keji-hu-review-2026/', description: '第三方 AI 模型中转与注册入口。' },
+  { mark: '犀', name: '犀速AI', href: '/go/xisu-ai/', reviewHref: '/blog/xisu-ai-review-2026/', description: '第三方 AI 模型中转与注册入口。' },
 ];
 ---
 
-<BaseLayout title="AI 工具导航：黑喵、快AI与科技狐" description="集中整理黑喵、快AI、科技狐三个第三方AI模型中转服务入口，并通过站内跳转页统一管理外链。">
+<BaseLayout title="AI 工具导航：黑喵、快AI、科技狐与犀速AI" description="集中整理黑喵、快AI、科技狐、犀速AI四个第三方AI模型中转服务入口，并通过站内跳转页统一管理外链。">
   <div class="container-xl max-w-5xl py-10 lg:py-14">
     <Breadcrumb items={[{ label: '首页', href: '/' }, { label: 'AI 工具' }]} />
-    <SectionTitle headingLevel={1} title="AI 工具" subtitle="三个 AI 中转站集中放在独立页面中，不再与客户端教程或首页内容混合。" tag="AI TOOLS" />
+    <SectionTitle headingLevel={1} title="AI 工具" subtitle="四个 AI 中转站集中放在独立页面中，并为每个服务提供单独的测评与注册入口。" tag="AI TOOLS" />
 
-    <div class="grid gap-4 md:grid-cols-3">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {tools.map((tool) => (
-        <a href={tool.href} class="group flex min-h-[250px] flex-col border border-stone-300/80 bg-[#fbf8f0]/80 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500 hover:bg-[#fffdf7] hover:shadow-[0_22px_50px_rgba(62,77,68,0.13)]">
+        <div class="group flex min-h-[250px] flex-col border border-stone-300/80 bg-[#fbf8f0]/80 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500 hover:bg-[#fffdf7] hover:shadow-[0_22px_50px_rgba(62,77,68,0.13)]">
           <span class="flex h-12 w-12 items-center justify-center rounded-full border border-brand-300 font-serif text-lg text-brand-700 group-hover:border-brand-600 group-hover:bg-brand-50">{tool.mark}</span>
           <h2 class="mt-8 text-2xl font-bold text-ink group-hover:text-brand-800">{tool.name}</h2>
           <p class="mt-3 flex-1 text-sm leading-relaxed text-stone-500">{tool.description}</p>
-          <span class="mt-8 border-t border-stone-300/70 pt-5 text-sm font-semibold text-brand-700">访问服务 →</span>
-        </a>
+          <div class="mt-8 flex gap-3 border-t border-stone-300/70 pt-5 text-sm font-semibold">
+            <a href={tool.reviewHref} class="text-brand-700 hover:text-brand-900">查看测评 →</a>
+            <a href={tool.href} target="_blank" rel="noopener noreferrer sponsored" class="text-stone-500 hover:text-brand-700">官网注册</a>
+          </div>
+        </div>
       ))}
     </div>
 

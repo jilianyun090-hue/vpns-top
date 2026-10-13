@@ -195,6 +195,12 @@ export const redirects: RedirectEntry[] = [
     destination: 'https://xiaohuliapi.pw/sign-up?aff=c4CP',
     description: '第三方 AI 模型中转服务',
   },
+  {
+    id: 'xisu-ai',
+    brand: '犀速AI',
+    destination: 'https://www.xisu.ai/signup?ref=D4NJAJ2M',
+    description: '第三方 AI 模型中转服务',
+  },
 
 ];
 
