@@ -116,6 +116,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://vpns-top.com/blog/airport-review-verification-guide/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://vpns-top.com/blog/airport-route-quality-guide/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -391,6 +396,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://vpns-top.com/blog/stable-node-line-check-guide/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://vpns-top.com/blog/student-airport-guide/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -407,6 +417,11 @@
   </url>
   <url>
     <loc>https://vpns-top.com/blog/v2rayn-airport-client-guide/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vpns-top.com/blog/vpn-software-vs-airport-guide/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -891,7 +906,17 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://vpns-top.com/tag/VPN%E6%9C%BA%E5%9C%BA/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://vpns-top.com/tag/VPN%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://vpns-top.com/tag/VPN%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1351,6 +1376,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://vpns-top.com/tag/%E6%9C%BA%E5%9C%BA%E6%B5%8B%E8%AF%84/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://vpns-top.com/tag/%E6%9C%BA%E5%9C%BA%E7%BA%BF%E8%B7%AF/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -1372,6 +1402,11 @@
   </url>
   <url>
     <loc>https://vpns-top.com/tag/%E6%9C%BA%E5%9C%BA%E8%AE%A2%E9%98%85/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://vpns-top.com/tag/%E6%9C%BA%E5%9C%BA%E8%AF%84%E4%BB%B7/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1432,6 +1467,11 @@
   </url>
   <url>
     <loc>https://vpns-top.com/tag/%E6%A2%AF%E5%AD%90%E6%8E%A8%E8%8D%90/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://vpns-top.com/tag/%E6%A2%AF%E5%AD%90%E6%8E%A8%E8%8D%90%E7%A8%B3%E5%AE%9A/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1547,6 +1587,16 @@
   </url>
   <url>
     <loc>https://vpns-top.com/tag/%E7%A8%B3%E5%AE%9A%E6%A2%AF%E5%AD%90%E6%8E%A8%E8%8D%90/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://vpns-top.com/tag/%E7%A8%B3%E5%AE%9A%E7%BA%BF%E8%B7%AF/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://vpns-top.com/tag/%E7%A8%B3%E5%AE%9A%E8%8A%82%E7%82%B9/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

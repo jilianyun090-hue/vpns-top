@@ -36,6 +36,12 @@ export const mainNav: NavItem[] = [
         description: '按长期可用性筛选服务',
         mark: '荐',
       },
+      {
+        label: '机场评价核验',
+        href: '/blog/airport-review-verification-guide/',
+        description: '从测速、反馈与售后判断评价可信度',
+        mark: '核',
+      },
     ],
   },
   {
@@ -72,6 +78,12 @@ export const mainNav: NavItem[] = [
         href: '/category/troubleshoot/',
         description: '连接、DNS 与应用异常',
         mark: '诊',
+      },
+      {
+        label: 'VPN 软件还是机场',
+        href: '/blog/vpn-software-vs-airport-guide/',
+        description: '按设备、预算与维护成本分流选择',
+        mark: '选',
       },
     ],
   },
@@ -140,6 +152,12 @@ export const mainNav: NavItem[] = [
         href: '/blog/airport-terms-dictionary/',
         description: '线路、协议与节点概念速查',
         mark: '典',
+      },
+      {
+        label: '稳定节点与线路检查',
+        href: '/blog/stable-node-line-check-guide/',
+        description: '晚高峰、丢包与备用入口复测方法',
+        mark: '稳',
       },
     ],
   },
