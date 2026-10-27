@@ -24,9 +24,9 @@ const filtered = allPosts
 ---
 
 <BaseLayout
-  title={`${tag} 相关文章与选购指南`}
-  description={`围绕“${tag}”整理 ${filtered.length} 篇机场推荐、机场节点、VPN 使用与选购指南，包含评测方法、配置教程和常见问题。`}
-  noindex={filtered.length < 2}
+  title={`${tag}：机场推荐、VPN 节点与使用指南`}
+  description={`围绕“${tag}”整理 ${filtered.length} 篇相关内容，涵盖实际测评、套餐和节点信息、使用教程与常见问题。请结合设备、网络环境和实际用途核验最新信息，并留意文章更新时间及服务商公告。`}
+  noindex={filtered.length < 4}
 >
   <div class="container-xl py-10 lg:py-14">
     <Breadcrumb items={[

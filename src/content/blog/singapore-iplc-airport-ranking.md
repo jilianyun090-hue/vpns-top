@@ -1,5 +1,5 @@
 ---
-title: 新加坡 IPLC 机场推荐与线路判断
+title: 新加坡IPLC机场推荐：线路判断、节点延迟与使用场景
 description: 从路径、晚高峰、抖动、出口用途和订阅兼容判断新加坡 IPLC 节点，避免只凭专线标签选择机场。
 pubDate: 2026-10-03
 updatedDate: 2026-10-03

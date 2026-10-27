@@ -36,6 +36,10 @@ const canonicalURL = canonical
   ? new URL(canonical, SITE.url).href
   : new URL(Astro.url.pathname, SITE.url).href;
 const ogImageURL = new URL(ogImage, SITE.url).href;
+const descriptionDetails = keywords.slice(0, 3).join('、');
+const seoDescription = type === 'article' && description.length < 80
+  ? `${description} 另含${descriptionDetails || articleSection || '相关主题'}的核验要点、实操步骤与常见问题，方便按设备和使用场景进行对照。`
+  : description;
 
 type JsonLdNode = Record<string, unknown>;
 
@@ -69,7 +73,7 @@ const pageSchema: JsonLdNode = type === 'article'
       '@type': 'Article',
       '@id': `${canonicalURL}#article`,
       headline: title ?? SITE.name,
-      description,
+      description: seoDescription,
       url: canonicalURL,
       mainEntityOfPage: { '@id': webpageId },
       image: [ogImageURL],
@@ -87,7 +91,7 @@ const pageSchema: JsonLdNode = type === 'article'
       '@type': 'WebPage',
       '@id': webpageId,
       name: title ?? SITE.name,
-      description,
+      description: seoDescription,
       url: canonicalURL,
       inLanguage: SITE.lang,
       isPartOf: { '@id': websiteId },
@@ -99,7 +103,7 @@ const webpageSchema: JsonLdNode | null = type === 'article'
       '@type': 'WebPage',
       '@id': webpageId,
       name: title ?? SITE.name,
-      description,
+      description: seoDescription,
       url: canonicalURL,
       inLanguage: SITE.lang,
       isPartOf: { '@id': websiteId },
@@ -144,7 +148,7 @@ const serializedJsonLD = JSON.stringify(jsonLD).replace(/</g, '\\u003c');
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{pageTitle}</title>
-<meta name="description" content={description} />
+<meta name="description" content={seoDescription} />
 <meta name="keywords"    content={keywords.length > 0 ? keywords.join(', ') : SITE.keywords} />
 <meta name="author"      content={SITE.author} />
 <link rel="canonical"    href={canonicalURL} />
@@ -162,7 +166,7 @@ const serializedJsonLD = JSON.stringify(jsonLD).replace(/</g, '\\u003c');
 <meta property="og:type"        content={type} />
 <meta property="og:url"         content={canonicalURL} />
 <meta property="og:title"       content={pageTitle} />
-<meta property="og:description" content={description} />
+<meta property="og:description" content={seoDescription} />
 <meta property="og:image"       content={ogImageURL} />
 <meta property="og:image:alt"   content={title ?? SITE.name} />
 <meta property="og:locale"      content={SITE.locale} />
@@ -171,7 +175,7 @@ const serializedJsonLD = JSON.stringify(jsonLD).replace(/</g, '\\u003c');
 <!-- Twitter Card -->
 <meta name="twitter:card"        content="summary_large_image" />
 <meta name="twitter:title"       content={pageTitle} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:description" content={seoDescription} />
 <meta name="twitter:image"       content={ogImageURL} />
 <meta name="twitter:image:alt"   content={title ?? SITE.name} />
 {SITE.twitterHandle && <meta name="twitter:site" content={SITE.twitterHandle} />}

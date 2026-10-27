@@ -13,29 +13,18 @@ const endpoints = [
   'www.bing.com'
 ];
 
-function getAllUrls(dir, baseRoute = '') {
-  let urls = [];
-  if (!fs.existsSync(dir)) return urls;
-  
-  const files = fs.readdirSync(dir);
-  for (const file of files) {
-    const fullPath = path.join(dir, file);
-    const stat = fs.statSync(fullPath);
-    if (stat.isDirectory()) {
-      if (file !== 'go') { // exclude affiliate redirect routes
-        urls = urls.concat(getAllUrls(fullPath, `${baseRoute}/${file}`));
-      }
-    } else if (file === 'index.html') {
-      const route = baseRoute ? `${baseRoute}/` : '/';
-      urls.push(`${baseUrl}${route}`);
-    }
-  }
-  return urls;
+function getSitemapUrls() {
+  const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+  if (!fs.existsSync(sitemapPath)) return [];
+
+  const sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  return [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, loc]) =>
+    loc.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'"),
+  );
 }
 
 async function submitIndexNow() {
-  const distDir = path.join(process.cwd(), 'dist');
-  let urlList = getAllUrls(distDir);
+  let urlList = getSitemapUrls();
   
   if (urlList.length === 0) {
     // Fallback URL list if dist is not yet generated
