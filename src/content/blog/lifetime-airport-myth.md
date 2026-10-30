@@ -51,9 +51,9 @@ referralId: "jilian-yun"
 
 与“终身包”陷阱形成鲜明对比的是，注重长期品牌与口碑的正规机场都会采用**按月/按年订阅**或**透明流量计费**的商业模式：
 
-- **[极连云](https://vpns-top.com/brands/jilian-yun/)**：按月订阅低至 ¥8.00/月，采用全 IEPL 专线，流量实打实计算，不上架虚假买断包。
-- **[光年梯](https://vpns-top.com/brands/guangnian-ti/)**：全线 IPLC 专线，提供年付 8 折优惠，收益用于持续扩容物理带宽。
-- **[鲲鹏加速](https://vpns-top.com/brands/kunpeng-jiasu/)**：全站节点统一 1.0 倍率扣费，提供 ¥1.00 尝鲜包与透明月付，绝无暗扣。
+- **[极连云](https://tuijichang.org/brands/jilian-yun/)**：按月订阅低至 ¥8.00/月，采用全 IEPL 专线，流量实打实计算，不上架虚假买断包。
+- **[光年梯](https://tuijichang.org/brands/guangnian-ti/)**：全线 IPLC 专线，提供年付 8 折优惠，收益用于持续扩容物理带宽。
+- **[鲲鹏加速](https://tuijichang.org/brands/kunpeng-jiasu/)**：全站节点统一 1.0 倍率扣费，提供 ¥1.00 尝鲜包与透明月付，绝无暗扣。
 
 ---
 

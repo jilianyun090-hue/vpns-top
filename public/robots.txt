@@ -6,4 +6,4 @@ Disallow: /go/
 # 允许抓取公开内容，但不抓取推广跳转路由。
 
 # ── Sitemap ────────────────────────────────────────────────
-Sitemap: https://vpns-top.com/sitemap.xml
+Sitemap: https://tuijichang.org/sitemap.xml

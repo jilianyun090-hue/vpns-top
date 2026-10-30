@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import https from 'https';
 
-const host = 'vpns-top.com';
+const host = 'tuijichang.org';
 const baseUrl = `https://${host}`;
 const key = '05709fa9015c42abb8ed05abca174cdd';
 const keyLocation = `${baseUrl}/${key}.txt`;

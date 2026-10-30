@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-`vpns-top.com` 是一个基于 **Astro 4 (SSG) + TypeScript + Tailwind CSS** 构建的中文机场/VPN评测聚合站，
+`tuijichang.org` 是一个基于 **Astro 4 (SSG) + TypeScript + Tailwind CSS** 构建的中文机场/VPN评测聚合站，
 面向 Cloudflare Pages 部署。
 
 ---

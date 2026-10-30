@@ -25,7 +25,7 @@ referralId: "kunpeng-jiasu"
 白天网络空闲时，绝大多数中转甚至直连节点都能跑满带宽。但在每晚 20 点至 23 点的网络高峰期，劣质机场往往会出现严重丢包、4K 视频频繁缓冲等问题。
 
 - **测试方法**：在晚高峰时段，开启 Clash 或 Sing-box 客户端，连续进行 5-10 分钟的高码率 4K/8K 视频播放（如 YouTube 4K 测试视频），观察 **Buffer Health** 是否持续稳定在 10 秒以上。
-- **实测参考**：如 [光年梯](https://vpns-top.com/brands/guangnian-ti/) 与 [极连云](https://vpns-top.com/brands/jilian-yun/) 采用物理专线过境，在晚高峰时段丢包率接近 0%，可作为稳定性标杆进行对比。
+- **实测参考**：如 [光年梯](https://tuijichang.org/brands/guangnian-ti/) 与 [极连云](https://tuijichang.org/brands/jilian-yun/) 采用物理专线过境，在晚高峰时段丢包率接近 0%，可作为稳定性标杆进行对比。
 
 ---
 
@@ -34,7 +34,7 @@ referralId: "kunpeng-jiasu"
 部分机场表面上价格极低，但会将热门节点（如香港、日本、美国）设为 `x3`、`x5` 甚至 `x10` 倍率，导致几 GB 流量转瞬即逝。
 
 - **测试方法**：导入订阅后，仔细检查客户端节点列表中标注的倍率后缀（如 `0.5x`, `1.0x`, `2.0x`）。试用期间下载一个固定大小的文件（如 100MB 测速包），随后在机场后台对比实际扣除流量。
-- **实测参考**：如 [鲲鹏加速](https://vpns-top.com/brands/kunpeng-jiasu/) 明确标榜**全站节点统一 1.0 倍率扣费，绝无暗扣**，且提供仅需 **¥1.00/一次性** 的扶摇尝鲜包（包含 1GB 完整体验流量），非常适合新手作为第一站测试标准。
+- **实测参考**：如 [鲲鹏加速](https://tuijichang.org/brands/kunpeng-jiasu/) 明确标榜**全站节点统一 1.0 倍率扣费，绝无暗扣**，且提供仅需 **¥1.00/一次性** 的扶摇尝鲜包（包含 1GB 完整体验流量），非常适合新手作为第一站测试标准。
 
 ```
 实际使用流量 100MB  ✕ 节点倍率 1.0 = 扣除额度 100MB (无暗扣)
@@ -50,7 +50,7 @@ referralId: "kunpeng-jiasu"
 - **测试内容**：
   - **AI 工具**：访问 OpenAI ChatGPT、Claude.ai 以及 Gemini，检查是否被阻断。
   - **海外流媒体**：使用流媒体检测脚本或直接登录 Netflix、Disney+、YouTube Premium，确认能否正常加载自制剧集与非版权限制区域。
-- **实测体验**：[极连云](https://vpns-top.com/brands/jilian-yun/) 的 IEPL 专线全节点默认支持 Netflix 与 ChatGPT 原生解锁，连通率较高。
+- **实测体验**：[极连云](https://tuijichang.org/brands/jilian-yun/) 的 IEPL 专线全节点默认支持 Netflix 与 ChatGPT 原生解锁，连通率较高。
 
 ---
 
@@ -67,9 +67,9 @@ referralId: "kunpeng-jiasu"
 
 | 机场品牌 | 试用/入门门槛 | 核心优势 | 适合测试人群 |
 |---|---|---|---|
-| **[鲲鹏加速](https://vpns-top.com/brands/kunpeng-jiasu/)** | **¥1.00 / 一次性** | 全站 1.0 倍率无暗扣，多国原生节点 | 极低成本测速、AI 与流媒体体验 |
-| **[极连云](https://vpns-top.com/brands/jilian-yun/)** | **¥8.00 / 月** | 高性价比 IEPL 专线，全节点 1 倍率 | 追求长期稳定出海的主力用户 |
-| **[光年梯](https://vpns-top.com/brands/guangnian-ti/)** | **¥7.42 / 月起** | 全线 IPLC 专线，高峰期满速不降速 | 游戏低延迟、重度影音保障 |
+| **[鲲鹏加速](https://tuijichang.org/brands/kunpeng-jiasu/)** | **¥1.00 / 一次性** | 全站 1.0 倍率无暗扣，多国原生节点 | 极低成本测速、AI 与流媒体体验 |
+| **[极连云](https://tuijichang.org/brands/jilian-yun/)** | **¥8.00 / 月** | 高性价比 IEPL 专线，全节点 1 倍率 | 追求长期稳定出海的主力用户 |
+| **[光年梯](https://tuijichang.org/brands/guangnian-ti/)** | **¥7.42 / 月起** | 全线 IPLC 专线，高峰期满速不降速 | 游戏低延迟、重度影音保障 |
 
 通过以上 4 项规范测试，你就可以用最低成本筛选出最适合本地网络的翻墙机场。
 
