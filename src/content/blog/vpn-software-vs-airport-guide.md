@@ -5,7 +5,7 @@ pubDate: 2026-10-26
 updatedDate: 2026-10-26
 category: "decision"
 tags: ["VPN软件推荐", "VPN机场", "机场VPN", "机场订阅", "机场节点"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

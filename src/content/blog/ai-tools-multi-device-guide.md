@@ -5,7 +5,7 @@ pubDate: 2026-10-03
 updatedDate: 2026-10-03
 category: "ai"
 tags: ["AI机场", "多设备机场", "Clash节点", "小火箭节点", "ChatGPT机场"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

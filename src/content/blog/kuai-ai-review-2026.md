@@ -5,7 +5,7 @@ pubDate: 2026-10-13
 updatedDate: 2026-10-13
 category: "ai"
 tags: ["快AI", "AI中转站", "API中转", "模型调用", "密钥安全", "AI测评"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 referralId: "kuai-ai"

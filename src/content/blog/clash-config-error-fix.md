@@ -5,7 +5,7 @@ pubDate: 2026-10-03
 updatedDate: 2026-10-03
 category: "troubleshoot"
 tags: ["Clash配置错误", "Clash节点", "Clash机场", "订阅导入失败", "YAML"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

@@ -5,7 +5,7 @@ pubDate: 2026-10-03
 updatedDate: 2026-10-03
 category: "decision"
 tags: ["不限设备机场", "多设备机场", "家庭机场", "机场套餐", "设备限制"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

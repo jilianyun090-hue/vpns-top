@@ -5,7 +5,7 @@ pubDate: 2026-10-03
 updatedDate: 2026-10-03
 category: "decision"
 tags: ["直连机场", "BGP中转", "专线机场", "IPLC机场", "中转机场"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

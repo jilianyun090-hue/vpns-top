@@ -5,7 +5,7 @@ pubDate: 2026-10-03
 updatedDate: 2026-10-03
 category: "beginner"
 tags: ["机场订阅", "订阅链接", "机场节点", "节点梯子", "新手教程"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

@@ -5,7 +5,7 @@ pubDate: 2026-10-03
 updatedDate: 2026-10-03
 category: "troubleshoot"
 tags: ["机场无法连接", "节点超时", "机场节点", "Clash节点", "故障排查"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

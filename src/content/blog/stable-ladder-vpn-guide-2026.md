@@ -5,7 +5,7 @@ pubDate: 2026-09-22
 updatedDate: 2026-10-03
 category: airport
 tags: ["稳定梯子推荐", "机场VPN", "稳定梯子", "机场节点", "梯子推荐", "稳定性测试"]
-author: VPNs Top 评测团队
+author: 推机场评测团队
 featured: true
 draft: false
 referralId: jilian-yun

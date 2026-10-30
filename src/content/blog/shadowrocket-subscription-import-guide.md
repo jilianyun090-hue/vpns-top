@@ -5,7 +5,7 @@ pubDate: 2026-10-03
 updatedDate: 2026-10-03
 category: "tutorial"
 tags: ["小火箭节点", "小火箭机场", "Shadowrocket", "机场订阅", "iOS教程"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

@@ -5,7 +5,7 @@ pubDate: 2026-09-26
 updatedDate: 2026-10-03
 category: "decision"
 tags: ["主用机场", "备用机场", "预算分配", "极连云", "鲲鹏加速", "避坑指南"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: true
 referralId: "jilian-yun"
 ---

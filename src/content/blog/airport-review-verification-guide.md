@@ -5,7 +5,7 @@ pubDate: 2026-10-26
 updatedDate: 2026-10-26
 category: "topics"
 tags: ["机场评价", "机场测评", "机场推荐", "机场节点", "稳定机场"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

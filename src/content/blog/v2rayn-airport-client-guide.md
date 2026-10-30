@@ -5,7 +5,7 @@ pubDate: 2026-10-03
 updatedDate: 2026-10-03
 category: "tools"
 tags: ["v2rayN", "机场节点", "机场订阅", "Windows梯子", "节点梯子"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

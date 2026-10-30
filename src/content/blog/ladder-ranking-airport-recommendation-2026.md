@@ -5,7 +5,7 @@ pubDate: 2026-09-22
 updatedDate: 2026-10-03
 category: airport
 tags: ["梯子排行榜", "梯子排行", "翻墙机场", "性价比机场", "梯子推荐", "机场节点"]
-author: VPNs Top 评测团队
+author: 推机场评测团队
 featured: true
 draft: false
 referralId: yuntu

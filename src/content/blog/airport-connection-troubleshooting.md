@@ -5,7 +5,7 @@ pubDate: 2026-09-26
 updatedDate: 2026-10-03
 category: "troubleshoot"
 tags: ["故障排查", "无法联网", "TUN模式", "DNS", "分流规则"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 referralId: "kunpeng-jiasu"

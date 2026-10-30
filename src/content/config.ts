@@ -10,7 +10,7 @@ const blog = defineCollection({
     updatedDate: z.coerce.date().optional(),
     category:    z.string(),
     tags:        z.array(z.string()).default([]),
-    author:      z.string().default('VPNs Top 评测团队'),
+    author:      z.string().default('推机场评测团队'),
     featured:    z.boolean().default(false),
     draft:       z.boolean().default(false),
     heroImage:   z.string().optional(),

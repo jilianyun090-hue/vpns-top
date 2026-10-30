@@ -5,7 +5,7 @@ pubDate: 2026-10-03
 updatedDate: 2026-10-03
 category: "ai"
 tags: ["ChatGPT登录", "验证码循环", "ChatGPT机场", "OpenAI机场", "会话异常"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: false
 draft: false
 ---

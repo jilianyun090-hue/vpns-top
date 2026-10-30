@@ -5,7 +5,7 @@ pubDate: 2026-09-26
 updatedDate: 2026-10-03
 category: "beginner"
 tags: ["机场试用", "试用套餐", "极连云", "鲲鹏加速", "光年梯", "测速指南"]
-author: "VPNs Top 评测团队"
+author: "推机场评测团队"
 featured: true
 referralId: "kunpeng-jiasu"
 ---
